@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="row cardAdminIndex w3-center">
+        <div class="w3-col l3">
+            <a href="{{ path('gestion_partes') }}"><span class="card-title center">Partes Iniciados</span></a>
+            <p>{{ partesIniciados }}</p>
+        </div>
+        <div class="w3-col l3">
+            <a href="{{ path('gestion_sanciones') }}"><span class="card-title center">Sanciones Iniciadas</span></a>
+            <p>{{ sancionesIniciadas }}</p>
+        </div>
+        <div class="w3-col l3">
+            <a href="{{ path('show_diario') }}"><span class="card-title center">Aula convivencia aforo</span></a>
+            <p>{{ diarioNow }}</p>
+        </div>
+    </div>
+
+{% endblock %}

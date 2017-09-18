@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <style>
+        body{
+            background-color: white;
+        }
+    </style>
+    <div class="w3-row w3-container w3-margin-bottom" id="contenedorUpload">
+        <h1 class="w3-center">Importar Alumnos</h1>
+        <h2 class="w3-center"><i class="fa fa-info-circle fa-lg tooltip" data-tooltip-content="#tooltip_content"></i></h2>
+
+        <div class="tooltip_templates">
+        <span id="tooltip_content">
+            <p>Debe ser un fichero csv con el siguiente orden de campos:</p><p>Nombre, Primer Apellido, Segundo Apellido, Unidad, Teléfono, Correo Electrónico, NºId Escolar, Teléfono de Urgencia, Dirección, Código Postal, Localidad, Provincia, Curso</p>
+        </span>
+        </div>
+
+        {% for flash_message in app.session.flashBag.get('alumnos') %}
+            <div class="w3-panel w3-pale-green w3-round-large">
+                <p class="w3-center">{{ flash_message }}</p>
+            </div>
+        {% endfor %}
+
+        {% for flash_message in app.session.flashBag.get('alumnosError') %}
+            <div class="w3-panel w3-pale-red w3-round-large">
+                <p class="w3-center">{{ flash_message }}</p>
+            </div>
+        {% endfor %}
+
+        {{ form_start(form, {'attr': {'class':'w3-content formConvivencia'}}) }}
+        {{ form_widget(form) }}
+        <input class="w3-button w3-block w3-section .azulTemaButton w3-text-white" id="botonImportar" type="submit" name="importarAlumnos" value="Importar" disabled>
+        {{ form_end(form) }}
+        <div class="">
+            <div class="loader"></div>
+        </div>
+    </div>
+
+{% endblock %}

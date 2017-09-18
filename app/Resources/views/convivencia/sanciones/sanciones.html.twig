@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    {% block header %}
+        <main class="w3-container">
+            <h1>Gestion Sanciones</h1>
+
+            {% for flash_message in app.session.flashBag.get('sancion') %}
+                <div class="w3-panel w3-pale-green w3-round-large">
+                    <p class="w3-center">{{ flash_message }}</p>
+                </div>
+            {% endfor %}
+
+            {% for flash_message in app.session.flashBag.get('sancionError') %}
+                <div class="w3-panel w3-pale-red w3-round-large">
+                    <p class="w3-center">{{ flash_message }}</p>
+                </div>
+            {% endfor %}
+
+            {#TODO: ajustar form#}
+            <form action="">
+                <div class="w3-col l3 m8 w3-section">
+                    {#<input type="text" class="w3-input w3-col l6 m12" name="like" id="partesSearchBar"#}
+                    {#value="{{ app.request.get('like') }}" placeholder="Introduce fecha, alumno, curso...">#}
+                    {#<i class=" fa fa-search fa-lg fa-flip-horizontal"></i>#}
+                    <div class="i-checks">
+                        {% if app.request.get('historico') == 'on' %}
+                            <input type="checkbox" name="historico" checked>
+                        {% else %}
+                            <input type="checkbox" name="historico">
+                        {% endif %}
+                        <span> Histórico</span>
+                    </div>
+                    <input type="submit" value="Buscar" class="w3-button w3-text-white"/>
+                </div>
+                <div class="w3-col m3 w3-section">
+                    {#TODO: enlaces#}
+                    <a href="{{ path('nueva_sancion') }}" class="w3-margin-right" title="Nueva Sanción"><i
+                                class="fa fa-plus-circle fa-2x"></i></a>
+                    <a href="{{ path('export_form_sanciones') }}" class="w3-margin-right" title="Exportar"><i class="fa fa-download fa-2x"></i></a>
+                </div>
+                <div class="w3-col m12 w3-responsive w3-section">
+                    <table class="tableData stripe" data-order='[[ 1, "desc" ]]'>
+                        <thead>
+                        <tr>
+                            <th>NumSanción</th>
+                            <th>Fecha</th>
+                            <th>Alumno</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Final</th>
+                            <th>Tipo</th>
+                            {#<th>Puntos</th>#}
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for sancion in sanciones %}
+                            <tr>
+                                <td>{{ sancion.id }}</td>
+                                <td>{{ sancion.fecha|date("d/m/Y") }}</td>
+                                <td>
+                                    <a href="{{ path('verAlumno', {'id': sancion.idAlumno.id}) }}">{{ sancion.idAlumno.getNombreCompleto() }}</a>
+                                </td>
+                                <td>{{ sancion.fechaInicio|date("d/m/Y") }}</td>
+                                <td>{{ sancion.fechaFinal|date("d/m/Y") }}</td>
+                                <td>{{ sancion.idTipo.tipo }}</td>
+                                {#<td>{{ sancion.puntosRecuperados }}</td>#}
+                                <td>{{ sancion.idEstado.estado }}</td>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <td><a href="{{ path('nueva_sancion') }}?idSancion={{ sancion.id }}">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                        <a class="confirm paddingRightLeft"
+                                           href="{{ path('borrar_sancion', {'id': sancion.id}) }}"
+                                           data-title="Eliminar Sanción"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    </td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {#<div class="paginator w3-col m12">#}
+                {#{{ knp_pagination_render(sanciones) }}#}
+                {#</div>#}
+            </form>
+        </main>
+    {% endblock %}
+{% endblock %}

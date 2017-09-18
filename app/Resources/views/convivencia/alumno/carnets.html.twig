@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    {% block header %}
+        <main class="w3-container">
+            <h1>Carnets Alumnos</h1>
+            <form action="">
+                <div class="w3-row-padding">
+                    <div class="w3-col l3 m8 w3-section">
+                        {#<input type="text" name="like" id="partesSearchBar" value="{{ app.request.get('like') }}"#}
+                        {#placeholder="Introduce fecha, alumno, curso..." class="w3-input w3-col l6 m12">#}
+                        {#<i class="fa fa-search fa-lg fa-flip-horizontal"></i>#}
+                        <select name="puntosFiltro" class="w3-select w3-col s8 l4 m6" id="carnetFilterPuntos">
+                            {% for puntos in puntosSelect %}
+                                {% if app.request.get('puntosFiltro') == puntos %}
+                                    <option value="{{ puntos }}" selected>{{ puntos }}</option>
+                                {% else %}
+                                    <option value="{{ puntos }}">{{ puntos }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <input type="submit" value="Buscar" class="w3-button w3-text-white"/>
+                    </div>
+                    <div class="w3-col m3 w3-section">
+                        <a href="{{ path('export_form_carnets') }}" class="w3-margin-right" title="Exportar"><i class="fa fa-download fa-2x"></i></a>
+                    </div>
+                </div>
+
+                <div class="w3-col m12 w3-responsive w3-section">
+                    <table class="tableDataCarnets stripe" data-order='[[ 1, "desc" ]]'>
+                        <thead>
+                        <tr>
+                            <th>Alumno</th>
+                            <th>Puntos</th>
+                            <th>Grupo</th>
+                            <th>Medida</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for carnet in arrayCarnetData %}
+                            {% if carnet.alumno.puntos == 0 %}
+                                {% set colorClass = 'w3-text-green' %}
+                            {% elseif carnet.alumno.puntos > 0 and carnet.alumno.puntos <7 %}
+                                {% set colorClass = 'text-orange' %}
+                            {% elseif carnet.alumno.puntos == 7 %}
+                                {% set colorClass = 'w3-text-pink' %}
+                            {% elseif carnet.alumno.puntos > 7 and carnet.alumno.puntos <10 %}
+                                {% set colorClass = 'text-darkRed' %}
+                            {% elseif carnet.alumno.puntos >= 10 %}
+                                {% set colorClass = 'w3-text-red' %}
+                            {% else %}
+                                {% set colorClass = 'w3-text-black' %}
+                            {% endif %}
+                            <tr class="{{ colorClass }}">
+                                <td>
+                                    <a href="{{ path('verAlumno', {'id': carnet.alumno.id}) }}">{{ carnet.alumno.getNombreCompleto() }}</a>
+                                </td>
+                                <td>{{ carnet.alumno.puntos }}</td>
+                                {% if carnet.alumno.idCurso != null %}
+                                    <td>
+                                        <a href="{{ path('show_carnets', {'like': carnet.alumno.idCurso.grupo}) }}">{{ carnet.alumno.idCurso.grupo }}</a>
+                                    </td>
+                                {% else %}
+                                    <td>Ninguno</td>
+                                {% endif %}
+                                {% if carnet.arraySanciones|length > 0 %}
+                                    <td>
+                                        {% for sancion in carnet.arraySanciones %}
+                                            {% if sancion.idEstado.estado == "Iniciada" or sancion.idEstado.estado == "Vigente" %}
+                                            <a href="{{ path('nueva_sancion', {'idSancion':sancion.id}) }}">
+                                                ({{ sancion.fecha|date('d/m/Y') }} - {{ sancion.idTipo.tipo }}
+                                                - {{ sancion.idEstado.estado }})</a><br/>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                {% else %}
+                                    {% if carnet.alumno.puntos >0 %}
+                                        <td><a href="{{ path('nueva_sancion', {'idAlumno': carnet.alumno.id}) }}">Crear
+                                                Sanción</a></td>
+                                        {#<td>No sancionado(implementar crear sanción)</td>#}
+                                    {% else %}
+                                        <td></td>
+                                    {% endif %}
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {#<div class="paginator w3-col m12">#}
+                {#{{ knp_pagination_render(arrayCarnetData) }}#}
+                {#</div>#}
+            </form>
+        </main>
+    {% endblock %}
+{% endblock %}

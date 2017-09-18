@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    <main class="w3-container w3-margin-top">
+        <div class="w3-row contenedorCartaInforme">
+            <div class="w3-card-2 cartaInforme cartaAlumno" id="cartaTutorAlumno">
+                <header class="w3-container w3-center">
+                    <h2>Alumnos</h2>
+                </header>
+                <div class="cartaInformeCuerpo">
+                    <ul>
+                        {% for alumno in alumnos %}
+                            <li><a class="enlaceTutorAlumno" href="{{ path("verAlumno", {'id': alumno.id}) }}">{{ alumno.getNombreCompleto() }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+{% endblock %}

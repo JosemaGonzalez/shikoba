@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="w3-row w3-container w3-white w3-margin-bottom">
+        <h1 class="w3-center">Formulario Parte</h1>
+        <form method="post" class="w3-content" name="formBusqueda">
+            <div class="w3-center w3-margin w3-padding">
+                <input class="w3-button w3-text-white busquedaMas" id="busqueda" type="button"
+                       value="Búsqueda Avanzada">
+                {% if app.request.get('idParte') is not null %}
+                    <input type="hidden" value="{{ app.request.get('idParte') }}" name="idParte">
+                    {% if recupera %}
+                        <a href="{{ path('nuevoParte', {'idParte': app.request.get('idParte'), 'recuperaPunto': 'true'}) }}"
+                           class="w3-button w3-text-white botonSubmit confirm" data-title="Recuperar Punto">+1 Punto</a>
+                    {% else %}
+                        <input class="w3-button w3-text-white botonSubmit confirm" type="button" name="recuperaPunto"
+                               value="+1 Punto"
+                               disabled>
+                    {% endif %}
+                    {% if accion != 'Inhabilitada' %}
+                        <a href="{{ path('nuevoParte', {'idParte': app.request.get('idParte'), 'estadoParte': 'continuar' }) }}"
+                           class="w3-button w3-text-white botonSubmit confirm"
+                           data-title="{{ accion }}">{{ accion }}</a>
+                    {% else %}
+                        <input class="w3-button w3-text-white botonSubmit confirm"
+                               type="button" value="{{ parte.getIdEstado().getEstado() }}" disabled>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <div id="cursos">
+                {% for curso in cursos %}
+                    <label><input type="checkbox" name="cursos[]" value="{{ curso.curso }}"> {{ curso.curso }}</label>
+                {% endfor %}
+                <div class="w3-center w3-block">
+                    <input class="w3-button w3-text-white" type="submit" name="busqueda" value="Buscar">
+                </div>
+            </div>
+        </form>
+        {{ form_start(form, {'attr': {'class':'w3-content formConvivencia', 'id':'parteForm'}}) }}
+        {{ form_row(form.idAlumno) }}
+        {{ form_row(form.idProfesor) }}
+        {% if app.request.get('idParte') is null %}
+            <div class="w3-col marginBottom">
+                <label class="w3-text-teal labelCheck">Expulsión Aula Convivencia </label><input class="i-checks"
+                                                                                                 type="checkbox"
+                                                                                                 name="expulsion">
+            </div>
+        {% endif %}
+        {#{{ form_row(form.Fecha) }}#}
+        <label class="w3-text-teal">Fecha</label>
+        <input type="text" name="fecha" class="w3-select datepicker w3-border w3-light-grey marginBottom"
+               value="{{ parte.fecha|date('d/m/Y') }}" required>
+        {{ form_row(form.idConducta) }}
+        {{ form_row(form.Descripcion) }}
+        <br/>
+        {{ form_row(form.Tareas) }}
+        <br/>
+        {% if app.request.get('idParte') is not null %}
+            <label class="w3-text-teal">Sanciones</label>
+            <div class="w3-select w3-border w3-light-grey marginBottom">
+                {% if sanciones != null and sanciones|length>0 %}
+                    {% for sancion in sanciones %}
+                        <p><a href="{{ path('nueva_sancion', {'idSancion': sancion.id}) }}">{{ sancion.sancion }}</a>
+                        </p>
+                    {% endfor %}
+                {% else %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('nueva_sancion', {'idParte': parte.id, 'idAlumno': parte.idAlumno.id}) }}">Crear
+                            Sanción</a></p>
+                    {% endif %}
+                {% endif %}
+            </div>
+        {% endif %}
+        {{ form_row(form.fechaComunicacion) }}
+        {{ form_row(form.fechaConfirmacion) }}
+        {{ form_widget(form) }}
+        <br/>
+        <input class="w3-button w3-block w3-section w3-text-white" type="submit" name="registrarse" value="Enviar">
+        <a href="{{ path('gestion_partes') }}" data-title="Cancelar"
+           class="w3-button w3-block w3-section w3-text-white botonSubmit confirm">Cancelar</a>
+        {{ form_end(form) }}
+
+    </div>
+
+{% endblock %}

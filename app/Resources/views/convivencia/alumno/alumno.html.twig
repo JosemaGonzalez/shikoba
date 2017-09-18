@@ -1,0 +1,241 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <script>(function (e, t, n) {
+            var r = e.querySelectorAll("html")[0];
+            r.className = r.className.replace(/(^|\s)no-js(\s|$)/, "$1js$2")
+        })(document, window, 0);</script>
+    <main class="w3-container w3-margin-top">
+        {#TODO: AÑADIR NOMBRE DEL ALUMNO#}
+        <div class="row w3-center">
+            <h2 class="w3-center w3-padding w3-margin">{{ alumnoData.alumno.getNombreCompleto() }}</h2>
+            {% for flash_message in app.session.flashBag.get('alumno') %}
+                <div class="w3-panel w3-pale-green w3-round-large">
+                    <p class="w3-center">{{ flash_message }}</p>
+                </div>
+            {% endfor %}
+
+            {% for flash_message in app.session.flashBag.get('alumnoError') %}
+                <div class="w3-panel w3-pale-red w3-round-large">
+                    <p class="w3-center">{{ flash_message }}</p>
+                </div>
+            {% endfor %}
+            <div class="w3-col l6 marginTopNoMobile">
+                <header class="w3-container marginTopNoMobile">
+                    {#<img class="w3-circle" src="https://www.w3schools.com/w3css/img_avatar3.png" style="width: 300px"#}
+                    {#alt="avatar">#}
+                    {% if alumnoData.alumno.foto == "" or alumnoData.alumno.foto == null %}
+                        <img class="w3-circle" src="{{ asset('img/alumnos/'~alumnoData.alumno.nie~'.PNG') }}"
+                             style="width: 300px"
+                             alt="avatar">
+                    {% else %}
+                        <img class="w3-circle" src="{{ asset('img/alumnos/'~alumnoData.alumno.foto) }}"
+                             style="width: 300px"
+                             alt="avatar">
+                    {% endif %}
+                    <h4 class="w3-center">Puntos: {{ alumnoData.alumno.puntos }}/10 </h4>
+                </header>
+                <div class="w3-container w3-center">
+                    {#<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/EAN13.svg/220px-EAN13.svg.png"#}
+                    {#style="width:150px;">#}
+                    {% if alumnoData.alumno.idUsuario.id == app.user.id %}
+                        <form method="post" action="{{ path('change_image') }}" enctype="multipart/form-data">
+                            <div class="content">
+                                <div class="box">
+                                    <input type="file" accept="image/*" name="file" id="file"
+                                           class="inputfile inputfile-1" capture="camera">
+                                    <label for="file"><i class="fa fa-upload fa-1x"
+                                                           style="color: white; font-size: 1.5em;"> </i><span> Subir Imagen (2MB)</span></label>
+                                </div>
+                            </div>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="w3-col l6">
+                <div class="w3-row w3-center w3-text-center widthChartMobile">
+                    <div class="w3-content marginBottom marginTopNoMobile">
+                        <h4>Estadísticas Totales {{ alumnoData.getYear() }}</h4>
+                        <canvas id="myChart" width="400" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row w3-margin w3-padding">
+            <div class="w3-col l6 marginBottom">
+                <h4 class="w3-padding">Partes {{ alumnoData.getYear() }}</h4>
+                <canvas id="myChart2"></canvas>
+            </div>
+            <div class="w3-col l6 marginBottom">
+                <h4 class="w3-padding">Sanciones {{ alumnoData.getYear() }}</h4>
+                <canvas id="myChart3"></canvas>
+            </div>
+        </div>
+        {% set arrMeses = [] %}
+        {% set arrPartes = [] %}
+        {% for mes, partesMes in alumnoData.numPartesMeses %}
+            {% set arrMeses = arrMeses|merge([mes]) %}
+            {% set arrPartes = arrPartes|merge([partesMes]) %}
+        {% endfor %}
+        {% set arrMesesSanciones= [] %}
+        {% set arrSanciones = [] %}
+        {% for mes, sancionesMes in alumnoData.numSancionesMeses %}
+            {% set arrMesesSanciones = arrMesesSanciones|merge([mes]) %}
+            {% set arrSanciones = arrSanciones|merge([sancionesMes]) %}
+        {% endfor %}
+        {% if arrMeses|length > 4 %}
+            {% set barPercentage = 0.4 %}
+        {% else %}
+            {% set barPercentage = 0.2 %}
+        {% endif %}
+        <script>
+            var ctx = document.getElementById("myChart").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    datasets: [{
+                        data: [{{ alumnoData.numPartes }}, {{ alumnoData.numSanciones }}, {{ alumnoData.numVisitasConvivencia }}],
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(153, 102, 255, 0.5)',
+                            'rgba(255, 159, 64, 0.5)',
+                            'rgba(153, 102, 255, 0.5)',
+                            'rgba(56, 136, 155, 0.5)',
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(255, 206, 86, 0.5)'
+                        ],
+                    }],
+
+
+                    labels: [
+                        'Partes',
+                        'Sanciones',
+                        'Visitas Aula Convivencia'
+                    ]
+                }
+            });
+
+            ctx = document.getElementById("myChart2").getContext('2d');
+            var myChart2 = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: {{ arrMeses|json_encode|raw }},
+                    datasets: [
+                        {
+                            label: 'Partes',
+                            data: {{ arrPartes|json_encode|raw }},
+                            backgroundColor: 'rgba(56, 136, 155, 0.5)',
+//                         backgroundColor: [
+//                            'rgba(56, 136, 155, 0.5)',
+//                            'rgba(255, 206, 86, 0.5)',
+//                            'rgba(75, 192, 192, 0.5)',
+//                            'rgba(153, 102, 255, 0.5)',
+//                            'rgba(54, 162, 235, 0.5)',
+//                            'rgba(255, 159, 64, 0.5)'
+//                    ],
+                        },
+                        {#{#}
+                        {#label: 'Visitas Aula Convivencia',#}
+                        {#data: {{ arrPartes|json_encode|raw }},#}
+                        {#backgroundColor: 'rgba(75, 192, 192, 0.5)',#}
+                        {#}#}
+                    ],
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            barPercentage: {{ barPercentage }}
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            },
+                        }],
+                    }
+                }
+            });
+
+            ctx = document.getElementById("myChart3").getContext('2d');
+            var myChart3 = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: {{ arrMesesSanciones|json_encode|raw }},
+                    datasets: [
+                        {
+                            label: 'Sanciones',
+                            data: {{ arrSanciones|json_encode|raw }},
+                            backgroundColor: 'rgba(153, 102, 255, 0.5)',
+                        },
+                    ],
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            barPercentage: {{ barPercentage }}
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            },
+                        }],
+                    }
+                }
+            });
+
+        </script>
+
+        <div class="w3-row w3-padding">
+            <div class="w3-col contenedorCartaAlumno marginBottom">
+                <div class="w3-card-2 cartaAlumno marginBottom marginTop">
+                    <header class="w3-container w3-center">
+                        <h2>Historico Partes</h2>
+                    </header>
+                    <div class="w3-container">
+                        {% set contadorPartes = 0 %}
+                        {% set break = false %}
+                        {% for parte in alumnoData.partes if not break %}
+                            {% set contadorPartes = contadorPartes + 1 %}
+                            <p>El {{ parte.fecha|date('d/m/Y') }} tuvo una falta {{ parte.idTipo.tipo }}
+                                , {{ parte.idProfesor.getNombreCompleto() }} indicó: <br/>
+                                {{ parte.descripcion }}</p>
+                            {% if contadorPartes > 9 %}
+                                <div class="w3-footer w3-center">
+                                    <p>...</p>
+                                    <a href="{{ path('show_partesAlumno', {'id': alumnoData.alumno.id}) }}"
+                                       class="w3-button w3-margin">Mostrar Todos</a>
+                                </div>
+                                {% set break = true %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="w3-card-2 cartaAlumno marginTop">
+                    <header class="w3-container w3-center">
+                        <h2>Historico Sanciones</h2>
+                    </header>
+                    <div class="w3-container">
+                        {% set contadorSanciones = 0 %}
+                        {% set break = false %}
+                        {% for sancion in alumnoData.sanciones if not break %}
+                            {% set contadorSanciones = contadorSanciones + 1 %}
+                            <p>El {{ sancion.fecha|date('d/m/Y') }} tuvo una sanción de
+                                tipo {{ sancion.idTipo.tipo }}</p>
+                            {% if contadorSanciones > 9 %}
+                                <div class="w3-footer w3-center">
+                                    <p>...</p>
+                                    <a href="" class="w3-button w3-margin">Mostrar Todas</a>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+
+    </main>
+
+    <script src="{{ asset('js/fileInput/custom-file-input.js') }}"></script>
+{% endblock %}
