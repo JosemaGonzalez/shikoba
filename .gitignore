@@ -1,0 +1,4 @@
+# -- Exclusiones -----------------------------------------
+var/cache/*
+var/logs/*
+var/sessions/*
