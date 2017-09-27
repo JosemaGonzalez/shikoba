@@ -102,7 +102,7 @@
                                 {% if is_granted('ROLE_ADMIN') %}
                                     <td><a href="{{ path('nuevoParte') }}?idParte={{ parte.id }}"><i
                                                     class="fa fa-pencil" aria-hidden="true"></i></a>
-                                        <a class="confirm paddingRightLeft"
+                                        <a style="display: none;" class="confirm paddingRightLeft"
                                            href="{{ path('borrar_parte', {'id': parte.id}) }}"
                                            data-title="Eliminar Parte"><i class="fa fa-trash"
                                                                           aria-hidden="true"></i></a></td>
