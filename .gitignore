@@ -1,4 +1,4 @@
-# -- Exclusiones de archivos no validos-----------------------------------------
+# -- Exclusiones -----------------------------------------
 var/cache/*
 var/logs/*
 var/logs/dev.log
