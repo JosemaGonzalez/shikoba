@@ -39,7 +39,7 @@ class __TwigTemplate_226971fb0cbfa55c885c51d9852ff38a6cb602b6950eb3d4d5412696299
     {
         // line 6
         echo "        <main class=\"w3-container\">
-            <h1>Gestion Partes</h1>
+            <h1>Gestión Partes</h1>
 
             ";
         // line 9
@@ -125,9 +125,9 @@ class __TwigTemplate_226971fb0cbfa55c885c51d9852ff38a6cb602b6950eb3d4d5412696299
                         <tr>
                             <th>NumParte</th>
                             <th>Fecha</th>
-                            <th>Alumno</th>
+                            <th>Alumnado</th>
                             <th>Curso</th>
-                            <th>Profesor</th>
+                            <th>Profesorado</th>
                             <th>Tipo</th>
                             <th>Puntos</th>
                             <th>Estado</th>
@@ -212,7 +212,7 @@ class __TwigTemplate_226971fb0cbfa55c885c51d9852ff38a6cb602b6950eb3d4d5412696299
             echo "                                <td>
                                     ";
             // line 85
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["parte"], "idProfesor", array()), "nombre", array()), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["parte"], "idProfesor", array()), "getNombreCompleto", array(), "method"), "html", null, true);
             echo "
                                 </td>
                                 <td>";

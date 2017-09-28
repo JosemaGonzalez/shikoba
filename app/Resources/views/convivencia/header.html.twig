@@ -28,16 +28,16 @@
                                 <span>Administración</span> <i class="fa fa-caret-down w3-text-white"></i>
                                 <div class="w3-dropdown-content w3-bar-block w3-card-1 azulTemaButton">
                                     <a href="{{ path('admin_import') }}"
-                                       class=" w3-margin-top w3-padding w3-bar-item w3-button w3-hover-grey w3-text-white w3-mobile w3-large">Alumnos</a>
+                                       class=" w3-margin-top w3-padding w3-bar-item w3-button w3-hover-grey w3-text-white w3-mobile w3-large">Alumnado</a>
                                     <a href="{{ path('admin_import_profesor') }}"
-                                       class="w3-padding w3-bar-item w3-button w3-hover-grey w3-text-white w3-mobile w3-large">Profesores</a>
+                                       class="w3-padding w3-bar-item w3-button w3-hover-grey w3-text-white w3-mobile w3-large">Profesorado</a>
                                 </div>
                             </div>
                         {% endif %}
 
                     {% elseif is_granted('ROLE_TUTOR') %}
                         <a href="{{ path('index') }}"
-                           class="w3-padding w3-mobile w3-left w3-hover-grey w3-large">Alumnos</a>
+                           class="w3-padding w3-mobile w3-left w3-hover-grey w3-large">Alumnado</a>
                         {#{% elseif is_granted('ROLE_USER') %}#}
                         {#<a href="{{ path('registrarAlumno') }}"#}
                         {#class="w3-padding w3-mobile w3-left w3-hover-grey w3-large">Perfil</a>#}

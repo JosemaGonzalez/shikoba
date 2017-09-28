@@ -48,12 +48,12 @@ class __TwigTemplate_a6583b213f114527cb4e15303169a9539f6baab2e82ea972e8d6b7ad123
                 echo "                        <a href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevoParte", array("idParte" => $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "request", array()), "get", array(0 => "idParte"), "method"), "recuperaPunto" => "true")), "html", null, true);
                 echo "\"
-                           class=\"w3-button w3-text-white botonSubmit confirm\" data-title=\"Recuperar Punto\">+1 Punto</a>
+                           class=\"w3-button w3-text-white botonSubmit confirm\" data-title=\"Recuperar Punto\">-1 Punto</a>
                     ";
             } else {
                 // line 16
                 echo "                        <input class=\"w3-button w3-text-white botonSubmit confirm\" type=\"button\" name=\"recuperaPunto\"
-                               value=\"+1 Punto\"
+                               value=\"-1 Punto\"
                                disabled>
                     ";
             }

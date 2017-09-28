@@ -91,7 +91,7 @@ class Conductas
      * @return string Una cadena que contiene los puntos y el nombre de la conducta.
      */
     public function getNombreAndPuntos(){
-        return '('.$this->getPuntos() . ') - ' . $this->getConducta();
+        return '('. abs($this->getPuntos())  . ') - ' . $this->getConducta();
     }
 
     /**

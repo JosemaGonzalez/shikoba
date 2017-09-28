@@ -5,12 +5,12 @@
 
     {% block header %}
         <main class="w3-container">
-            <h1>Carnets Alumnos</h1>
+            <h1>Carnets de puntos</h1>
             <form action="">
                 <div class="w3-row-padding">
                     <div class="w3-col l3 m8 w3-section">
                         {#<input type="text" name="like" id="partesSearchBar" value="{{ app.request.get('like') }}"#}
-                        {#placeholder="Introduce fecha, alumno, curso..." class="w3-input w3-col l6 m12">#}
+                        {#placeholder="Introduce fecha, nombre, curso..." class="w3-input w3-col l6 m12">#}
                         {#<i class="fa fa-search fa-lg fa-flip-horizontal"></i>#}
                         <select name="puntosFiltro" class="w3-select w3-col s8 l4 m6" id="carnetFilterPuntos">
                             {% for puntos in puntosSelect %}
@@ -32,7 +32,7 @@
                     <table class="tableDataCarnets stripe" data-order='[[ 1, "desc" ]]'>
                         <thead>
                         <tr>
-                            <th>Alumno</th>
+                            <th>Alumnado</th>
                             <th>Puntos</th>
                             <th>Grupo</th>
                             <th>Medida</th>

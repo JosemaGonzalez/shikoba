@@ -23,7 +23,7 @@ class ParteFormType extends AbstractType
 
         $builder
             ->add('idAlumno', EntityType::class, array(
-                'label' => 'Alumno',
+                'label' => 'Alumno/a',
                 'class' => 'AppBundle:Alumno',
                 'choices' => $this->traitChoices[0],
                 'choice_label' => function ($alumno) {
@@ -36,7 +36,7 @@ class ParteFormType extends AbstractType
                 'label_attr' => array('class' => 'w3-text-teal')
             ));
             $builder->add('idProfesor', EntityType::class, array(
-                'label' => 'Profesor',
+                'label' => 'Profesor/a',
                 'class' => 'AppBundle:Profesores',
                 'choices' => $this->traitChoices[1],
                 'choice_label' => function ($profesor) {
@@ -102,11 +102,13 @@ class ParteFormType extends AbstractType
             ->add('fechaConfirmacion', TextType::class, array(
                 'required' =>false,
                 'attr' => array('class' => 'w3-select datepicker w3-border w3-light-grey'),
+                'label'=>'Fecha confirmación',
                 'label_attr' => array('class' => 'w3-text-teal')
             ))
             ->add('fechaComunicacion', TextType::class, array(
                 'required' =>false,
                 'attr' => array('class' => 'w3-select datepicker w3-border w3-light-grey marginBottom'),
+                'label'=>'Fecha comunicación',
                 'label_attr' => array('class' => 'w3-text-teal')
             ))
 //            ->add('Puntos', IntegerType::class, array(
