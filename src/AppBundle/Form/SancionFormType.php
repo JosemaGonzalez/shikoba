@@ -22,7 +22,7 @@ class SancionFormType extends AbstractType
 
         $builder
             ->add('idAlumno', EntityType::class, array(
-                'label' => 'Alumno',
+                'label' => 'Alumno/a',
                 'class' => 'AppBundle:Alumno',
                 'choices' => $this->choices[0],
                 'choice_label' => function ($alumno) {
@@ -31,7 +31,7 @@ class SancionFormType extends AbstractType
                 'attr' => array(
                     'class' => 'w3-select w3-border w3-light-grey chosen-select',
                     'id' => 'selectAlumno',
-                    'data-placeholder' => 'Selecciona un alumno...',
+                    'data-placeholder' => 'Selecciona un alumno/a...',
                 ),
                 'label_attr' => array('class' => 'w3-text-teal')
             ))
@@ -77,11 +77,13 @@ class SancionFormType extends AbstractType
             ->add('fechaConfirmacion', TextType::class, array(
                 'required' =>false,
                 'attr' => array('class' => 'w3-select datepicker w3-border w3-light-grey'),
+                'label' => 'Fecha confirmación',
                 'label_attr' => array('class' => 'w3-text-teal')
             ))
             ->add('fechaComunicacion', TextType::class, array(
                 'required' =>false,
                 'attr' => array('class' => 'w3-select datepicker w3-border w3-light-grey marginBottom'),
+                'label' => 'Fecha comunicación',
                 'label_attr' => array('class' => 'w3-text-teal')
             ));
 //            ->add('PuntosRecuperados', IntegerType::class, array(

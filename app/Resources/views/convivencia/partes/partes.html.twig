@@ -4,7 +4,7 @@
 
     {% block header %}
         <main class="w3-container">
-            <h1>Gestion Partes</h1>
+            <h1>Gestión Partes</h1>
 
             {% for flash_message in app.session.flashBag.get('parte') %}
                 <div class="w3-panel w3-pale-green w3-round-large">
@@ -23,7 +23,7 @@
             <form action="">
                 <div class="w3-col l3 m8 w3-section">
                     {#<input class="w3-input w3-col l6 m12" type="text" name="like" id="partesSearchBar"#}
-                    {#value="{{ app.request.get('like') }}" placeholder="Introduce fecha, alumno, curso...">#}
+                    {#value="{{ app.request.get('like') }}" placeholder="Introduce fecha, nombre, curso...">#}
                     {#<i class="fa fa-search fa-lg fa-flip-horizontal"></i>#}
                     <div class="i-checks">
                         {% if app.request.get('historico') == 'on' %}
@@ -47,9 +47,9 @@
                         <tr>
                             <th>NumParte</th>
                             <th>Fecha</th>
-                            <th>Alumno</th>
+                            <th>Alumnado</th>
                             <th>Curso</th>
-                            <th>Profesor</th>
+                            <th>Profesorado</th>
                             <th>Tipo</th>
                             <th>Puntos</th>
                             <th>Estado</th>
@@ -102,7 +102,7 @@
                                 {% if is_granted('ROLE_ADMIN') %}
                                     <td><a href="{{ path('nuevoParte') }}?idParte={{ parte.id }}"><i
                                                     class="fa fa-pencil" aria-hidden="true"></i></a>
-                                        <a style="display: none;" class="confirm paddingRightLeft"
+                                        <a class="confirm paddingRightLeft"
                                            href="{{ path('borrar_parte', {'id': parte.id}) }}"
                                            data-title="Eliminar Parte"><i class="fa fa-trash"
                                                                           aria-hidden="true"></i></a></td>

@@ -1,6 +1,4 @@
 # -- Exclusiones de archivos -----------------------------------------
 var/cache/*
 var/logs/*
-var/logs/dev.log
 var/sessions/*
-vendor/*

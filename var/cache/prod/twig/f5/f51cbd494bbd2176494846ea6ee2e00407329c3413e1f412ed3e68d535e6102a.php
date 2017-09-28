@@ -51,12 +51,12 @@ class __TwigTemplate_e9ce47d141bc05b55645adad3fef201557f8c0eac6decb5dae0233df4c2
             echo "                <a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("edit_diario", array("id" => $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : null), "request", array()), "get", array(0 => "id"), "method"), "recuperaPunto" => "true")), "html", null, true);
             echo "\"
-                   class=\"w3-button w3-text-white botonSubmit confirm\" data-title=\"Recuperar Punto\">+1 Punto</a>
+                   class=\"w3-button w3-text-white botonSubmit confirm\" data-title=\"Recuperar Punto\">-1 Punto</a>
             ";
         } else {
             // line 21
             echo "                <input class=\"w3-button w3-text-white botonSubmit confirm\" type=\"button\" name=\"recuperaPunto\"
-                       value=\"+1 Punto\"
+                       value=\"-1 Punto\"
                        disabled>
             ";
         }

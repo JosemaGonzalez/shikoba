@@ -11,10 +11,10 @@
                     <input type="hidden" value="{{ app.request.get('idParte') }}" name="idParte">
                     {% if recupera %}
                         <a href="{{ path('nuevoParte', {'idParte': app.request.get('idParte'), 'recuperaPunto': 'true'}) }}"
-                           class="w3-button w3-text-white botonSubmit confirm" data-title="Recuperar Punto">+1 Punto</a>
+                           class="w3-button w3-text-white botonSubmit confirm" data-title="Recuperar Punto">-1 Punto</a>
                     {% else %}
                         <input class="w3-button w3-text-white botonSubmit confirm" type="button" name="recuperaPunto"
-                               value="+1 Punto"
+                               value="-1 Punto"
                                disabled>
                     {% endif %}
                     {% if accion != 'Inhabilitada' %}

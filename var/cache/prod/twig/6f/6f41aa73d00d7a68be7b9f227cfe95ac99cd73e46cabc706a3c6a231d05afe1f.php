@@ -83,12 +83,12 @@ class __TwigTemplate_02ebb834f242486fb41e1e0935912d9a2eecf8de555614205d52291d7b7
                     // line 30
                     echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("admin_import");
                     echo "\"
-                                       class=\" w3-margin-top w3-padding w3-bar-item w3-button w3-hover-grey w3-text-white w3-mobile w3-large\">Alumnos</a>
+                                       class=\" w3-margin-top w3-padding w3-bar-item w3-button w3-hover-grey w3-text-white w3-mobile w3-large\">Alumnado</a>
                                     <a href=\"";
                     // line 32
                     echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("admin_import_profesor");
                     echo "\"
-                                       class=\"w3-padding w3-bar-item w3-button w3-hover-grey w3-text-white w3-mobile w3-large\">Profesores</a>
+                                       class=\"w3-padding w3-bar-item w3-button w3-hover-grey w3-text-white w3-mobile w3-large\">Profesorado</a>
                                 </div>
                             </div>
                         ";
@@ -101,7 +101,7 @@ class __TwigTemplate_02ebb834f242486fb41e1e0935912d9a2eecf8de555614205d52291d7b7
                 echo "                        <a href=\"";
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("index");
                 echo "\"
-                           class=\"w3-padding w3-mobile w3-left w3-hover-grey w3-large\">Alumnos</a>
+                           class=\"w3-padding w3-mobile w3-left w3-hover-grey w3-large\">Alumnado</a>
                         ";
                 // line 42
                 echo "                        ";

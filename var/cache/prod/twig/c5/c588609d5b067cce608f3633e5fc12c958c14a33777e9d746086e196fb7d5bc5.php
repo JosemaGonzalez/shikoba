@@ -98,8 +98,8 @@ class __TwigTemplate_1fe4a9573a46be86690638fa44bb77ae219737032bd4c45f5a9e30ee1b0
                         <tr>
                             <th>Fecha</th>
                             <th>Hora</th>
-                            <th>Alumno</th>
-                            <th>Profesor</th>
+                            <th>Alumnado</th>
+                            <th>Profesorado</th>
                             <th>Observaciones</th>
                             <th>Actitud</th>
                             <th>Asiste</th>

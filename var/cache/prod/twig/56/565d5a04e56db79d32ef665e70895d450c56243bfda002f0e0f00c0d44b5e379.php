@@ -352,7 +352,7 @@ class __TwigTemplate_575515737421311645af8b9073a205d99451e9d025606893edafb16e91d
             <div class=\"w3-col contenedorCartaAlumno marginBottom\">
                 <div class=\"w3-card-2 cartaAlumno marginBottom marginTop\">
                     <header class=\"w3-container w3-center\">
-                        <h2>Historico Partes</h2>
+                        <h2>Histórico Partes</h2>
                     </header>
                     <div class=\"w3-container\">
                         ";
@@ -414,7 +414,7 @@ class __TwigTemplate_575515737421311645af8b9073a205d99451e9d025606893edafb16e91d
                 </div>
                 <div class=\"w3-card-2 cartaAlumno marginTop\">
                     <header class=\"w3-container w3-center\">
-                        <h2>Historico Sanciones</h2>
+                        <h2>Histórico Sanciones</h2>
                     </header>
                     <div class=\"w3-container\">
                         ";
