@@ -39,7 +39,7 @@ class __TwigTemplate_27d4f3e347b45a1b2ffc91bc283f148e34ce4501e507264bf68cb5b09c7
     {
         // line 7
         echo "        <main class=\"w3-container\">
-            <h1>Carnets Alumnos</h1>
+            <h1>Carnets de puntos</h1>
             <form action=\"\">
                 <div class=\"w3-row-padding\">
                     <div class=\"w3-col l3 m8 w3-section\">
@@ -96,7 +96,7 @@ class __TwigTemplate_27d4f3e347b45a1b2ffc91bc283f148e34ce4501e507264bf68cb5b09c7
                     <table class=\"tableDataCarnets stripe\" data-order='[[ 1, \"desc\" ]]'>
                         <thead>
                         <tr>
-                            <th>Alumno</th>
+                            <th>Alumnado</th>
                             <th>Puntos</th>
                             <th>Grupo</th>
                             <th>Medida</th>

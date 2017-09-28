@@ -39,7 +39,7 @@ class __TwigTemplate_cb3ed87bf7fdb66bb31ba43319e450844c9a7c0b025593fa6c754ae2f1f
     {
         // line 7
         echo "        <main class=\"w3-container\">
-            <h1>Gestion Sanciones</h1>
+            <h1>Gestión Sanciones</h1>
 
             ";
         // line 10
@@ -124,7 +124,7 @@ class __TwigTemplate_cb3ed87bf7fdb66bb31ba43319e450844c9a7c0b025593fa6c754ae2f1f
                         <tr>
                             <th>NumSanción</th>
                             <th>Fecha</th>
-                            <th>Alumno</th>
+                            <th>Alumnado</th>
                             <th>Fecha Inicio</th>
                             <th>Fecha Final</th>
                             <th>Tipo</th>

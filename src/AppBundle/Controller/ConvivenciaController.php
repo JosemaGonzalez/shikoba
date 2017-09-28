@@ -304,12 +304,15 @@ class ConvivenciaController extends Controller
 
             $hash = $user->getHash();
 
-            if ($repositoryAlumnos->findOneByIdUsuario($user->getId()) != null)
+            if ($repositoryAlumnos->findOneByIdUsuario($user->getId()) != null){
                 $user = $repositoryAlumnos->findOneByIdUsuario($user->getId());
-            elseif ($repositoryProfesores->findOneByIdUsuario($user->getId()) != null)
+                }
+            elseif ($repositoryProfesores->findOneByIdUsuario($user->getId()) != null){
                 $user = $repositoryProfesores->findOneByIdUsuario($user->getId());
-            elseif ($repositoryTutores->findOneByIdUsuario($user->getId()) != null)
-                $user = $repositoryTutores->findOneByIdUsuario($user->getId());
+                $email = $user->getEmail() ;
+               }
+            elseif ($repositoryTutores->findOneByIdUsuario($user->getId()) != null) {
+                $user = $repositoryTutores->findOneByIdUsuario($user->getId());}
             else {
                 $this->addFlash('passwordError', 'El usuario no existe');
                 return $this->redirectToRoute('recuperarPassword');
@@ -320,11 +323,12 @@ class ConvivenciaController extends Controller
                 return $this->redirectToRoute('recuperarPassword');
             }
 
+            
             $message = \Swift_Message::newInstance()
-                ->setSubject('Este es un mensaje automático para recuperar su contraseña')
-                ->setFrom([$this->getParameter('mailer_email') => $this->getParameter('mailer_sender')])
-                ->setTo($user->getEmail())
-                ->setBody("Para recuperar su contraseña pulse aquí:\n" . $this->generateUrl("reset_password", array(), UrlGeneratorInterface::ABSOLUTE_URL )."?hash=".$hash);
+                ->setSubject('Proyecto Convivencia. Recuperación de contraseña')
+                ->setFrom('proyectoiesgrancapitan@gmail.com')
+                ->setTo($email)
+                ->setBody("Enlace para recuperar su contraseña:\n" . $this->generateUrl("reset_password", array(), UrlGeneratorInterface::ABSOLUTE_URL )."?hash=".$hash);
             $this->get('mailer')->send($message);
             $this->addFlash('login', 'Se ha enviado un mensaje a su correo');
             return $this->redirectToRoute('login');

@@ -62,7 +62,7 @@ class __TwigTemplate_d1786505d2669914636b86b18bb9fe4717883e22150418895365819b617
     // line 6
     public function block_title($context, array $blocks = array())
     {
-        echo "Welcome!";
+        echo "Convivencia";
     }
 
     // line 7
