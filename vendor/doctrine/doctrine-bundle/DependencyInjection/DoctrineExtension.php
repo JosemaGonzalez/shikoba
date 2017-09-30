@@ -23,7 +23,9 @@ use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\DefinitionDecorator;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\Reference;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Bridge\Doctrine\DependencyInjection\AbstractDoctrineExtension;
+use Symfony\Bridge\Doctrine\Form\Type\DoctrineType;
 use Symfony\Component\Config\FileLocator;
 use Doctrine\Bundle\DoctrineCacheBundle\DependencyInjection\SymfonyBridgeAdapter;
 use Doctrine\Bundle\DoctrineCacheBundle\DependencyInjection\CacheProviderLoader;
@@ -191,6 +193,7 @@ class DoctrineExtension extends AbstractDoctrineExtension
 
         $def = $container
             ->setDefinition(sprintf('doctrine.dbal.%s_connection', $name), new $defitionClassname('doctrine.dbal.connection'))
+            ->setPublic(true)
             ->setArguments(array(
                 $options,
                 new Reference(sprintf('doctrine.dbal.%s_connection.configuration', $name)),
@@ -321,6 +324,10 @@ class DoctrineExtension extends AbstractDoctrineExtension
     {
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('orm.xml');
+
+        if (class_exists(AbstractType::class) && method_exists(DoctrineType::class, 'reset')) {
+            $container->getDefinition('form.type.entity')->addTag('kernel.reset', array('method' => 'reset'));
+        }
 
         $this->entityManagers = array();
         foreach (array_keys($config['entity_managers']) as $name) {
@@ -483,6 +490,7 @@ class DoctrineExtension extends AbstractDoctrineExtension
 
         $container
             ->setDefinition(sprintf('doctrine.orm.%s_entity_manager', $entityManager['name']), new $definitionClassname('doctrine.orm.entity_manager.abstract'))
+            ->setPublic(true)
             ->setArguments(array(
                 new Reference(sprintf('doctrine.dbal.%s_connection', $entityManager['connection'])),
                 new Reference(sprintf('doctrine.orm.%s_configuration', $entityManager['name'])),
