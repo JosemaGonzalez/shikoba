@@ -34,6 +34,7 @@ use Symfony\Component\Console\Command\ListCommand;
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Helper\FormatterHelper;
 use Symfony\Component\Console\Event\ConsoleCommandEvent;
+use Symfony\Component\Console\Event\ConsoleErrorEvent;
 use Symfony\Component\Console\Event\ConsoleExceptionEvent;
 use Symfony\Component\Console\Event\ConsoleTerminateEvent;
 use Symfony\Component\Console\Exception\CommandNotFoundException;
@@ -71,6 +72,7 @@ class Application
     private $terminal;
     private $defaultCommand;
     private $singleCommand;
+    private $initialized;
 
     /**
      * @param string $name    The name of the application
@@ -82,12 +84,6 @@ class Application
         $this->version = $version;
         $this->terminal = new Terminal();
         $this->defaultCommand = 'list';
-        $this->helperSet = $this->getDefaultHelperSet();
-        $this->definition = $this->getDefaultInputDefinition();
-
-        foreach ($this->getDefaultCommands() as $command) {
-            $this->add($command);
-        }
     }
 
     public function setDispatcher(EventDispatcherInterface $dispatcher)
@@ -116,6 +112,10 @@ class Application
 
         if (null === $output) {
             $output = new ConsoleOutput();
+        }
+
+        if (null !== $this->dispatcher && $this->dispatcher->hasListeners(ConsoleEvents::EXCEPTION)) {
+            @trigger_error(sprintf('The "ConsoleEvents::EXCEPTION" event is deprecated since Symfony 3.3 and will be removed in 4.0. Listen to the "ConsoleEvents::ERROR" event instead.'), E_USER_DEPRECATED);
         }
 
         $this->configureIO($input, $output);
@@ -190,17 +190,35 @@ class Application
 
         if (!$name) {
             $name = $this->defaultCommand;
-            $this->definition->setArguments(array_merge(
-                $this->definition->getArguments(),
+            $definition = $this->getDefinition();
+            $definition->setArguments(array_merge(
+                $definition->getArguments(),
                 array(
-                    'command' => new InputArgument('command', InputArgument::OPTIONAL, $this->definition->getArgument('command')->getDescription(), $name),
+                    'command' => new InputArgument('command', InputArgument::OPTIONAL, $definition->getArgument('command')->getDescription(), $name),
                 )
             ));
         }
 
-        $this->runningCommand = null;
-        // the command name MUST be the first element of the input
-        $command = $this->find($name);
+        try {
+            $e = $this->runningCommand = null;
+            // the command name MUST be the first element of the input
+            $command = $this->find($name);
+        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
+        }
+        if (null !== $e) {
+            if (null !== $this->dispatcher) {
+                $event = new ConsoleErrorEvent($input, $output, $e);
+                $this->dispatcher->dispatch(ConsoleEvents::ERROR, $event);
+                $e = $event->getError();
+
+                if (0 === $event->getExitCode()) {
+                    return 0;
+                }
+            }
+
+            throw $e;
+        }
 
         $this->runningCommand = $command;
         $exitCode = $this->doRunCommand($command, $input, $output);
@@ -226,6 +244,10 @@ class Application
      */
     public function getHelperSet()
     {
+        if (!$this->helperSet) {
+            $this->helperSet = $this->getDefaultHelperSet();
+        }
+
         return $this->helperSet;
     }
 
@@ -246,6 +268,10 @@ class Application
      */
     public function getDefinition()
     {
+        if (!$this->definition) {
+            $this->definition = $this->getDefaultInputDefinition();
+        }
+
         if ($this->singleCommand) {
             $inputDefinition = $this->definition;
             $inputDefinition->setArguments();
@@ -402,6 +428,8 @@ class Application
      */
     public function add(Command $command)
     {
+        $this->init();
+
         $command->setApplication($this);
 
         if (!$command->isEnabled()) {
@@ -434,6 +462,8 @@ class Application
      */
     public function get($name)
     {
+        $this->init();
+
         if (!isset($this->commands[$name])) {
             throw new CommandNotFoundException(sprintf('The command "%s" does not exist.', $name));
         }
@@ -461,6 +491,8 @@ class Application
      */
     public function has($name)
     {
+        $this->init();
+
         return isset($this->commands[$name]);
     }
 
@@ -518,7 +550,7 @@ class Application
 
         $exact = in_array($namespace, $namespaces, true);
         if (count($namespaces) > 1 && !$exact) {
-            throw new CommandNotFoundException(sprintf('The namespace "%s" is ambiguous (%s).', $namespace, $this->getAbbreviationSuggestions(array_values($namespaces))), array_values($namespaces));
+            throw new CommandNotFoundException(sprintf("The namespace \"%s\" is ambiguous.\nDid you mean one of these?\n%s", $namespace, $this->getAbbreviationSuggestions(array_values($namespaces))), array_values($namespaces));
         }
 
         return $exact ? $namespace : reset($namespaces);
@@ -538,6 +570,8 @@ class Application
      */
     public function find($name)
     {
+        $this->init();
+
         $allCommands = array_keys($this->commands);
         $expr = preg_replace_callback('{([^:]+|)}', function ($matches) { return preg_quote($matches[1]).'[^:]*'; }, $name);
         $commands = preg_grep('{^'.$expr.'}', $allCommands);
@@ -574,9 +608,20 @@ class Application
 
         $exact = in_array($name, $commands, true);
         if (count($commands) > 1 && !$exact) {
-            $suggestions = $this->getAbbreviationSuggestions(array_values($commands));
+            $usableWidth = $this->terminal->getWidth() - 10;
+            $abbrevs = array_values($commands);
+            $maxLen = 0;
+            foreach ($abbrevs as $abbrev) {
+                $maxLen = max(Helper::strlen($abbrev), $maxLen);
+            }
+            $abbrevs = array_map(function ($cmd) use ($commandList, $usableWidth, $maxLen) {
+                $abbrev = str_pad($cmd, $maxLen, ' ').' '.$commandList[$cmd]->getDescription();
 
-            throw new CommandNotFoundException(sprintf('Command "%s" is ambiguous (%s).', $name, $suggestions), array_values($commands));
+                return Helper::strlen($abbrev) > $usableWidth ? Helper::substr($abbrev, 0, $usableWidth - 3).'...' : $abbrev;
+            }, array_values($commands));
+            $suggestions = $this->getAbbreviationSuggestions($abbrevs);
+
+            throw new CommandNotFoundException(sprintf("Command \"%s\" is ambiguous.\nDid you mean one of these?\n%s", $name, $suggestions), array_values($commands));
         }
 
         return $this->get($exact ? $name : reset($commands));
@@ -593,6 +638,8 @@ class Application
      */
     public function all($namespace = null)
     {
+        $this->init();
+
         if (null === $namespace) {
             return $this->commands;
         }
@@ -864,14 +911,22 @@ class Application
         } catch (\Throwable $e) {
         }
         if (null !== $e) {
-            $x = $e instanceof \Exception ? $e : new FatalThrowableError($e);
-            $event = new ConsoleExceptionEvent($command, $input, $output, $x, $x->getCode());
-            $this->dispatcher->dispatch(ConsoleEvents::EXCEPTION, $event);
+            if ($this->dispatcher->hasListeners(ConsoleEvents::EXCEPTION)) {
+                $x = $e instanceof \Exception ? $e : new FatalThrowableError($e);
+                $event = new ConsoleExceptionEvent($command, $input, $output, $x, $x->getCode());
+                $this->dispatcher->dispatch(ConsoleEvents::EXCEPTION, $event);
 
-            if ($x !== $event->getException()) {
-                $e = $event->getException();
+                if ($x !== $event->getException()) {
+                    $e = $event->getException();
+                }
             }
-            $exitCode = $e->getCode();
+            $event = new ConsoleErrorEvent($input, $output, $e, $command);
+            $this->dispatcher->dispatch(ConsoleEvents::ERROR, $event);
+            $e = $event->getError();
+
+            if (0 === $exitCode = $event->getExitCode()) {
+                $e = null;
+            }
         }
 
         $event = new ConsoleTerminateEvent($command, $input, $output, $exitCode);
@@ -950,7 +1005,7 @@ class Application
      */
     private function getAbbreviationSuggestions($abbrevs)
     {
-        return sprintf('%s, %s%s', $abbrevs[0], $abbrevs[1], count($abbrevs) > 2 ? sprintf(' and %d more', count($abbrevs) - 2) : '');
+        return '    '.implode("\n    ", $abbrevs);
     }
 
     /**
@@ -1017,7 +1072,7 @@ class Application
         }
 
         $alternatives = array_filter($alternatives, function ($lev) use ($threshold) { return $lev < 2 * $threshold; });
-        asort($alternatives);
+        ksort($alternatives, SORT_NATURAL | SORT_FLAG_CASE);
 
         return array_keys($alternatives);
     }
@@ -1097,5 +1152,17 @@ class Application
         }
 
         return $namespaces;
+    }
+
+    private function init()
+    {
+        if ($this->initialized) {
+            return;
+        }
+        $this->initialized = true;
+
+        foreach ($this->getDefaultCommands() as $command) {
+            $this->add($command);
+        }
     }
 }
