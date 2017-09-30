@@ -106,8 +106,17 @@ abstract class KernelTestCase extends TestCase
      */
     protected static function getKernelClass()
     {
-        if (isset($_SERVER['KERNEL_DIR'])) {
-            $dir = $_SERVER['KERNEL_DIR'];
+        if (isset($_SERVER['KERNEL_CLASS']) || isset($_ENV['KERNEL_CLASS'])) {
+            $class = isset($_SERVER['KERNEL_CLASS']) ? $_SERVER['KERNEL_CLASS'] : $_ENV['KERNEL_CLASS'];
+            if (!class_exists($class)) {
+                throw new \RuntimeException(sprintf('Class "%s" doesn\'t exist or cannot be autoloaded. Check that the KERNEL_CLASS value in phpunit.xml matches the fully-qualified class name of your Kernel or override the %s::createKernel() method.', $class, static::class));
+            }
+
+            return $class;
+        }
+
+        if (isset($_SERVER['KERNEL_DIR']) || isset($_ENV['KERNEL_DIR'])) {
+            $dir = isset($_SERVER['KERNEL_DIR']) ? $_SERVER['KERNEL_DIR'] : $_ENV['KERNEL_DIR'];
 
             if (!is_dir($dir)) {
                 $phpUnitDir = static::getPhpUnitXmlDir();
@@ -138,6 +147,8 @@ abstract class KernelTestCase extends TestCase
      * Boots the Kernel for this test.
      *
      * @param array $options
+     *
+     * @return KernelInterface A KernelInterface instance
      */
     protected static function bootKernel(array $options = array())
     {
@@ -145,6 +156,8 @@ abstract class KernelTestCase extends TestCase
 
         static::$kernel = static::createKernel($options);
         static::$kernel->boot();
+
+        return static::$kernel;
     }
 
     /**
