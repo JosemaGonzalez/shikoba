@@ -143,6 +143,13 @@ class ConvivenciaController extends Controller
 //            )
 //        );
 //    }
+    /**
+     * @Route("/admin/copias", name="admin_security")
+     */
+    public function securityAction()
+    {
+        return $this->render('convivencia/admin/security.html.twig');
+    }
 
     /**
      * @Route("/admin", name="admin")

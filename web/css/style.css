@@ -1,0 +1,50 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+#sidenav-overlay{
+    z-index: 996;
+}
+.nav-wrapper{
+    z-index: 50;
+}
+#catalogo span{
+    font-family: 'Open Sans', serif;
+    font-size: 16px;
+    line-height: 3;
+}
+
+#dropdown1 li a:hover{
+    background-color: #135BAC!important;
+}
+.ancla:hover{
+    background-color: transparent ;
+}
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating){
+    color:#BAC1F0!important;
+}
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating):hover{
+    color:#EAECF7!important;
+}
+.nav-wrapper img{
+    height: 50px;
+}
+
+.waves-effect.waves-blue .waves-ripple{
+    background-color: rgba(48, 63, 159, 0.65);
+}
+.centro{
+    margin:0 auto;
+}
+input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]){
+    border-bottom: 1px solid #303f9f;
+    box-shadow: 0 1px 0 0 #303f9f;
+}
+input:not([type]):focus:not([readonly])+label, input[type=text]:focus:not([readonly])+label, input[type=password]:focus:not([readonly])+label, input[type=email]:focus:not([readonly])+label, input[type=url]:focus:not([readonly])+label, input[type=time]:focus:not([readonly])+label, input[type=date]:focus:not([readonly])+label, input[type=datetime]:focus:not([readonly])+label, input[type=datetime-local]:focus:not([readonly])+label, input[type=tel]:focus:not([readonly])+label, input[type=number]:focus:not([readonly])+label, input[type=search]:focus:not([readonly])+label, textarea.materialize-textarea:focus:not([readonly])+label {
+    color: #303f9f;
+}

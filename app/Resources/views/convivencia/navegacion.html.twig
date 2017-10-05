@@ -1,0 +1,89 @@
+{% block header %}
+    {% if app.user.usuario is defined %}
+<header>
+    <div class="navbar-fixed z-depth-4" id="inicio">
+        <nav>
+            <div class="nav-wrapper blue darken-3 row">
+
+                <div class="col s12 center hide-on-large-only" id="nav_mob">
+                    <a href="{{ path('index') }}" class="right"><img src="/img/logo3.png" alt=""></a>
+                    <a href="#" data-activates="slide-out" class="button-collapse left"><i
+                                class="material-icons">menu</i></a>
+                    <ul id="slide-out" class="side-nav">
+                        <li>
+                            <div class="userView">
+                                <div class="background center">
+                                </div>
+                                <a><img class=" center centro" src="/img/logo3.png"></a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="divider"></div>
+                            <div class="divider"></div>
+                            <div class="divider"></div>
+                        </li>
+                        <li>
+                            <a href="{{ path('change_password') }}"
+                               class="w3-padding w3-right w3-hover-grey w3-large w3-mobile">Cambiar
+                                Contraseña</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('logout') }}" class="w3-padding w3-right w3-hover-grey w3-large w3-mobile">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col l8 left hide-on-med-and-down">
+                    <ul class="left">
+
+                        {% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_PROFESOR')) %}
+                            <li><a href="{{ path('index') }}" class="ancla centro"><img id="img_nav" src="/img/logo3.png"
+                                                                                        alt=""></a></li>
+                            <li><a href="{{ path('show_carnets') }}">Carnets</a></li>
+                            <li><a href="{{ path('gestion_partes') }}">Partes</a></li>
+                            <li><a href="{{ path('gestion_sanciones') }}">Medidas</a></li>
+                            <li><a href="{{ path('show_diario') }}">Diario</a></li>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Administración<i
+                                                class="material-icons right">keyboard_arrow_right</i></a></li>
+                                <ul id="dropdown1" class="dropdown-content">
+                                    <li><a href="{{ path('admin_import') }}"
+                                           class="blue darken-2 white-text">Alumnado</a>
+                                    </li>
+                                    <li><a href="{{ path('admin_import_profesor') }}"
+                                           class="blue darken-2 white-text">Profesorado</a>
+                                    </li>
+                                    <li><a href="{{ path('admin_security') }}"
+                                           class="blue darken-2 white-text">Copia
+                                            de seguridad</a></li>
+                                </ul>
+
+                            {% endif %}
+
+                        {% elseif is_granted('ROLE_TUTOR') %}
+                            <li><a href="{{ path('index') }}">Alumnado</a></li>
+                            {#{% elseif is_granted('ROLE_USER') %}#}
+                            {#<a href="{{ path('registrarAlumno') }}"#}
+                            {#class="w3-padding w3-mobile w3-left w3-hover-grey w3-large">Perfil</a>#}
+                        {% endif %}
+                    </ul>
+                </div>
+
+                <div class="col l4 right hide-on-med-and-down">
+                    <ul class="right">
+                        <li>
+                            <a href="{{ path('change_password') }}"
+                               class="w3-padding w3-right w3-hover-grey w3-large w3-mobile">Cambiar
+                                Contraseña</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('logout') }}" class="w3-padding w3-right w3-hover-grey w3-large w3-mobile">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+    {% endif %}
+    {% endblock %}
