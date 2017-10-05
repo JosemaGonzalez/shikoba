@@ -216,7 +216,7 @@ class PartesController extends Controller
                 $arrData[$parte->getId()] = $parteCsv;
             }
             $response = new CsvResponse($arrData, 200);
-            $response->setFilename("Partes.csv");
+            $response->setFilename("Partes.xls");
             return $response;
         } catch (\Exception $e) {
             $this->addFlash('exportarError', 'No se ha podido exportar');
