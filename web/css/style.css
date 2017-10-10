@@ -18,7 +18,26 @@ main {
     font-size: 16px;
     line-height: 3;
 }
-
+.azul-prof{
+    text-shadow: 1px 1px 1px black;
+    color: #1565c0  !important;
+}
+.font16{
+    font-size: 16px;
+}
+.font40{
+    font-size: 40px;
+}
+.fontshadow{
+    text-shadow: 1px 1px 1px black;
+}
+.divider2{
+    height: 100px;
+    overflow: hidden;
+}
+.fuente{
+    font-family: 'Raleway', sans-serif;
+}
 #dropdown1 li a:hover{
     background-color: #135BAC!important;
 }
