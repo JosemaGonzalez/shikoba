@@ -1,39 +1,54 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
 
 {% block body %}
+    {% include 'convivencia/navegacion.html.twig' %}
 
-    <style>
-        body{
-            background-color: white;
-        }
-    </style>
-    <div class="w3-row w3-container w3-margin-bottom" id="contenedorUpload">
-        <h1 class="w3-center">Importar Alumnos</h1>
-        <h2 class="w3-center"><i class="fa fa-info-circle fa-lg tooltip" data-tooltip-content="#tooltip_content"></i></h2>
+    <div class="col s12 center" id="contenedorUpload">
 
-        <div class="tooltip_templates">
-        <span id="tooltip_content">
-            <p>Debe ser un fichero csv con el siguiente orden de campos:</p><p>Nombre, Primer Apellido, Segundo Apellido, Unidad, Teléfono, Correo Electrónico, NºId Escolar, Teléfono de Urgencia, Dirección, Código Postal, Localidad, Provincia, Curso</p>
-        </span>
+        <h3 class="center azul-prof fuente">Importar alumnos</h3>
+        <div class="col s12 center">
+
+        <!-- Modal Trigger -->
+        <a class="waves-effect waves-light btn blue darken-3 modal-trigger btn-floating" href="#modal1"><i
+                    class="material-icons">info_outline</i></a>
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4>Info</h4>
+                <p>Debe ser un fichero csv con el siguiente orden de campos:
+                    <br>
+                    Nombre, Primer Apellido, Segundo Apellido, Unidad, Teléfono, Correo Electrónico, NºId Escolar,
+                    Teléfono de Urgencia, Dirección, Código Postal, Localidad, Provincia, Curso</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-blue btn-flat">Cerrar</a>
+            </div>
         </div>
+        </div>
+        <div class="divider2"></div>
+        <div class="col l4 center">
+        </div>
+        <div class="col s12 l4 center">
+            {% for flash_message in app.session.flashBag.get('alumnos') %}
+                <div class="card-panel green white-text" style="position: relative;">
+                <span class="spancaja">{{ flash_message }} </span><i class="material-icons spanico">done</i>
+                </div>
+            {% endfor %}
 
-        {% for flash_message in app.session.flashBag.get('alumnos') %}
-            <div class="w3-panel w3-pale-green w3-round-large">
-                <p class="w3-center">{{ flash_message }}</p>
-            </div>
-        {% endfor %}
+            {% for flash_message in app.session.flashBag.get('alumnosError') %}
+                <div class="card-panel red white-text" style="position: relative;">
+                    <span class="spancaja">{{ flash_message }}</span> <i class="material-icons spanico">clear</i>
+                </div>
+            {% endfor %}
 
-        {% for flash_message in app.session.flashBag.get('alumnosError') %}
-            <div class="w3-panel w3-pale-red w3-round-large">
-                <p class="w3-center">{{ flash_message }}</p>
-            </div>
-        {% endfor %}
-
-        {{ form_start(form, {'attr': {'class':'w3-content formConvivencia'}}) }}
-        {{ form_widget(form) }}
-        <input class="w3-button w3-block w3-section .azulTemaButton w3-text-white" id="botonImportar" type="submit" name="importarAlumnos" value="Importar" disabled>
-        {{ form_end(form) }}
+            {{ form_start(form, {'attr': {'class':' formConvivencia'}}) }}
+            {{ form_widget(form) }}
+            <input class="btn blue darken-3 waves-effect waves-light" style="margin-top: 7%;" id="botonImportar" type="submit"
+                   name="importarAlumnos" value="Importar" disabled>
+            {{ form_end(form) }}
+        </div>
         <div class="">
             <div class="loader"></div>
         </div>
