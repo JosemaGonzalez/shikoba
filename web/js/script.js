@@ -15,10 +15,12 @@ $(document).ready(function () {
     //Gestion alumnos twig
     $('#contenedorUpload').on('change', 'input:file', function () {
         if ($(this).val()) {
-            $('#contenedorUpload input:submit').removeAttr('disabled');
+            $('#contenedorUpload button:submit').removeAttr('disabled');
         }
     });
     $('#botonImportar').on('click', function () {
         $('#contenedorUpload .loader').css({opacity: 0, visibility: "visible"}).animate({opacity: 1}, 500)
     })
+    $('#usuario_form div').addClass("input-field");
+    $('#usuario_form ul>li').remove();
 });

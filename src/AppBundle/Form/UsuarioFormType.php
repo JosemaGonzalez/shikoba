@@ -20,17 +20,13 @@ class UsuarioFormType extends AbstractType
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'first_options' => array('label' => 'Contraseña', 'attr' => array(
-                    'class' => 'w3-select w3-border w3-light-grey marginBottomMore',
-                    'placeholder' => 'Escriba nueva contraseña',
                 ),
-                    'label_attr' => array('class' => 'w3-text-teal marginTop')
+                    'label_attr' => array('class' => '')
                 ),
                 'second_options' => array('label' => 'Repite Contraseña',
                     'attr' => array(
-                        'class' => 'w3-select w3-border w3-light-grey marginBottomMore',
-                        'placeholder' => 'Repita nueva contraseña',
                     ),
-                    'label_attr' => array('class' => 'w3-text-teal')
+                    'label_attr' => array('class' => '')
                 ),
 
             ));
