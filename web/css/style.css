@@ -76,7 +76,9 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:focus:not([reado
     color: #303f9f!important;
 }
 
-
+th{
+    border-radius: 0;
+}
 .spancaja{
     position: absolute;
     right: 25%;
