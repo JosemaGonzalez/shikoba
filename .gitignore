@@ -9,3 +9,4 @@ app/config/parameters.yml
 var/cache/dev/appDevDebugProjectContainer.php
 var/cache/dev/appDevDebugProjectContainer.php.meta
 var/logs/dev.log
+.idea/workspace.xml
