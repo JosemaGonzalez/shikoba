@@ -46,16 +46,14 @@ class DiarioAulaConvivenciaType extends AbstractType
                     'Negativa - C' => 'C',
                 ),
                 'attr' => array(
-                    'class' => 'w3-select w3-border w3-light-grey',
-                    'data-placeholder' => 'Selecciona un tipo de actitud...',
+                    'class' => '',
                 ),
-                'label_attr' => array('class' => 'w3-text-teal')
             ))
             ->add('observaciones', TextType::class, array(
                 'required' =>false,
                 'empty_data' => '',
                 'attr' => array('class' => 'w3-select w3-border w3-light-grey'),
-                'label_attr' => array('class' => 'w3-text-teal'),
+                'label_attr' => array('class' => 'grey-text'),
             ));
     }
 

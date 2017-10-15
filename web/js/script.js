@@ -8,7 +8,8 @@ $(document).ready(function () {
     $(".dropdown-content").css("margin-left",drop);
     $('.button-collapse').sideNav();
     $(".modal").modal();
-    $('#dia select').material_select();
+    $('#appbundle_diarioaulaconvivencia_actitud').material_select();
+    $('#appbundle_diarioaulaconvivencia label').css("color","white");
     $( window ).on("load resize",function() {
         //buscador en diario
         $("#horasSelect_chosen").css("min-width","100");
@@ -20,6 +21,8 @@ $(document).ready(function () {
         $("#horasSelect_chosen  .chosen-choices").css("background-color","none");
         $("#horasSelect_chosen  .chosen-choices").css("background-image","none");
         $("#horasSelect_chosen .chosen-choices").css("border","0");
+        $("#diarioAulaForm .chosen-search-input").css("width","93%");
+        $("#diarioAulaForm #appbundle_diarioaulaconvivencia div").addClass("input-field");
         if ($(window).width() < "600") {
             $("#botonbus button").css("margin-top","0");
         }
