@@ -1,32 +1,31 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
 {% block body %}
+    {% include 'convivencia/navegacion.html.twig' %}
 
-    <style>
-        body{
-            background-color: white;
-        }
-    </style>
+    <h3 class="center azul-prof fuente">Editar Diario Aula Convivencia</h3>
+    <h4 class="center azul-prof fuente">{{ diario.idSancion.idAlumno.getNombreCompleto() }}</h4>
 
-    <div class="w3-row w3-container w3-white w3-margin-bottom">
-        <h1 class="w3-center">Editar Diario Aula Convivencia</h1>
-        <h2 class="w3-center">{{ diario.idSancion.idAlumno.getNombreCompleto() }}</h2>
+    <div class="col s12 l4 offset-l4 center">
 
-        <form method="post" class="w3-content" name="formBusqueda">
+
+        <form method="post" class="" name="formBusqueda">
             <div class="w3-center">
             {% if recupera %}
                 <a href="{{ path('edit_diario', {'id': app.request.get('id'), 'recuperaPunto': 'true'}) }}"
-                   class="w3-button w3-text-white botonSubmit confirm" data-title="Recuperar Punto">-1 Punto</a>
+                   class="btn  btn-floating blue darken-3 waves-effect waves-light" data-title="Recuperar Punto">-1</a>
             {% else %}
-                <input class="w3-button w3-text-white botonSubmit confirm" type="button" name="recuperaPunto"
+                <button class="btn btn-floating blue darken-3 waves-effect waves-light" type="button" name="recuperaPunto"
                        value="-1 Punto"
-                       disabled>
+                        disabled>-1</button>
             {% endif %}
             </div>
         </form>
+
         {{ form_start(form, {'attr': {'class':'w3-content formConvivencia', 'id':'diarioAulaForm'}}) }}
         {{ form_widget(form) }}
-        <input class="w3-button w3-block w3-section w3-text-white" type="submit" name="editarDiario" value="Editar">
+        <button class="btn blue darken-3 waves-effect waves-light" style="margin-top: 13%;" type="submit"
+                name="editarDiario" value="Editar">Editar<i class="material-icons right">send</i></button>
         {{ form_end(form) }}
 
     </div>

@@ -8,11 +8,14 @@ $(document).ready(function () {
     $(".dropdown-content").css("margin-left",drop);
     $('.button-collapse').sideNav();
     $(".modal").modal();
+    $('#dia select').material_select();
     $( window ).on("load resize",function() {
         //buscador en diario
         $("#horasSelect_chosen").css("min-width","100");
         $("#busq .row").css("margin-bottom","0");
         $("#horasSelect_chosen").css("width","110%");
+        $("#appbundle_diarioaulaconvivencia > div > div").css("width","100%");
+        $("#appbundle_diarioaulaconvivencia #appbundle_diarioaulaconvivencia_actitud").css("display","block ");
         $("#horasSelect_chosen .chosen-choices").css("min-height","50");
         $("#horasSelect_chosen  .chosen-choices").css("background-color","none");
         $("#horasSelect_chosen  .chosen-choices").css("background-image","none");
