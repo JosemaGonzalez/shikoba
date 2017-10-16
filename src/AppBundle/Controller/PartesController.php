@@ -168,10 +168,12 @@ class PartesController extends Controller
             /** @var EntityManager $em */
             $em = $this->get('doctrine.orm.entity_manager');
             $alumnosSeleccionados = $request->get('alumnos');
+            $cursoSeleccionado = $request->get('curso');
             $profesoresSeleccionados = $request->get('profesores');
             $fechaSeleccionada = $request->get('fecha');
             /** @var AlumnoRepository $repositoryAlumnos */
             $repositoryAlumnos = $em->getRepository('AppBundle:Alumno');
+            $repositoryCursos = $em->getRepository('AppBundle:Cursos');
             /** @var ProfesoresRepository $repositoryProfesores */
             $repositoryProfesores = $em->getRepository('AppBundle:Profesores');
             if($alumnosSeleccionados == "Todos"){
@@ -180,7 +182,12 @@ class PartesController extends Controller
             else{
                 $alumnos = $repositoryAlumnos->findById($alumnosSeleccionados);
             }
-
+            if($cursoSeleccionado == "Todos"){
+            	$curso = $repositoryCursos->findAll();
+            }
+            else{
+            	$curso = $repositoryCursos->findById($cursoSeleccionado);
+            }
             if($profesoresSeleccionados == "Todos"){
                 $profesores = $repositoryProfesores->findAll();
             }
@@ -232,14 +239,17 @@ class PartesController extends Controller
         $em = $this->getDoctrine()->getManager();
         /** @var AlumnoRepository $repositoryAlumnos */
         $repositoryAlumnos = $em->getRepository('AppBundle:Alumno');
+        $repositoryCursos = $em->GetRepository('AppBundle:Cursos');
         /** @var ProfesoresRepository $repositoryProfesores */
         $repositoryProfesores = $em->getRepository('AppBundle:Profesores');
         $alumnos = $repositoryAlumnos->findAll();
+        $cursos = $repositoryCursos->findAll();
         $profesores = $repositoryProfesores->findAll();
 
         return $this->render('convivencia/exportPartes.html.twig', array(
             'alumnos' => $alumnos,
             'profesores' => $profesores,
+            'cursos' => $cursos
         ));
     }
 

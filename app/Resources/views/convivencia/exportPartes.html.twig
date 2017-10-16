@@ -28,6 +28,13 @@
                             <option value="{{ alumno.id }}">{{ alumno.getNombreCompletoYCurso() }}</option>
                         {% endfor %}
                     </select>
+                    <label class="w3-text-teal marginTop">Curso</label>
+                    <select name="cursos" class="w3-select w3-border w3-light-grey chosen-select" required>
+                        <option value="Todos">Todos</option>
+                        {% for cursoElegido in cursos %}
+                            <option value="{{ cursoElegido.id }}">{{ cursoElegido.getGrupo() }}</option>
+                        {% endfor %}
+                    </select>
                     <label class="w3-text-teal marginTop">Profesores</label>
                     <select name="profesores" class="w3-select w3-border w3-light-grey chosen-select" required>
                         <option value="Todos">Todos</option>
