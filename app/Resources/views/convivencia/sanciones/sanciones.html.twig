@@ -8,47 +8,55 @@
 
 
         {% for flash_message in app.session.flashBag.get('sancion') %}
-            <div class="w3-panel w3-pale-green w3-round-large">
-                <p class="w3-center">{{ flash_message }}</p>
+            <div class="card-panel green white-text" style="position: relative;">
+                <span class="spancaja">{{ flash_message }} </span><i class="material-icons spanico">done</i>
             </div>
         {% endfor %}
 
         {% for flash_message in app.session.flashBag.get('sancionError') %}
-            <div class="w3-panel w3-pale-red w3-round-large">
-                <p class="w3-center">{{ flash_message }}</p>
+            <div class="card-panel red white-text" style="position: relative;">
+                <span class="spancaja">{{ flash_message }}</span> <i class="material-icons spanico">clear</i>
             </div>
         {% endfor %}
 
-        {#TODO: ajustar form#}
         <form action="">
             <div class="row" id="busq">
 
-                <div class="w3-col l3 m8 w3-section">
+                <div class="col s12 l6">
+                    <div class="row">
+                        <div class="i-checks col s6 center l3 right-align" style="margin-top: 2%;padding-left: 0;">
+                            {% if app.request.get('historico') == 'on' %}
+                                <input type="checkbox" name="historico" checked>
+                            {% else %}
+                                <input type="checkbox" name="historico">
+                            {% endif %}
+                            <span style="float:left"> Histórico</span>
+                            <div class="" id="botonbus" style="margin-left: -5%;">
+                                <button class="bus2 z-depth-3 btn btn-floating blue darken-3 waves-effect waves-light"
+                                        type="submit"
+                                        value="Buscar" title="Buscar" style="margin-top: -8%;"><i
+                                            class="material-icons right">search</i></button>
+                            </div>
+                        </div>
 
-                    <div class="i-checks">
-                        {% if app.request.get('historico') == 'on' %}
-                            <input type="checkbox" name="historico" checked>
-                        {% else %}
-                            <input type="checkbox" name="historico">
-                        {% endif %}
-                        <span> Histórico</span>
+                        <div class="col s2 l1">
+                            <a href="{{ path('nueva_sancion') }}"
+                               class="btn z-depth-3  btn-floating blue darken-3 waves-effect waves-light"
+                               title="Nueva Sanción"><i
+                                        class="material-icons">add</i></a>
+                        </div>
+                        <div class="col s2 l1">
+
+                            <a href="{{ path('export_form_sanciones') }}"
+                               class="btn z-depth-3  btn-floating blue darken-3 waves-effect waves-light"
+                               title="Exportar"><i
+                                        class="material-icons">get_app</i></a>
+                        </div>
                     </div>
-                    <div class="col s12 m4 center l2" id="botonbus">
-                        <button class="btn blue darken-3 waves-effect waves-light" style="margin-top: 13%;"
-                                type="submit"
-                                value="Buscar">Buscar<i class="material-icons right">send</i></button>
-                    </div>
-                </div>
-                <div class="w3-col m3 w3-section">
-                    {#TODO: enlaces#}
-                    <a href="{{ path('nueva_sancion') }}" class="w3-margin-right" title="Nueva Sanción"><i
-                                class="material-icons">add</i></a>
-                    <a href="{{ path('export_form_sanciones') }}" class="w3-margin-right" title="Exportar"><i
-                                class="material-icons">get_app</i></a>
                 </div>
             </div>
-            <div class="w3-col m12 w3-responsive w3-section">
-                <table class="responsive-table highlight card-panel tableData striped" data-order='[[ 1, "desc" ]]'>
+            <div class="row">
+                <table class="responsive-table highlight tableData z-depth-3" data-order='[[ 1, "desc" ]]'>
                     <thead>
                     <tr class="blue darken-3 white-text">
                         <th>NumSanción</th>

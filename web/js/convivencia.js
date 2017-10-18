@@ -150,7 +150,7 @@ $(document).ready(function () {
     //ICHECK
 
     $('.i-checks').iCheck({
-        checkboxClass: 'icheckbox_square-blue',
+        checkboxClass: 'icheckbox_square-blue checkbus',
         radioClass: 'iradio_square-blue',
     });
 
@@ -203,11 +203,11 @@ $(document).ready(function () {
 
     // DataTables
 
-    jQuery.extend( jQuery.fn.dataTableExt.oSort, {
-        "date-eu-pre": function ( date ) {
+    jQuery.extend(jQuery.fn.dataTableExt.oSort, {
+        "date-eu-pre": function (date) {
             date = date.replace(" ", "");
 
-            if ( ! date ) {
+            if (!date) {
                 return 0;
             }
 
@@ -215,7 +215,7 @@ $(document).ready(function () {
             var eu_date = date.split(/[\.\-\/]/);
 
             /*year (optional)*/
-            if ( eu_date[2] ) {
+            if (eu_date[2]) {
                 year = eu_date[2];
             }
             else {
@@ -224,38 +224,44 @@ $(document).ready(function () {
 
             /*month*/
             var month = eu_date[1];
-            if ( month.length == 1 ) {
-                month = 0+month;
+            if (month.length == 1) {
+                month = 0 + month;
             }
 
             /*day*/
             var day = eu_date[0];
-            if ( day.length == 1 ) {
-                day = 0+day;
+            if (day.length == 1) {
+                day = 0 + day;
             }
 
             return (year + month + day) * 1;
         },
 
-        "date-eu-asc": function ( a, b ) {
+        "date-eu-asc": function (a, b) {
             return ((a < b) ? -1 : ((a > b) ? 1 : 0));
         },
 
-        "date-eu-desc": function ( a, b ) {
+        "date-eu-desc": function (a, b) {
             return ((a < b) ? 1 : ((a > b) ? -1 : 0));
         }
-    } );
+    });
 
     $('.tableData').DataTable({
+        "drawCallback": function (settings) {
+            $(".paginate_button.current").addClass("btn blue darken-4 waves-effect waves-light z-depth-3");
+            $(".paginate_button").addClass("btn blue darken-2 waves-effect waves-light z-depth-3");
+            $(".paginate_button.current").removeClass("paginate_button current");
+            $(".paginate_button").removeClass("paginate_button");
+        },
         language: {
             search: "Busca en la tabla ",
             paginate: {
                 first: "Primero",
-                previous: "Anterior",
-                next: "Siguiente",
+                previous: "<i class='material-icons pagi'>chevron_left</i>Anterior",
+                next: "Siguiente<i class='material-icons pagi'>chevron_right</i>",
                 last: "Último"
             },
-            lengthMenu: "Mostrar _MENU_ Resultados",
+            lengthMenu: "Mostrar Resultados _MENU_",
             emptyTable: "No hay registros en la tabla",
             info: "Mostrando _END_ registros de _TOTAL_ en total",
             infoEmpty: "No hay resultados",
@@ -263,20 +269,26 @@ $(document).ready(function () {
             zeroRecords: "No se encuentra ningun registro",
         },
         "aoColumnDefs": [
-            { "sType": "date-eu", "aTargets": [ 1 ] }
+            {"sType": "date-eu", "aTargets": [1]}
         ],
     });
 
     $('.tableDataCarnets').DataTable({
+        "drawCallback": function (settings) {
+            $(".paginate_button.current").addClass("btn blue darken-3 waves-effect waves-light z-depth-3");
+            $(".paginate_button").addClass("btn blue darken-3 waves-effect waves-light z-depth-3");
+            $(".paginate_button.current").removeClass("paginate_button current");
+            $(".paginate_button").removeClass("paginate_button");
+        },
         language: {
             search: "Busca en la tabla ",
             paginate: {
                 first: "Primero",
-                previous: "Anterior",
-                next: "Siguiente",
+                previous: "<i class='material-icons pagi'>chevron_left</i>Anterior",
+                next: "Siguiente<i class='material-icons pagi'>chevron_right</i>",
                 last: "Último"
             },
-            lengthMenu: "Mostrar _MENU_ Resultados",
+            lengthMenu: "Mostrar Resultados _MENU_",
             emptyTable: "No hay registros en la tabla",
             info: "Mostrando _END_ registros de _TOTAL_ en total",
             infoEmpty: "No hay resultados",
@@ -290,9 +302,9 @@ $(document).ready(function () {
     ).draw();
 
 
-
-    $('.dataTables_filter input').attr("placeholder", "Fecha, alumno, curso...");
+    //$('.dataTables_filter input').attr("placeholder", "Fecha, alumno, curso...");
     $('.dataTables_wrapper input').addClass("marginBottom");
+    $('.dataTables_filter').css("text-align", "left");
     // $('.dataTables_wrapper label').addClass("contenedorFlex");
 
 });
