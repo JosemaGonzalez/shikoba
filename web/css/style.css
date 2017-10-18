@@ -92,3 +92,9 @@ th{
     margin-top: -11px;
     right: 10%;
 }
+.checkbus{
+    position: relative;float: left;margin-right: 5px;
+}
+.pagi{
+    vertical-align: bottom;
+}
