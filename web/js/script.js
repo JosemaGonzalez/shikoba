@@ -15,17 +15,9 @@ $(document).ready(function () {
     $('#appbundle_diarioaulaconvivencia label').css("color", "white");
 
     $(window).on("load resize", function () {
-        $("#DataTables_Table_0_paginate a").on("click", function () {
-            $(".paginate_button.current").addClass("btn blue darken-4 waves-effect waves-light z-depth-3");
-            $(".paginate_button").addClass("btn blue darken-2 waves-effect waves-light z-depth-3");
-            $(".paginate_button.current").removeClass("paginate_button current");
-            $(".paginate_button").removeClass("paginate_button");
-        });
-        $(".paginate_button.current").addClass("btn blue darken-4 waves-effect waves-light z-depth-3");
-        $(".paginate_button").addClass("btn blue darken-2 waves-effect waves-light z-depth-3");
-        $(".paginate_button.current").removeClass("paginate_button current");
-        $(".paginate_button").removeClass("paginate_button");
 
+
+        $("#DataTables_Table_0_paginate").addClass("col s12 l8 right");
         //select mostrar en sanciones
         $('#DataTables_Table_0_length select').css("display", "block");
         $('#DataTables_Table_0_length').addClass("col s4 l2");
@@ -48,6 +40,12 @@ $(document).ready(function () {
         $("#diarioAulaForm .chosen-search-input").css("width", "93%");
         $("#diarioAulaForm #appbundle_diarioaulaconvivencia div").addClass("input-field");
         if ($(window).width() < "600") {
+            $("#DataTables_Table_0_paginate a").on("click", function () {
+                $("#DataTables_Table_0 th,#DataTables_Table_0 td").css("padding","15px 18px");
+                $("#DataTables_Table_0").css("border-bottom","0");
+            });
+            $("#DataTables_Table_0 th,#DataTables_Table_0 td").css("padding","15px 18px");
+            $("#DataTables_Table_0").css("border-bottom","0");
             $("#botonbus button").css("margin-top", "1%");
             $("#botonbus .bus2").css("margin-top", "-4%");
             $('#DataTables_Table_0_length').css("width", "33.3333%");

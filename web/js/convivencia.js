@@ -248,17 +248,18 @@ $(document).ready(function () {
 
     $('.tableData').DataTable({
         "drawCallback": function (settings) {
-            $(".paginate_button.current").addClass("btn blue darken-4 waves-effect waves-light z-depth-3");
-            $(".paginate_button").addClass("btn blue darken-2 waves-effect waves-light z-depth-3");
+            $(".paginate_button.current").addClass("btn  blue darken-4 waves-effect waves-light z-depth-3 pagi");
+            $(".paginate_button").addClass("btn  blue darken-2 waves-effect waves-light z-depth-3 pagi");
             $(".paginate_button.current").removeClass("paginate_button current");
             $(".paginate_button").removeClass("paginate_button");
         },
+        "lengthMenu": [[5, 10, 20, 30, -1], [5, 10, 20,30, "Todos"]],
         language: {
             search: "Busca en la tabla ",
             paginate: {
                 first: "Primero",
-                previous: "<i class='material-icons pagi'>chevron_left</i>Anterior",
-                next: "Siguiente<i class='material-icons pagi'>chevron_right</i>",
+                previous: "<i class='material-icons pagi'>chevron_left</i>",
+                next: "<i class='material-icons pagi'>chevron_right</i>",
                 last: "Último"
             },
             lengthMenu: "Mostrar Resultados _MENU_",
@@ -280,12 +281,13 @@ $(document).ready(function () {
             $(".paginate_button.current").removeClass("paginate_button current");
             $(".paginate_button").removeClass("paginate_button");
         },
+        "lengthMenu": [[5, 10, 20, 30, -1], [5, 10, 20,30, "Todos"]],
         language: {
             search: "Busca en la tabla ",
             paginate: {
                 first: "Primero",
-                previous: "<i class='material-icons pagi'>chevron_left</i>Anterior",
-                next: "Siguiente<i class='material-icons pagi'>chevron_right</i>",
+                previous: "<i class='material-icons pagi'>chevron_left</i>",
+                next: "<i class='material-icons pagi'>chevron_right</i>",
                 last: "Último"
             },
             lengthMenu: "Mostrar Resultados _MENU_",

@@ -6,18 +6,19 @@
     <div class="">
         <h3 class="center azul-prof fuente">Gestión Sanciones</h3>
 
+        <div class="col s12 l4 offset-l4 center">
+            {% for flash_message in app.session.flashBag.get('sancion') %}
+                <div class="card-panel green white-text" style="position: relative;">
+                    <span class="spancaja">{{ flash_message }} </span><i class="material-icons spanico">done</i>
+                </div>
+            {% endfor %}
 
-        {% for flash_message in app.session.flashBag.get('sancion') %}
-            <div class="card-panel green white-text" style="position: relative;">
-                <span class="spancaja">{{ flash_message }} </span><i class="material-icons spanico">done</i>
-            </div>
-        {% endfor %}
-
-        {% for flash_message in app.session.flashBag.get('sancionError') %}
-            <div class="card-panel red white-text" style="position: relative;">
-                <span class="spancaja">{{ flash_message }}</span> <i class="material-icons spanico">clear</i>
-            </div>
-        {% endfor %}
+            {% for flash_message in app.session.flashBag.get('sancionError') %}
+                <div class="card-panel red white-text" style="position: relative;">
+                    <span class="spancaja">{{ flash_message }}</span> <i class="material-icons spanico">clear</i>
+                </div>
+            {% endfor %}
+        </div>
 
         <form action="">
             <div class="row" id="busq">
@@ -56,7 +57,7 @@
                 </div>
             </div>
             <div class="row">
-                <table class="responsive-table highlight tableData z-depth-3" data-order='[[ 1, "desc" ]]'>
+                <table class="responsive-table highlight tableData z-depth-3" data-order='[[ 1, "desc" ]]' style="margin-bottom: 1%">
                     <thead>
                     <tr class="blue darken-3 white-text">
                         <th>NumSanción</th>
@@ -86,9 +87,9 @@
                             {% if is_granted('ROLE_ADMIN') %}
                                 <td><a href="{{ path('nueva_sancion') }}?idSancion={{ sancion.id }}">
                                         <i class="material-icons">edit</i></a>
-                                    <a class="confirm paddingRightLeft"
+                                    <a class="confirm paddingRightLeft "
                                        href="{{ path('borrar_sancion', {'id': sancion.id}) }}"
-                                       data-title="Eliminar Sanción"><i class="material-icons">delete</i></a>
+                                       data-title="Eliminar Sanción"><i class="material-icons ">delete</i></a>
                                 </td>
                             {% else %}
                                 <td></td>

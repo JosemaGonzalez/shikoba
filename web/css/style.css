@@ -1,36 +1,47 @@
+/*hay que poner esto para el footer este abajo siempre*/
 body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
 }
+/*hay que poner esto para el footer este abajo siempre*/
 
 main {
     flex: 1 0 auto;
 }
+/*la barra lateral en responsive se esconde la capa*/
 #sidenav-overlay{
     z-index: 996;
 }
+/*la barra lateral en responsive se esconde la capa*/
+
 .nav-wrapper{
     z-index: 50;
 }
+/*Fuente principañ*/
 #catalogo span{
     font-family: 'Open Sans', serif;
     font-size: 16px;
     line-height: 3;
 }
+/*color para los titulos*/
 .azul-prof{
     text-shadow: 1px 1px 1px black;
     color: #1565c0  !important;
 }
+/*fuente por defecto*/
 .font16{
     font-size: 16px;
 }
+/*fuente de titulos*/
 .font40{
     font-size: 40px;
 }
+/*sombreado de fuentes*/
 .fontshadow{
     text-shadow: 1px 1px 1px black;
 }
+/*diferentes tiposd de separadores*/
 .divider2{
     height: 100px;
     overflow: hidden;
@@ -43,9 +54,19 @@ main {
     height: 25px;
     overflow: hidden;
 }
+/*centrar en en marco*/
+.centro{
+    margin:0 auto;
+}
+/*Fuente principal para el titulo*/
 .fuente{
     font-family: 'Raleway', sans-serif;
 }
+/*logo al tamaño del nav*/
+.nav-wrapper img{
+    height: 50px;
+}
+/*color para que los botones esten iguales*/
 #dropdown1 li a:hover{
     background-color: #135BAC!important;
 }
@@ -58,16 +79,11 @@ main {
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating):hover{
     color:#EAECF7!important;
 }
-.nav-wrapper img{
-    height: 50px;
-}
 
 .waves-effect.waves-blue .waves-ripple{
     background-color: rgba(48, 63, 159, 0.65);
 }
-.centro{
-    margin:0 auto;
-}
+
 input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]){
     border-bottom: 1px solid #303f9f!important;
     box-shadow: 0 1px 0 0 #303f9f!important;
@@ -75,13 +91,15 @@ input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]),
 input:not([type]):focus:not([readonly])+label, input[type=text]:focus:not([readonly])+label, input[type=password]:focus:not([readonly])+label, input[type=email]:focus:not([readonly])+label, input[type=url]:focus:not([readonly])+label, input[type=time]:focus:not([readonly])+label, input[type=date]:focus:not([readonly])+label, input[type=datetime]:focus:not([readonly])+label, input[type=datetime-local]:focus:not([readonly])+label, input[type=tel]:focus:not([readonly])+label, input[type=number]:focus:not([readonly])+label, input[type=search]:focus:not([readonly])+label, textarea.materialize-textarea:focus:not([readonly])+label {
     color: #303f9f!important;
 }
+/*color para los chosen en select*/
 #appbundle_diarioaulaconvivencia_asiste_chosen .dropdown-content li>a, .dropdown-content li>span{
     color: #303f9f!important;
-
 }
+/*le quito el borde a las tablas*/
 th{
     border-radius: 0;
 }
+/*muevo los botones con icono para verlo mejor*/
 .spancaja{
     position: absolute;
     right: 25%;
@@ -92,9 +110,17 @@ th{
     margin-top: -11px;
     right: 10%;
 }
+/*boton check de historico*/
 .checkbus{
     position: relative;float: left;margin-right: 5px;
 }
+/*separacion paginacion datatable*/
 .pagi{
-    vertical-align: bottom;
+    margin: 0 0.5%;
+}
+/*estilo en responsive para que las cajas esten todas iguales del datatable*/
+@media screen and (max-width: 990px) {
+    #DataTables_Table_0 td {
+        padding:15px 18px;
+    }
 }
