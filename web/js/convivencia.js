@@ -174,10 +174,9 @@ $(document).ready(function () {
     $('.tooltip').tooltipster({
         theme: 'tooltipster-light'
     });
-
     // Pantalla Confirmación
     $('a.confirm').confirm({
-        icon: 'fa fa-question-circle-o fa-2x',
+        theme: 'supervan',
         content: "¿Está seguro de realizar esta acción?",
         buttons: {
             Aceptar: function () {
@@ -253,7 +252,7 @@ $(document).ready(function () {
             $(".paginate_button.current").removeClass("paginate_button current");
             $(".paginate_button").removeClass("paginate_button");
         },
-        "lengthMenu": [[5, 10, 20, 30, -1], [5, 10, 20,30, "Todos"]],
+        "lengthMenu": [[5, 10, 20, 30, -1], [5, 10, 20, 30, "Todos"]],
         language: {
             search: "Busca en la tabla ",
             paginate: {
@@ -281,7 +280,7 @@ $(document).ready(function () {
             $(".paginate_button.current").removeClass("paginate_button current");
             $(".paginate_button").removeClass("paginate_button");
         },
-        "lengthMenu": [[5, 10, 20, 30, -1], [5, 10, 20,30, "Todos"]],
+        "lengthMenu": [[5, 10, 20, 30, -1], [5, 10, 20, 30, "Todos"]],
         language: {
             search: "Busca en la tabla ",
             paginate: {

@@ -1,121 +1,134 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
 {% block body %}
+    {% include 'convivencia/navegacion.html.twig' %}
 
-    {% block header %}
-        <main class="w3-container">
-            <h1>Gestión Partes</h1>
+    <div class="">
+        <h3 class="center azul-prof fuente">Gestión Partes</h3>
 
+        <div class="col s12 l4 offset-l4 center">
             {% for flash_message in app.session.flashBag.get('parte') %}
-                <div class="w3-panel w3-pale-green w3-round-large">
-                    <p class="w3-center">{{ flash_message }}</p>
+                <div class="card-panel green white-text" style="position: relative;">
+                    <span class="spancaja">{{ flash_message }} </span><i class="material-icons spanico">done</i>
                 </div>
             {% endfor %}
 
             {% for flash_message in app.session.flashBag.get('parteError') %}
-                <div class="w3-panel w3-pale-red w3-round-large">
-                    <p class="w3-center">{{ flash_message }}</p>
+                <div class="card-panel red white-text" style="position: relative;">
+                    <span class="spancaja">{{ flash_message }}</span> <i class="material-icons spanico">clear</i>
                 </div>
             {% endfor %}
+        </div>
+        <form action="">
+            <div class="row" id="busq">
 
-
-            {#TODO: ajustar form#}
-            <form action="">
-                <div class="w3-col l3 m8 w3-section">
-                    {#<input class="w3-input w3-col l6 m12" type="text" name="like" id="partesSearchBar"#}
-                    {#value="{{ app.request.get('like') }}" placeholder="Introduce fecha, nombre, curso...">#}
-                    {#<i class="fa fa-search fa-lg fa-flip-horizontal"></i>#}
-                    <div class="i-checks">
-                        {% if app.request.get('historico') == 'on' %}
-                            <input type="checkbox" name="historico" checked>
-                        {% else %}
-                            <input type="checkbox" name="historico">
-                        {% endif %}
-                        <span> Histórico</span>
-                    </div>
-                    <input type="submit" value="Buscar" class="w3-button w3-text-white"/>
-                </div>
-                <div class="w3-col m3 w3-section">
-                    {#TODO: enlaces#}
-                    <a href="{{ path('nuevoParte') }}" class="w3-margin-right" title="Nuevo Parte"><i
-                                class="fa fa-plus-circle fa-2x"></i></a>
-                    <a href="{{ path('export_form_partes') }}" class="w3-margin-right" title="Exportar"><i class="fa fa-download fa-2x"></i></a>
-                </div>
-                <div class="w3-col m12 w3-responsive w3-section">
-                    <table class="tableData stripe" data-order='[[ 1, "desc" ]]'>
-                        <thead>
-                        <tr>
-                            <th>NumParte</th>
-                            <th>Fecha</th>
-                            <th>Alumnado</th>
-                            <th>Curso</th>
-                            <th>Profesorado</th>
-                            <th>Tipo</th>
-                            <th>Puntos</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for parte in partes %}
-                            {% if parte.idTipo.tipo == 'Grave' %}
-                                {% set colorClass = 'w3-text-red' %}
-                            {% elseif parte.idTipo.tipo  == 'Leve' %}
-                                {% set colorClass = 'text-orange' %}
+                <div class="col s12 l6">
+                    <div class="row">
+                        <div class="i-checks col s6 center l3 right-align" style="margin-top: 2%;padding-left: 0;">
+                            {% if app.request.get('historico') == 'on' %}
+                                <input type="checkbox" name="historico" checked>
                             {% else %}
-                                {% set colorClass = 'w3-text-black' %}
+                                <input type="checkbox" name="historico">
                             {% endif %}
-                            {% if parte.idEstado.estado == 'Caducado' %}
-                                {% set colorClass = 'w3-text-grey' %}
-                            {% endif %}
-                            <tr class="{{ colorClass }}">
-                                <td>{{ parte.id }}</td>
-                                <td>{{ parte.fecha|date("d/m/Y") }}</td>
-                                <td>
-                                    <a href="{{ path('verAlumno', {'id': parte.idAlumno.id}) }}">{{ parte.idAlumno.getNombreCompleto() }}</a>
-                                </td>
-                                {% if parte.idAlumno.idCurso != null %}
-                                    <td>
-                                        <a href="{{ path('gestion_partes', {'like': parte.idAlumno.idCurso.grupo}) }}">{{ parte.idAlumno.idCurso.grupo }}</a>
-                                    </td>
-                                {% else %}
-                                    <td>Ninguno</td>
-                                {% endif %}
-                                <td>
-                                    {{ parte.idProfesor.getNombreCompleto()}}
-                                </td>
-                                <td>{{ parte.idTipo.tipo }}</td>
-                                <td>{{ parte.puntos }}</td>
-                                <td>{{ parte.idEstado.estado }}</td>
-                                {% if (is_granted('ROLE_ADMIN') == false) and (is_granted('ROLE_PROFESOR')) %}
-                                    {% if(parte.idProfesor.idUsuario.id == app.user.id) %}
-                                        <td><a href="{{ path('nuevoParte') }}?idParte={{ parte.id }}"><i
-                                                        class="fa fa-pencil" aria-hidden="true"></i></a>
-                                            <a class="confirm paddingRightLeft"
-                                               href="{{ path('borrar_parte', {'id': parte.id}) }}"
-                                               data-title="Eliminar Parte"><i class="fa fa-trash"
-                                                                              aria-hidden="true"></i></a></td>
-                                    {% else %}
-                                        <td></td>
-                                    {% endif %}
-                                {% endif %}
-                                {% if is_granted('ROLE_ADMIN') %}
-                                    <td><a href="{{ path('nuevoParte') }}?idParte={{ parte.id }}"><i
-                                                    class="fa fa-pencil" aria-hidden="true"></i></a>
-                                        <a class="confirm paddingRightLeft"
-                                           href="{{ path('borrar_parte', {'id': parte.id}) }}"
-                                           data-title="Eliminar Parte"><i class="fa fa-trash"
-                                                                          aria-hidden="true"></i></a></td>
-                                {% endif %}
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                            <span style="float:left"> Histórico</span>
+                            <div class="" id="botonbus" style="margin-left: -5%;">
+                                <button class="bus2 z-depth-3 btn btn-floating blue darken-3 waves-effect waves-light"
+                                        type="submit"
+                                        value="Buscar" title="Buscar" style="margin-top: -8%;"><i
+                                            class="material-icons right">search</i></button>
+                            </div>
+                        </div>
+
+                        <div class="col s2 l1">
+                            <a href="{{ path('nuevoParte') }}"
+                               class="btn z-depth-3  btn-floating blue darken-3 waves-effect waves-light"
+                               title="Nueva Sanción"><i
+                                        class="material-icons">add</i></a>
+                        </div>
+                        <div class="col s2 l1">
+
+                            <a href="{{ path('export_form_partes') }}"
+                               class="btn z-depth-3  btn-floating blue darken-3 waves-effect waves-light"
+                               title="Exportar"><i
+                                        class="material-icons">get_app</i></a>
+                        </div>
+                    </div>
                 </div>
-                {#<div class="paginator w3-col m12">#}
-                {#{{ knp_pagination_render(partes) }}#}
-                {#</div>#}
-            </form>
-        </main>
-    {% endblock %}
+            </div>
+            <div class="row">
+                <table class="responsive-table highlight tableData z-depth-3" data-order='[[ 1, "desc" ]]'
+                       style="margin-bottom: 1%">
+                    <thead>
+                    <tr class="blue darken-3 white-text">
+                        <th>NumParte</th>
+                        <th>Fecha</th>
+                        <th>Alumnado</th>
+                        <th>Curso</th>
+                        <th>Profesorado</th>
+                        <th>Tipo</th>
+                        <th>Puntos</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for parte in partes %}
+                        {% if parte.idTipo.tipo == 'Grave' %}
+                            {% set colorClass = 'orange-text' %}
+                        {% elseif parte.idTipo.tipo  == 'Leve' %}
+                            {% set colorClass = 'amber-text' %}
+                        {% else %}
+                            {% set colorClass = 'red-text' %}
+                        {% endif %}
+                        {% if parte.idEstado.estado == 'Caducado' %}
+                            {% set colorClass = 'grey-text' %}
+                        {% endif %}
+                        <tr>
+                            <td>{{ parte.id }}</td>
+                            <td>{{ parte.fecha|date("d/m/Y") }}</td>
+                            <td>
+                                <a href="{{ path('verAlumno', {'id': parte.idAlumno.id}) }}">{{ parte.idAlumno.getNombreCompleto() }}</a>
+                            </td>
+                            {% if parte.idAlumno.idCurso != null %}
+                                <td>
+                                    <a href="{{ path('gestion_partes', {'like': parte.idAlumno.idCurso.grupo}) }}">{{ parte.idAlumno.idCurso.grupo }}</a>
+                                </td>
+                            {% else %}
+                                <td>Ninguno</td>
+                            {% endif %}
+                            <td>
+                                {{ parte.idProfesor.getNombreCompleto() }}
+                            </td>
+                            <td class="{{ colorClass }}">{{ parte.idTipo.tipo }}</td>
+                            <td>{{ parte.puntos }}</td>
+                            <td>{{ parte.idEstado.estado }}</td>
+                            {% if (is_granted('ROLE_ADMIN') == false) and (is_granted('ROLE_PROFESOR')) %}
+                                {% if(parte.idProfesor.idUsuario.id == app.user.id) %}
+                                    <td><a href="{{ path('nuevoParte') }}?idParte={{ parte.id }}">
+                                    <i class="material-icons">edit</i></a>
+                                    <a class="confirm paddingRightLeft "
+                                       href="{{ path('borrar_parte', {'id': parte.id}) }}"
+                                       data-title="Eliminar Parte"><i class="material-icons ">delete</i></a>
+
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+                            {% endif %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                            <td><a href="{{ path('nuevoParte') }}?idParte={{ parte.id }}">
+                                    <i class="material-icons">edit</i></a>
+                                <a class="confirm paddingRightLeft "
+                                   href="{{ path('borrar_parte', {'id': parte.id}) }}"
+                                   data-title="Eliminar Parte"><i class="material-icons ">delete</i></a>
+                                    {% endif %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {#<div class="paginator w3-col m12">#}
+            {#{{ knp_pagination_render(partes) }}#}
+            {#</div>#}
+        </form>
+    </div>
 {% endblock %}
