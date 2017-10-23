@@ -54,6 +54,8 @@ class ConvivenciaController extends Controller
             return $this->redirectToRoute("tutor");
         if (in_array("ROLE_PROFESOR", $this->getUser()->getRoles()))
             return $this->redirectToRoute("gestion_partes");
+        if (in_array("ROLE_CONVIVENCIA", $this->getUser()->getRoles()))
+            return $this->redirectToRoute("admin");
         if (in_array("ROLE_USER", $this->getUser()->getRoles()))
             return $this->redirectToRoute("alumno");
         return $this->redirectToRoute("login");
@@ -106,6 +108,7 @@ class ConvivenciaController extends Controller
                 ->encodePassword($usuario, $usuario->getPlainPassword());
             // Establecemos la contraseña real ya codificada al usuario
             $usuario->setPassword($password);
+            $usuario->setHash($password);
 
             // Persistimos la entidad como cualquier otra
             $em->persist($usuario);
@@ -204,6 +207,7 @@ class ConvivenciaController extends Controller
             /** @var Usuarios $usuario */
             $usuario = $repositoryUser->findOneById($this->getUser());
             $usuario->setPassword($password);
+            $usuario->setHash($password);
 
             // Persistimos la entidad como cualquier otra
             $em->persist($usuario);

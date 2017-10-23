@@ -20,25 +20,36 @@
                                 <li>
                                     <div class="divider"></div>
 
-                                    {% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_PROFESOR')) %}
-                                <li><a class="waves-effect waves-blue" href="{{ path('show_carnets') }}">Carnets</a></li>
-                                <li><a class="waves-effect waves-blue" href="{{ path('gestion_partes') }}">Partes</a></li>
-                                <li><a class="waves-effect waves-blue" href="{{ path('gestion_sanciones') }}">Medidas</a></li>
+                                    {% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_PROFESOR') or is_granted('ROLE_CONVIVENCIA')) %}
+                                <li><a class="waves-effect waves-blue" href="{{ path('show_carnets') }}">Carnets</a>
+                                </li>
+                                <li><a class="waves-effect waves-blue" href="{{ path('gestion_partes') }}">Partes</a>
+                                </li>
+                                <li><a class="waves-effect waves-blue"
+                                       href="{{ path('gestion_sanciones') }}">Medidas</a></li>
                                 <li><a class="waves-effect waves-blue" href="{{ path('show_diario') }}">Diario</a></li>
                                 <div class="divider"></div>
+                                {% if is_granted('ROLE_CONVIVENCIA') %}
+                                    <li><a class="waves-effect waves-blue" href="{{ path('admin') }}">Noticias</a>
+                                    </li>
+                                {% endif %}
                                 {% if is_granted('ROLE_ADMIN') %}
                                     <li class="no-padding">
                                         <ul class="collapsible collapsible-accordion">
                                             <li>
-                                                <a class="collapsible-header waves-effect waves-blue">Administración<i class="material-icons right">arrow_drop_down</i></a>
+                                                <a class="collapsible-header waves-effect waves-blue">Administración<i
+                                                            class="material-icons right">arrow_drop_down</i></a>
                                                 <div class="collapsible-body ">
                                                     <ul>
-                                                        <li><a class="waves-effect waves-blue" href="{{ path('admin_import') }}">Alumnado</a>
+                                                        <li><a class="waves-effect waves-blue"
+                                                               href="{{ path('admin_import') }}">Alumnado</a>
                                                         </li>
-                                                        <li><a class="waves-effect waves-blue" href="{{ path('admin_import_profesor') }}"
+                                                        <li><a class="waves-effect waves-blue"
+                                                               href="{{ path('admin_import_profesor') }}"
                                                             >Profesorado</a>
                                                         </li>
-                                                        <li><a class="waves-effect waves-blue" href="{{ path('admin_security') }}"
+                                                        <li><a class="waves-effect waves-blue"
+                                                               href="{{ path('admin_security') }}"
                                                             >Copia
                                                                 de seguridad</a></li>
                                                     </ul>
@@ -61,20 +72,25 @@
                                         Contraseña</a>
                                 </li>
                                 <li>
-                                    <a class="waves-effect waves-blue" href="{{ path('logout') }}" >Logout</a>
+                                    <a class="waves-effect waves-blue" href="{{ path('logout') }}">Logout</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="col l8 left hide-on-med-and-down">
                             <ul class="left">
 
-                                {% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_PROFESOR')) %}
-                                    <li><a href="{{ path('index') }}" class="ancla centro"><img id="img_nav" src="/img/logo3.png"
+                                {% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_PROFESOR') or is_granted('ROLE_CONVIVENCIA')) %}
+                                    <li><a href="{{ path('index') }}" class="ancla centro"><img id="img_nav"
+                                                                                                src="/img/logo3.png"
                                                                                                 alt=""></a></li>
                                     <li><a href="{{ path('show_carnets') }}">Carnets</a></li>
                                     <li><a href="{{ path('gestion_partes') }}">Partes</a></li>
                                     <li><a href="{{ path('gestion_sanciones') }}">Medidas</a></li>
                                     <li><a href="{{ path('show_diario') }}">Diario</a></li>
+                                    {% if is_granted('ROLE_CONVIVENCIA') %}
+                                        <li><a href="{{ path('admin') }}">Noticias</a></li>
+
+                                    {% endif %}
                                     {% if is_granted('ROLE_ADMIN') %}
                                         <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Administración<i
                                                         class="material-icons right">keyboard_arrow_right</i></a></li>
@@ -109,7 +125,7 @@
                                         Contraseña</a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('logout') }}" >Logout</a>
+                                    <a href="{{ path('logout') }}">Logout</a>
                                 </li>
                             </ul>
                         </div>
@@ -119,4 +135,4 @@
         </header>
 
     {% endif %}
-    {% endblock %}
+{% endblock %}

@@ -160,3 +160,12 @@ th {
 #DataTables_Table_0 tbody a i {
     color: #1565c0 !important;
 }
+/*caja busqueda avanzada de cursos*/
+#cursos {
+    display: none;
+}
+/*checkbox*/
+[type="checkbox"]:checked+label:before {
+    border-right: 2px solid #1565C0;
+    border-bottom: 2px solid #1565C0;
+}

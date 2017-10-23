@@ -28,6 +28,7 @@ class RegistroFormType extends AbstractType
                     'Tutor' => "ROLE_TUTOR",
                     'Profesor' => "ROLE_PROFESOR",
                     'Jefatura' => "ROLE_ADMIN",
+                    'Convivencia' => "ROLE_CONVIVENCIA",
                 ),
             ));
     }

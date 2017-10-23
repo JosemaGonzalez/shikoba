@@ -17,6 +17,9 @@ $(document).ready(function () {
     $('#appbundle_diarioaulaconvivencia label').css("color", "white");
 
     $(window).on("load resize", function () {
+        //estilo material para un selector en sanciones form
+        $('#idTipo div').addClass("input-field");
+        $('#idTipo div').material_select();
         //estilo al paginador de datatable
         $("#DataTables_Table_0_paginate").addClass("col s12 l8 right");
         //select mostrar datatables
@@ -38,6 +41,7 @@ $(document).ready(function () {
         $("#horasSelect_chosen").css("width", "110%");
         //configuracion del chosen
         $("#appbundle_diarioaulaconvivencia > div > div").css("width", "100%");
+        $(".chosen-container").css("width", "100%");
         $("#appbundle_diarioaulaconvivencia #appbundle_diarioaulaconvivencia_actitud").css("display", "block ");
         $("#horasSelect_chosen .chosen-choices").css("min-height", "50");
         $("#horasSelect_chosen  .chosen-choices").css("background-color", "none");
@@ -77,4 +81,6 @@ $(document).ready(function () {
     //estilo material para un selector
     $('#usuario_form div').addClass("input-field");
     $('#usuario_form ul>li').remove();
+
+
 });
