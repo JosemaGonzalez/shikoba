@@ -45,8 +45,8 @@ class SancionFormType extends AbstractType
                 'choice_label' => function ($tipo) {
                     return $tipo->getTipo();
                 },
-                'attr' => array('class' => 'w3-select w3-border w3-light-grey marginBottom'),
-                'label_attr' => array('class' => 'w3-text-teal')
+                'attr' => array('class' => ''),
+                'label_attr' => array('class' => '')
             ))
 //            ->add('FechaInicio', DateType::class, array(
 //                'attr' => array('class' => 'w3-select w3-border w3-light-grey'),
@@ -58,21 +58,21 @@ class SancionFormType extends AbstractType
 //            ))
             ->add('Sancion', TextType::class, array(
                 'label' => 'Sanción',
-                'attr' => array('class' => 'w3-input w3-border w3-light-grey'),
-                'label_attr' => array('class' => 'w3-text-teal')
+                'attr' => array('class' => ''),
+                'label_attr' => array('class' => '')
             ))
             ->add('Observaciones', TextareaType::class, array(
                 'required' =>false,
                 'empty_data' => '',
-                'attr' => array('class' => 'w3-input w3-border w3-light-grey minTextArea'),
-                'label_attr' => array('class' => 'w3-text-teal')
+                'attr' => array('class' => 'materialize-textarea minTextArea'),
+                'label_attr' => array('class' => '')
             ))
             ->add('Evaluacion', TextType::class, array(
                 'required' =>false,
                 'empty_data' => '',
                 'label' => 'Evaluación',
-                'attr' => array('class' => 'w3-select w3-border w3-light-grey'),
-                'label_attr' => array('class' => 'w3-text-teal')
+                'attr' => array('class' => ''),
+                'label_attr' => array('class' => '')
             ))
             ->add('fechaConfirmacion', TextType::class, array(
                 'required' =>false,

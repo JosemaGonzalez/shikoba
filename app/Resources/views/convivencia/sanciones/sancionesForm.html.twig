@@ -57,30 +57,34 @@
             {{ form_start(form, {'attr': {'class':'col s12 l10 offset-l1'}}) }}
             {{ form_row(form.idAlumno) }}
             {#{{ form_row(form.Fecha) }}#}
-            <label class="w3-text-teal">Fecha</label>
-            <input type="text" name="fecha" class="w3-select datepicker w3-border w3-light-grey marginBottom"
-                   value="{{ sancion.fecha|date('d/m/Y') }}" required>
-            <div id="idTipo">
-                {{ form_row(form.idTipo) }}
+            <div class="input-field">
+                <label>Fecha</label>
+                <input type="text" name="fecha" class="datepicker"
+                       value="{{ sancion.fecha|date('d/m/Y') }}" required>
             </div>
-            <label class="w3-text-teal">Fecha Inicio</label>
-            <input type="text" name="fechaInicio" class="w3-select datepicker w3-border w3-light-grey marginBottom"
-                   value="{{ sancion.fechaInicio|date('d/m/Y') }}" required>
-            <label class="w3-text-teal">Fecha Final</label>
-            <input type="text" name="fechaFinal" class="w3-select datepicker w3-border w3-light-grey marginBottom"
-                   value="{{ sancion.fechaFinal|date('d/m/Y') }}" required>
+            {{ form_row(form.idTipo) }}
+            <div class="input-field">
+                <label>Fecha Inicio</label>
+                <input type="text" name="fechaInicio" class="w3-select datepicker w3-border w3-light-grey marginBottom"
+                       value="{{ sancion.fechaInicio|date('d/m/Y') }}" required>
+            </div>
+            <div class="input-field">
+                <label>Fecha Final</label>
+                <input type="text" name="fechaFinal" class="w3-select datepicker w3-border w3-light-grey marginBottom"
+                       value="{{ sancion.fechaFinal|date('d/m/Y') }}" required>
+            </div>
             {% if detalles is defined and detalles is not null and detalles is not empty %}
-                <div class="contenedorFlexEdit">
+                <div class="row contenedorFlexEdit">
                     {% for detalle in detalles %}
-                        <div class="contenedorFlexChild">
-                            <label class="w3-text-teal">Fecha Hora Sanción</label>
-                            <input type="text" class="w3-input w3-border w3-light-grey datepicker"
+                        <div class="col s6">
+                            <label>Fecha Hora Sanción</label>
+                            <input type="text" class="datepicker"
                                    value="{{ detalle.fecha|date('d/m/Y') }}" name="fechaHoraEdit[{{ detalle.id }}]"
                                    contenteditable="false">
                         </div>
-                        <div class="contenedorFlexChild">
-                            <label class="w3-text-teal">Hora</label>
-                            <select class="w3-select w3-border w3-light-grey" name="horaAcEdit[{{ detalle.id }}]">
+                        <div class="col s6 input-field" id="horasAC">
+                            <label>Hora</label>
+                            <select name="horaAcEdit[{{ detalle.id }}]">
                                 {% for key, hora in horas %}
                                     {% if detalle.hora == key %}
                                         <option value="{{ key }}" selected>{{ hora }}</option>
@@ -91,20 +95,26 @@
                             </select>
                         </div>
                     {% endfor %}
-                    <div class="w3-center w3-block"><input type="button" id="checkEditSancion"
-                                                           class="w3-button w3-margin w3-text-white checkNewSancion"
-                                                           value="+">
+                    <div class="col s12 center"><input type="button" id="checkEditSancion"
+                                                       class="btn z-depth-3 blue darken-3 waves-effect waves-light checkNewSancion"
+                                                       value="+">
                     </div>
                 </div>
             {% endif %}
-            {{ form_row(form.fechaComunicacion) }}
-            {{ form_row(form.fechaConfirmacion) }}
+            <div class="input-field">
+                {{ form_row(form.fechaComunicacion) }}
+            </div>
+            <div class="input-field">
+                {{ form_row(form.fechaConfirmacion) }}
+            </div>
             {{ form_widget(form) }}
             <br/>
-            <input class="w3-button w3-block w3-section w3-text-white" type="submit" name="registrarSancion"
-                   value="Enviar">
             <a href="{{ path('gestion_sanciones') }}" data-title="Cancelar"
-               class="w3-button w3-block w3-section w3-text-white botonSubmit confirm">Cancelar</a>
+               class="btn z-depth-3 blue darken-3 waves-effect waves-light botonSubmit confirm">Cancelar <i
+                        class="material-icons left">undo</i></a>
+
+            <button class="btn z-depth-3 blue darken-4 waves-effect waves-light" type="submit" name="registrarSancion"
+                    value="Enviar">Enviar <i class="material-icons right">send</i></button>
             {{ form_end(form) }}
 
         </div>

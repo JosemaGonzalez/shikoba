@@ -112,7 +112,7 @@ $(document).ready(function () {
         $('#checkEditSancion').hide();
         if ($(this).val() == SANCION_TYPE_HORAS) {
             $('.contenedorFlexEdit').css('visibility', 'visible');
-            let buttonAdd = '<div class="w3-center w3-block"><input type="button" class="w3-button w3-margin w3-text-white checkNewSancion" value="+"></div>';
+            let buttonAdd = '<div class="col s12 center"><input type="button" class="btn z-depth-3 blue darken-3 waves-effect waves-light checkNewSancion" value="+"></div>';
             contenedorNewHoraSancion(buttonAdd);
         } else {
             $('.contenedorFlex').hide();
@@ -130,21 +130,24 @@ $(document).ready(function () {
             day: "numeric", month: "2-digit", year: "numeric"
         };
         fecha = fecha.toLocaleString('es-Es', options);
-        let input = '<div class="contenedorFlex">' +
-            '   <div class="contenedorFlexChild">' +
-            '       <label class="w3-text-teal">Fecha Hora Sanción</label>' +
-            '       <input type="text" class="w3-input w3-border w3-light-grey datepicker" name="fechaHora[]" contenteditable="false" value="' + fecha + '">' +
-            '   </div><div class="contenedorFlexChild">' +
-            '       <label class="w3-text-teal">Hora</label>' +
-            '       <select class="w3-select w3-border w3-light-grey" name="horaAc[]">';
+        let input = '<div class="row contenedorFlexEdit">' +
+            '<div class="col s6 input-field">' +
+            '<input type="text" class="datepicker" id="dat" placeholder="." name="fechaHora[]" contenteditable="false" value="' + fecha + '">' +
+            '<label for="dat" class="active">Fecha Hora Sanción</label>' +
+            '</div>' +
+            '<div class="col s6 input-field" id="horasAC">' +
+            '<select name="horaAc[]">';
         for (let key in HORAS_CLASE) {
             input += '<option value="' + key + '">' + HORAS_CLASE[key] + '</option>';
         }
-        input += '</select></div></div>';
+        input += '</select><label>Hora</label>';
+        input += '</div></div>';
         $('#sancion_form_idTipo').after(input);
-        $('.contenedorFlex')
+        $('.contenedorFlexEdit')
             .append(text);
         $('.datepicker').datepicker();
+        $('#horasAC > select').material_select();
+        $('.caret').css("display", "none");
     }
 
     //ICHECK
