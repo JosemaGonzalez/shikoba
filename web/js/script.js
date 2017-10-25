@@ -18,16 +18,18 @@ $(document).ready(function () {
 
     $(window).on("load resize", function () {
         //oculto un icono que no tiene porque estar ahi
-        $('.caret').css("display","none");
+        $('.caret').css("display", "none");
         //estilo material para un selector en sanciones form
         $('#sancion_form_idTipo').material_select();
+        $('#horasAC > select').material_select();
+
         //cajas finales despues del select que van todas
         // juntas y hay que darle estilos y clases
-        $('#sancion_form').attr("style","margin-top: 7px;");
+        $('#sancion_form').attr("style", "margin-top: 7px;");
         $('#sancion_form > div').addClass("input-field");
         $('#sancion_form').addClass("col s12 m6");
         //caja de observaciones
-        $('#sancion_form_Observaciones').attr("data-length","200");
+        $('#sancion_form_Observaciones').attr("data-length", "200");
         $('#sancion_form_Observaciones').characterCounter();
         //estilo al paginador de datatable
         $("#DataTables_Table_0_paginate").addClass("col s12 l8 right");
@@ -51,12 +53,22 @@ $(document).ready(function () {
         //configuracion del chosen
         $("#appbundle_diarioaulaconvivencia > div > div").css("width", "100%");
         $(".chosen-container").css("width", "100%");
+        $(".chosen-drop").css("opacity", "0");
+        $('.chosen-container').on("click", function () {
+            $(".chosen-drop").toggleClass('animated slideInDown');
+            $(".chosen-drop").css("opacity", "1");
+        });
+
+        $(".chosen-container").css("height", "40px");
+        $(".chosen-container > a").css("height", "40px");
+        $(".chosen-container > a > span").css("height", "40px");
+        $(".chosen-container > a > span").css("font-size", "16px");
         $("#appbundle_diarioaulaconvivencia #appbundle_diarioaulaconvivencia_actitud").css("display", "block ");
-        $("#horasSelect_chosen .chosen-choices").css("min-height", "50");
-        $("#horasSelect_chosen  .chosen-choices").css("background-color", "none");
-        $("#horasSelect_chosen  .chosen-choices").css("background-image", "none");
-        $("#horasSelect_chosen .chosen-choices").css("border", "0");
-        $("#diarioAulaForm .chosen-search-input").css("width", "93%");
+        $(".chosen-choices").css("min-height", "50");
+        $(".chosen-choices").css("background-color", "none");
+        $(".chosen-choices").css("background-image", "none");
+        $(".chosen-choices").css("border", "0");
+        //$(".chosen-search-input").css("width", "93%");
         $("#diarioAulaForm #appbundle_diarioaulaconvivencia div").addClass("input-field");
         if ($(window).width() < "600") {
             //accion al click en los paginadores del datatable
@@ -90,6 +102,6 @@ $(document).ready(function () {
     //estilo material para un selector
     $('#usuario_form div').addClass("input-field");
     $('#usuario_form ul>li').remove();
-sss
+    sss
 
 });

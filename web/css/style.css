@@ -169,3 +169,7 @@ th {
     border-right: 2px solid #1565C0;
     border-bottom: 2px solid #1565C0;
 }
+.chosen-drop {
+    -vendor-animation-duration: 0.5s!important;
+    -vendor-animation-delay: 0.5s!important;
+}
