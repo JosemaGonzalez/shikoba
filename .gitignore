@@ -12,4 +12,4 @@ var/logs/dev.log
 .idea/workspace.xml
 var/cache/dev/appDevDebugProjectContainer.php.meta
 var/cache/dev/appDevDebugProjectContainer.php
-.idea/workspace.xml
+.idea/*
