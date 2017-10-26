@@ -196,7 +196,7 @@ class PartesController extends Controller
             }
             /** @var PartesRepository $repositoryPartes */
             $repositoryPartes = $em->getRepository('AppBundle:Partes');
-            $data = $repositoryPartes->getPartesExportar($fechaSeleccionada, $alumnos, $profesores);
+            $data = $repositoryPartes->getPartesExportar($fechaSeleccionada, $alumnos, $profesores, $curso);
             $arrData = [];
             $arrData[] = ['Id', 'Fecha', 'Descripción', 'Tareas', 'Hora Salida Aula', 'Hora Llegada Jefatura', 'Formato', 'Observación', 'Puntos', 'Estado', 'Tipo', 'Alumno', 'Profesor', 'Recupera Punto', 'Fecha Confirmacion', 'Fecha Comunicación'];
             foreach ($data as $parte) {

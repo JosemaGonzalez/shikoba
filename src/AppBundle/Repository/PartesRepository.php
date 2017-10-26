@@ -88,6 +88,22 @@ class PartesRepository extends \Doctrine\ORM\EntityRepository
     }
 
     /**
+     * Función que devuelve los partes de un curso
+     * @param Curso $curso
+     * @return array
+     */
+    public function getPartesByCurso(Cursos $curso)
+    {
+        $query = $this->getEntityManager()->createQueryBuilder()
+            ->select('p')
+            ->from('AppBundle:Partes', 'p')
+            ->where('p.grupo = :curso');
+        $query->orderBy('p.fecha');
+
+        $query->setParameter('curso', $curso);
+        return $query->getQuery()->getResult();
+    }
+    /**
      * Función que devuelve todos los partes ordenados por fecha
      * @return array
      */
@@ -188,7 +204,7 @@ class PartesRepository extends \Doctrine\ORM\EntityRepository
      * @param $profesores
      * @return array
      */
-    function getPartesExportar($fechas, $alumnos, $profesores)
+    function getPartesExportar($fechas, $alumnos, $profesores, $curso)
     {
         $partesAlumno = [];
         foreach ($alumnos as $alumno)
@@ -196,6 +212,9 @@ class PartesRepository extends \Doctrine\ORM\EntityRepository
         $partesProfesor = [];
         foreach ($profesores as $profesor)
             $partesProfesor[] = $this->getPartesByProfesor($profesor);
+        $partesCurso = [];
+        foreach ($curso as $cur)
+            $partesCurso[] = $this->getPartesByCurso($cur);
         $fecha = explode(' a ', $fechas);
         $fechaIni = $fecha[0];
         $fechaFin = $fecha[1];
@@ -217,6 +236,7 @@ class PartesRepository extends \Doctrine\ORM\EntityRepository
         $partesExportarFinal = [];
         $partesAlumnosSelec = [];
         $partesProfesorSelec = [];
+        $partesCursosSelec = [];
         foreach ($partesAlumno as $parteAlumno)
             foreach ($parteAlumno as $value)
                 $partesAlumnosSelec[] = $value;
@@ -224,6 +244,10 @@ class PartesRepository extends \Doctrine\ORM\EntityRepository
         foreach ($partesProfesor as $parteProfesor)
             foreach ($parteProfesor as $value)
                 $partesProfesorSelec[] = $value;
+
+        foreach ($partesCurso as $parteCurso)
+            foreach ($parteCurso as $value)
+                $partesCursosSelec[] = $value;    
 
         foreach ($partesAlumnosSelec as $parteAlumno)
             foreach ($partesProfesorSelec as $parteProfesor)

@@ -632,7 +632,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>zHsmaxxvGg4mW4n383kYDb</argument>
+      <argument>K8BiyVW0E0BYWPz42hLjQZ</argument>
       <argument>D:\Lucas\GitHub\shikoba\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -642,7 +642,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>zHsmaxxvGg4mW4n383kYDb</argument>
+      <argument>K8BiyVW0E0BYWPz42hLjQZ</argument>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -1784,6 +1784,7 @@
     <service id="security.authentication.manager" class="Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager" public="false">
       <argument type="iterator">
         <argument type="service" id="security.authentication.provider.dao.main"/>
+        <argument type="service" id="security.authentication.provider.rememberme.main"/>
         <argument type="service" id="security.authentication.provider.anonymous.main"/>
       </argument>
       <argument>true</argument>
@@ -1953,6 +1954,15 @@
         <argument type="service" id="security.request_matcher.6be25bcc77b8bcd4140227eaf72ab88d7bebebfdaa9544ea3281d1df0bfaa1adc7b44aee"/>
         <argument type="collection">
           <argument>ROLE_ADMIN</argument>
+          <argument>ROLE_CONVIVENCIA</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service" id="security.request_matcher.13701c817f663e841e4e51543f025251d38047794ed83c1851c930b896c3b9cbe74ec29d"/>
+        <argument type="collection">
+          <argument>ROLE_ADMIN</argument>
+          <argument>ROLE_CONVIVENCIA</argument>
         </argument>
         <argument>null</argument>
       </call>
@@ -2338,6 +2348,7 @@
       <argument type="collection">
         <argument>logout</argument>
         <argument>form_login</argument>
+        <argument>remember_me</argument>
         <argument>anonymous</argument>
       </argument>
     </service>
@@ -2363,6 +2374,9 @@
       </argument>
       <call method="addHandler">
         <argument type="service" id="security.logout.handler.session"/>
+      </call>
+      <call method="addHandler">
+        <argument type="service" id="security.authentication.rememberme.services.simplehash.main"/>
       </call>
     </service>
     <service id="security.logout.success_handler.main" class="Symfony\Component\Security\Http\Logout\DefaultLogoutSuccessHandler" public="false">
@@ -2428,6 +2442,9 @@
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="debug.event_dispatcher" on-invalid="null"/>
       <argument>null</argument>
+      <call method="setRememberMeServices">
+        <argument type="service" id="security.authentication.rememberme.services.simplehash.main"/>
+      </call>
     </service>
     <service id="security.authentication.form_entry_point.main" class="Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint" public="false">
       <argument type="service" id="http_kernel"/>
@@ -2435,14 +2452,46 @@
       <argument>login</argument>
       <argument>false</argument>
     </service>
+    <service id="security.authentication.provider.rememberme.main" class="Symfony\Component\Security\Core\Authentication\Provider\RememberMeAuthenticationProvider" public="false">
+      <argument type="service" id="security.user_checker"/>
+      <argument>ThisTokenIsNotSoSecretChangeIt</argument>
+      <argument>main</argument>
+    </service>
+    <service id="security.authentication.rememberme.services.simplehash.main" class="Symfony\Component\Security\Http\RememberMe\TokenBasedRememberMeServices" public="false">
+      <argument type="collection">
+        <argument type="service" id="security.user.provider.concrete.user_provider"/>
+      </argument>
+      <argument>ThisTokenIsNotSoSecretChangeIt</argument>
+      <argument>main</argument>
+      <argument type="collection">
+        <argument key="lifetime">30</argument>
+        <argument key="path">/</argument>
+        <argument key="name">REMEMBERME</argument>
+        <argument key="domain">null</argument>
+        <argument key="secure">false</argument>
+        <argument key="httponly">true</argument>
+        <argument key="always_remember_me">false</argument>
+        <argument key="remember_me_parameter">_remember_me</argument>
+      </argument>
+      <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+    </service>
+    <service id="security.authentication.listener.rememberme.main" class="Symfony\Component\Security\Http\Firewall\RememberMeListener" public="false">
+      <argument type="service" id="security.token_storage"/>
+      <argument type="service" id="security.authentication.rememberme.services.simplehash.main"/>
+      <argument type="service" id="security.authentication.manager"/>
+      <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+      <argument type="service" id="debug.event_dispatcher" on-invalid="null"/>
+      <argument>true</argument>
+      <argument type="service" id="security.authentication.session_strategy"/>
+    </service>
     <service id="security.authentication.listener.anonymous.main" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
-      <argument>59ecaaaad1b788.62911862</argument>
+      <argument>59f0ffdf147597.36827465</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.authentication.provider.anonymous.main" class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-      <argument>59ecaaaad1b788.62911862</argument>
+      <argument>59f0ffdf147597.36827465</argument>
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
       <argument type="service" id="security.token_storage"/>
@@ -2461,6 +2510,7 @@
         <argument type="service" id="security.context_listener.0"/>
         <argument type="service" id="security.logout_listener.main"/>
         <argument type="service" id="security.authentication.listener.form.main"/>
+        <argument type="service" id="security.authentication.listener.rememberme.main"/>
         <argument type="service" id="security.authentication.listener.anonymous.main"/>
         <argument type="service" id="security.access_listener"/>
       </argument>
@@ -2488,6 +2538,9 @@
     </service>
     <service id="security.request_matcher.6be25bcc77b8bcd4140227eaf72ab88d7bebebfdaa9544ea3281d1df0bfaa1adc7b44aee" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/admin$</argument>
+    </service>
+    <service id="security.request_matcher.13701c817f663e841e4e51543f025251d38047794ed83c1851c930b896c3b9cbe74ec29d" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/admin</argument>
     </service>
     <service id="security.request_matcher.2696e0767df98fdc4e1c6a011bc13de1f254027501e42f8f794a37bcbbe39e162cb2ac37" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/partes$</argument>
@@ -3707,7 +3760,7 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>yN5nGJ8+Cj</argument>
       <argument>0</argument>
-      <argument>zHsmaxxvGg4mW4n383kYDb</argument>
+      <argument>K8BiyVW0E0BYWPz42hLjQZ</argument>
       <argument>D:\Lucas\GitHub\shikoba\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3715,7 +3768,7 @@
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>yk16wBa4JW</argument>
       <argument>0</argument>
-      <argument>zHsmaxxvGg4mW4n383kYDb</argument>
+      <argument>K8BiyVW0E0BYWPz42hLjQZ</argument>
       <argument>D:\Lucas\GitHub\shikoba\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3723,7 +3776,7 @@
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>D3S00zcgWL</argument>
       <argument>0</argument>
-      <argument>zHsmaxxvGg4mW4n383kYDb</argument>
+      <argument>K8BiyVW0E0BYWPz42hLjQZ</argument>
       <argument>D:\Lucas\GitHub\shikoba\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3731,7 +3784,7 @@
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>NusdFLPCRh</argument>
       <argument>0</argument>
-      <argument>zHsmaxxvGg4mW4n383kYDb</argument>
+      <argument>K8BiyVW0E0BYWPz42hLjQZ</argument>
       <argument>D:\Lucas\GitHub\shikoba\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>

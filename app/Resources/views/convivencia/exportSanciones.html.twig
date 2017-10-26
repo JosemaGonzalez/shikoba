@@ -19,6 +19,15 @@
         <div class="w3-row w3-center">
             <div class="contenedorCartaAlumno">
                 <form action="{{ path('admin_export_sanciones') }}" method="post" class="formExport w3-content ">
+               
+            <div class="col s12 center">
+                <div class="" id="botonbus">
+                    <button class="busquedaMas z-depth-3 btn btn-floating blue darken-3 waves-effect waves-light"
+                            type="button"
+                            value="Búsqueda Avanzada" title="Búsqueda avanzada"><i
+                                class="material-icons right">search</i></button>
+                </div>
+            </div>
                     <label class="w3-text-teal marginTop">Rango fechas</label>
                     <input type="text" name="fecha" class="daterange w3-select w3-border w3-light-grey" required>
                     <label class="w3-text-teal marginTop">Alumno</label>
