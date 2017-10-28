@@ -2,14 +2,6 @@
 var/cache/*
 var/logs/*
 var/sessions/*
-app/config/parameters.yml
-var/logs/dev.log
-app/config/parameters.yml
-.idea/workspace.xml
-var/cache/dev/appDevDebugProjectContainer.php
-var/cache/dev/appDevDebugProjectContainer.php.meta
-var/logs/dev.log
-.idea/workspace.xml
-var/cache/dev/appDevDebugProjectContainer.php.meta
-var/cache/dev/appDevDebugProjectContainer.php
+var/*
+app/config/*
 .idea/*
