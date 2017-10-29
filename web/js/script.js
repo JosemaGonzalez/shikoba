@@ -2,6 +2,17 @@
  * Created by Josema on 04/10/2017.
  */
 $(document).ready(function () {
+    $('.timepicker').pickatime({
+        default: 'now', // Set default time: 'now', '1:30AM', '16:30'
+        fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
+        twelvehour: false, // Use AM/PM or 24-hour format
+        donetext: 'OK', // text for done-button
+        cleartext: 'Limpiar', // text for clear-button
+        canceltext: 'Cancelar', // Text for cancel-button
+        autoclose: true, // automatic close timepicker
+        ampmclickable: false, // make AM PM clickable
+        aftershow: function(){} //Function for after opening timepicker
+    });
     //botones navegacion
     $(".dropdown-button").dropdown({hover: true});
     let drop = $(".dropdown-button").width();
@@ -15,14 +26,28 @@ $(document).ready(function () {
     //selector diario form
     $('#appbundle_diarioaulaconvivencia_actitud').material_select();
     $('#appbundle_diarioaulaconvivencia label').css("color", "white");
-
+    //
     $(window).on("load resize", function () {
+        var tiempo = new Date();
+        var fecha = tiempo.getDay()+"/"+tiempo.getMonth()+"/"+tiempo.getFullYear();
+        var hora = tiempo.getHours();
+        var minuto = tiempo.getMinutes();
+        $("#HoraSalidaAula").val(hora+":"+minuto);
+        $("#HoraLlegadaJefatura").val(hora+":"+minuto);
+        //$("#fechaComunicacion").val(fecha);
+        //$("#fechaConfirmacion").val(fecha);
         //oculto un icono que no tiene porque estar ahi
         $('.caret').css("display", "none");
         //estilo material para un selector en sanciones form
         $('#sancion_form_idTipo').material_select();
         $('#horasAC > select').material_select();
-
+        //select tipo de partes
+        $('#parte_form_Formato').material_select();
+        $('#parte_form_idTipo').material_select();
+        //select finales de form de partes
+        $('#formu > div >div').addClass("col s6");
+        $('#formu > div >div:last').removeClass("col s6");
+        $('#formu > div >div:last').addClass("input-field col s12");
         //cajas finales despues del select que van todas
         // juntas y hay que darle estilos y clases
         $('#sancion_form').attr("style", "margin-top: 7px;");
@@ -54,7 +79,7 @@ $(document).ready(function () {
         $("#appbundle_diarioaulaconvivencia > div > div").css("width", "100%");
         $(".chosen-container").css("width", "100%");
         $(".chosen-drop").css("opacity", "0");
-        $('.chosen-container').on("click", function () {
+        $('.chosen-container,.chosen-single').on("click", function () {
             $(".chosen-drop").toggleClass('animated slideInDown');
             $(".chosen-drop").css("opacity", "1");
         });

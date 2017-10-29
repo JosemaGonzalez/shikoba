@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Alumno;
+use AppBundle\Entity\Conductas;
 use AppBundle\Entity\Cursos;
 use AppBundle\Entity\EstadosParte;
 use AppBundle\Entity\Partes;
@@ -16,6 +17,7 @@ use AppBundle\Repository\CursosRepository;
 use AppBundle\Repository\PartesRepository;
 use AppBundle\Repository\ProfesoresRepository;
 use AppBundle\Repository\SancionesRepository;
+use AppBundle\Repository\ConductasRepository;
 use AppBundle\Services\AlumnoHelper;
 use AppBundle\Services\PartesHelper;
 use AppBundle\Utils\CsvResponse;
@@ -76,10 +78,14 @@ class PartesController extends Controller
         $repositoryAccionPartes = $em->getRepository('AppBundle:AccionEstadoParte');
         /** @var CursosRepository $repositoryACursos */
         $repositoryACursos = $em->getRepository('AppBundle:Cursos');
+        /** @var ConductasRepository $repositoryAConductas */
+        $repositoryAConductas = $em->getRepository('AppBundle:Conductas');
         /** @var SancionesRepository $repositorySanciones */
         $repositorySanciones = $em->getRepository('AppBundle:Sanciones');
         /** @var Cursos $curso */
         $cursos = $repositoryACursos->getCursosGroupByCursos();
+        /** @var Conductas $conductas */
+        $conductas = $repositoryAConductas->getConductas();
         /** @var Alumno $alumnos */
         $alumnos = $alumnoHelper->getAlumnosByRequest($request);
         $parte = $parteHelper->getParteFromRequest($request);
@@ -125,7 +131,8 @@ class PartesController extends Controller
             'cursos' => $cursos,
             'accion' => $accion,
             'parte' => $parte,
-            'sanciones' => $sanciones
+            'sanciones' => $sanciones,
+            'conductas' => $conductas
         ));
     }
 
