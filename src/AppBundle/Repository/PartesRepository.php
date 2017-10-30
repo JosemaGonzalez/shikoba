@@ -234,6 +234,8 @@ class PartesRepository extends \Doctrine\ORM\EntityRepository
         $partesExportar = [];
         $partesExportar2 = [];
         $partesExportarFinal = [];
+        $partesExportarFinal2 = [];
+
         $partesAlumnosSelec = [];
         $partesProfesorSelec = [];
         $partesCursosSelec = [];
@@ -264,7 +266,12 @@ class PartesRepository extends \Doctrine\ORM\EntityRepository
                 if ($parteExportar->getId() == $parteExportar2->getId())
                     $partesExportarFinal[] = $parteExportar;
 
-        return $partesExportarFinal;
+        foreach ($partesExportarFinal as $parteExportarFinal)
+            foreach ($partesCursosSelec as $parteCursoSelec)
+                if ($parteExportarFinal->getId() == $parteCursoSelec->getId())
+                    $partesExportarFinal2[] = $parteExportarFinal;
+
+        return $partesExportarFinal2;
     }
 
 }

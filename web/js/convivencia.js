@@ -8,8 +8,8 @@ $(window).bind("load", function () {
 
     "use strict";
 
-    $('.loaderIntro').fadeOut(1000);
-    $('.containerLoader').fadeOut(1000);
+   $('.loaderIntro').fadeOut(1000);
+   $('.containerLoader').fadeOut(1000);
 
 });
 
@@ -69,7 +69,7 @@ $(document).ready(function () {
         });
 
         $('.selectForm')
-            .after('<div id="divAbrir" class="w3-center"><input type="button" class="w3-button w3-margin w3-text-white checkAbrir" value="+"></div>');
+            .after('<div id="divAbrir" class="col s12 center" style="margin-bottom: 1%"><input type="button" class="btn z-depth-3 blue darken-4 waves-effect waves-light checkAbrir" value="+"></div>');
 
     }
 

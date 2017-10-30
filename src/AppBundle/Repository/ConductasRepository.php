@@ -26,5 +26,17 @@ class ConductasRepository extends \Doctrine\ORM\EntityRepository
         }
         return $arrConductas;
     }
+    /**
+     * Función que devuelve las conductas
+     * @return array
+     */
+    public function getConductas(){
+        $qb = $this->getEntityManager()->createQuery(
+            'SELECT c.id,c.conducta,c.puntos
+           FROM AppBundle\Entity\Conductas c'
+        );
+
+        return $qb->getResult();
+    }
 
 }
