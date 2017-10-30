@@ -24,7 +24,7 @@ security:
         main:
             remember_me:
                 secret:   '%secret%'
-                lifetime: 30
+                lifetime: 300
                 path:     /
                 # por defecto, esta funcionalidad está disponible en una
                 # checkbox en el formulario de login, descomenta la

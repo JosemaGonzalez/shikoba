@@ -51,7 +51,7 @@ class ParteFormType extends AbstractType
 //                'attr' => array('class' => 'w3-select w3-border w3-light-grey'),
 //                'label_attr' => array('class' => 'w3-text-teal')
 //            ))
-            /*  ->add('idConducta', EntityType::class, array(
+              ->add('idConducta', EntityType::class, array(
                   'label' => 'Conducta',
                   'class' => 'AppBundle:Conductas',
                   'choice_label' => function($conducta){
@@ -62,7 +62,7 @@ class ParteFormType extends AbstractType
                   'label_attr' => array('class' => ''),
                   'expanded' => true,
                   'multiple' => true,
-              ))*/
+              ))
             ->add('Descripcion', TextareaType::class, array(
                 'label' => 'Descripción',
                 'attr' => array('class' => 'materialize-textarea minTextArea'),

@@ -1,6 +1,18 @@
 /**
  * Created by Josema on 04/10/2017.
  */
+//Spinner loader intro
+    //activar cuando todos esten terminados
+    /*
+var tmrReady = setInterval(isPageFullyLoaded, 200);
+
+function isPageFullyLoaded() {
+    if (document.readyState == "complete") {
+        $('.loaderIntro').fadeOut(1000);
+        $('.containerLoader > .row').css("display","block");
+        clearInterval(tmrReady);
+    }
+}*/
 $(document).ready(function () {
     $('.timepicker').pickatime({
         default: 'now', // Set default time: 'now', '1:30AM', '16:30'
@@ -28,10 +40,20 @@ $(document).ready(function () {
     $('#appbundle_diarioaulaconvivencia label').css("color", "white");
     //
     $(window).on("load resize", function () {
+        //clase para estilo partes conducta
+        $("#parte_form_idConducta label").addClass("altura");
         var tiempo = new Date();
         var fecha = tiempo.getDay()+"/"+tiempo.getMonth()+"/"+tiempo.getFullYear();
         var hora = tiempo.getHours();
         var minuto = tiempo.getMinutes();
+        let comhoras = new String(hora);
+        let comminutos = new String(minuto);
+        if (comhoras.length == 1) {
+            hora = "0" + hora;
+        }
+        if (comminutos.length == 1) {
+            minuto = "0" + minuto;
+        }
         $("#HoraSalidaAula").val(hora+":"+minuto);
         $("#HoraLlegadaJefatura").val(hora+":"+minuto);
         //$("#fechaComunicacion").val(fecha);
@@ -95,7 +117,7 @@ $(document).ready(function () {
         $(".chosen-choices").css("border", "0");
         //$(".chosen-search-input").css("width", "93%");
         $("#diarioAulaForm #appbundle_diarioaulaconvivencia div").addClass("input-field");
-        if ($(window).width() < "600") {
+        if ($(window).width() < "991") {
             //accion al click en los paginadores del datatable
             $("#DataTables_Table_0_paginate a").on("click", function () {
                 $("#DataTables_Table_0 th,#DataTables_Table_0 td").css("padding", "15px 18px");

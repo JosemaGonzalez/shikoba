@@ -32,7 +32,7 @@ class ConductasRepository extends \Doctrine\ORM\EntityRepository
      */
     public function getConductas(){
         $qb = $this->getEntityManager()->createQuery(
-            'SELECT c.conducta,c.puntos
+            'SELECT c.id,c.conducta,c.puntos
            FROM AppBundle\Entity\Conductas c'
         );
 

@@ -23,10 +23,10 @@
                        class="z-depth-3 btn blue darken-3 waves-effect waves-light botonSubmit confirm"
                        data-title="Recuperar Punto">-1 Punto <i class="material-icons left">thumb_down</i></a>
                 {% else %}
-                    <input class="z-depth-3 btn blue darken-3 waves-effect waves-light botonSubmit confirm"
+                    <button class="z-depth-3 btn blue darken-3 waves-effect waves-light botonSubmit confirm"
                            type="button" name="recuperaPunto"
                            value="-1 Punto"
-                           disabled>
+                            disabled>Recuperado</button>
                 {% endif %}
             </div>
             <div class="col s6 left-align">
@@ -76,19 +76,20 @@
             <label for="fecha">Fecha</label>
         </div>
         {% if app.request.get('idParte') is null %}
-            <div class="col s12 m6">
+            <div class="col s12 m6" style="margin-top: 2rem;">
                 <input type="checkbox" id="expulsion" name="expulsion"/>
                 <label for="expulsion">Expulsión Aula Convivencia</label>
             </div>
         {% endif %}
-        <div class="col s12 selectForm">
-            {% for conducta in conductas %}
+        <div class="col s12">
+            {{ form_row(form.idConducta) }}
+           {# {% for conducta in conductas %}
                 <p class="col s12">
-                    <input type="checkbox" id="{{ conducta.conducta }}" name="conductas[]"
+                    <input type="checkbox" id="{{ conducta.conducta }}" name="idConducta"
                            value="{{ conducta.conducta }}"/>
                     <label for="{{ conducta.conducta }}">{{ "(" ~ conducta.puntos ~ ") - "~  conducta.conducta }}</label>
                 </p>
-            {% endfor %}
+            {% endfor %}#}
         </div>
         <div class="col s12 m6 input-field">
 
@@ -112,22 +113,20 @@
                    required>
         </div>
         <div class="col s6 m3 ">
-            <label for="HoraLlegadaJefatura">Hora de Llegada a Jefatura</label>
+            <label for="HoraLlegadaJefatura">Hora Llegada Jefatura</label>
             <input type="text" id="HoraLlegadaJefatura" name="HoraLlegadaJefatura" class="timepicker"
                    required>
         </div>
-        <div class="col s12" id="formu">
+        <div class="" id="formu">
             {{ form_widget(form) }}
         </div>
         <div class="col s12 center" style="margin-bottom: 1%">
             {% if app.request.get('idParte') is not null %}
-                <div class="">
+                <div class="col s12 center" style="margin-bottom: 1%">
                     {% if sanciones != null and sanciones|length>0 %}
                         {% for sancion in sanciones %}
-                            <p>
                                 <a class="btn z-depth-3 blue darken-4 waves-effect waves-light"
                                    href="{{ path('nueva_sancion', {'idSancion': sancion.id}) }}">{{ sancion.sancion }}</a>
-                            </p>
                         {% endfor %}
                     {% else %}
                         {% if is_granted('ROLE_ADMIN') %}
@@ -139,12 +138,14 @@
                 </div>
 
             {% endif %}
+            <div class="col s12 center">
             <a href="{{ path('gestion_partes') }}" data-title="Cancelar"
-               class="z-depth-3 btn blue darken-3 waves-effect waves-light botonSubmit confirm">Cancelar<i
+               class="z-depth-3 btn blue darken-3 waves-effect waves-light botonSubmit confirm" style="margin-bottom: 1%">Cancelar<i
                         class="material-icons left">undo</i></a>
-            <button class="btn z-depth-3 blue darken-4 waves-effect waves-light" type="submit"
+            <button class="btn z-depth-3 blue darken-4 waves-effect waves-light" type="submit" style="margin-bottom: 1%"
                     name="registrarse"
                     value="Enviar">Enviar <i class="material-icons right">send</i></button>
+            </div>
             {{ form_end(form) }}
         </div>
     </div>
