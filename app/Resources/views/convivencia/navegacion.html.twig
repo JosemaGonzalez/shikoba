@@ -14,7 +14,7 @@
                                     <div class="userView">
                                         <div class="background center">
                                         </div>
-                                        <a><img class=" center centro" src="/img/logo3.png"></a>
+                                        <a href="{{ path('index') }}"><img class=" center centro" src="/img/logo3.png"></a>
                                     </div>
                                 </li>
                                 <li>
@@ -59,8 +59,8 @@
                                     </li>
                                 {% endif %}
                                 {% elseif is_granted('ROLE_TUTOR') %}
-                                    <li><a class="waves-effect waves-blue" href="{{ path('index') }}">Alumnado</a></li>
-                                    {#{% elseif is_granted('ROLE_USER') %}#}
+                                    {#<li><a class="waves-effect waves-blue" href="{{ path('index') }}">Alumnado</a></li>#}
+                                   {#{% elseif is_granted('ROLE_USER') %}#}
                                     {#<a class="waves-effect waves-blue" href="{{ path('registrarAlumno') }}"#}
                                     {#>Perfil</a>#}
                                 {% endif %}
@@ -74,6 +74,9 @@
                                 <li>
                                     <a class="waves-effect waves-blue" href="{{ path('logout') }}">Logout</a>
                                 </li>
+                                <div class="divider"></div>
+                                <li><a>Perfil: {{ app.user.usuario }}</a></li>
+
                             </ul>
                         </div>
                         <div class="col l8 left hide-on-med-and-down">
@@ -109,7 +112,10 @@
                                     {% endif %}
 
                                 {% elseif is_granted('ROLE_TUTOR') %}
-                                    <li><a href="{{ path('index') }}">Alumnado</a></li>
+                                    <li><a href="{{ path('index') }}" class="ancla centro"><img id="img_nav"
+                                                                                                src="/img/logo3.png"
+                                                                                                alt=""></a></li>
+
                                     {#{% elseif is_granted('ROLE_USER') %}#}
                                     {#<a href="{{ path('registrarAlumno') }}"#}
                                     {#>Perfil</a>#}
@@ -127,6 +133,8 @@
                                 <li>
                                     <a href="{{ path('logout') }}">Logout</a>
                                 </li>
+                                <li><a>Perfil: {{ app.user.usuario }}</a></li>
+
                             </ul>
                         </div>
                     </div>

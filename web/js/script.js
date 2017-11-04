@@ -40,6 +40,8 @@ $(document).ready(function () {
     $('#appbundle_diarioaulaconvivencia label').css("color", "white");
     //
     $(window).on("load resize", function () {
+        $('#fondo,.back').css('min-height', $("main").height()+15);
+
         //clase para estilo partes conducta
         $("#parte_form_idConducta label").addClass("altura");
         var tiempo = new Date();

@@ -157,12 +157,12 @@ $(document).ready(function () {
         radioClass: 'iradio_square-blue',
     });
 
-    $('.wall').css('min-height', $(window).height());
-    $('.overlay').css('min-height', $(window).height());
+    //$('.wall').css('min-height', $(window).height());
+    //$('.overlay').css('min-height', $(window).height());
 
     $(window).on('resize', function () {
-        $('.wall').css('min-height', $(window).height());
-        $('.overlay').css('min-height', $(window).height());
+        //$('.wall').css('min-height', $(window).height());
+        //$('.overlay').css('min-height', $(window).height());
 
     });
 

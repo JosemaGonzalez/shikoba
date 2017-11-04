@@ -1,24 +1,28 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
 {% block body %}
+    {% include 'convivencia/navegacion.html.twig' %}
 
+    <div class="center">
+        <h3 class="center azul-prof fuente">Alumnos</h3>
+        <div class="row">
+            {% for alumno in alumnos %}
+                <div class="col s6 m4 l2 carta ancho">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="{{ asset('img/alumnos/'~alumno.foto) }}">
+                            <span class="card-title"></span>
+                        </div>
 
-    <main class="w3-container w3-margin-top">
-        <div class="w3-row contenedorCartaInforme">
-            <div class="w3-card-2 cartaInforme cartaAlumno" id="cartaTutorAlumno">
-                <header class="w3-container w3-center">
-                    <h2>Alumnos</h2>
-                </header>
-                <div class="cartaInformeCuerpo">
-                    <ul>
-                        {% for alumno in alumnos %}
-                            <li><a class="enlaceTutorAlumno" href="{{ path("verAlumno", {'id': alumno.id}) }}">{{ alumno.getNombreCompleto() }}</a></li>
-                        {% endfor %}
-                    </ul>
+                        <div class="card-action blue darken-1 ">
+                            <a href="{{ path("verAlumno", {'id': alumno.id}) }}">{{ alumno.getNombreCompleto() }}</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </main>
+            {% endfor %}
 
+        </div>
+
+    </div>
 
 {% endblock %}
