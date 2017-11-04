@@ -33,17 +33,50 @@ $(document).ready(function () {
     $('.button-collapse').sideNav();
     //ventanas modales
     $(".modal").modal();
+    //margen botones paginador en tablas
+    $("#DataTables_Table_0_paginate a").on("click", function () {
+        $("#DataTables_Table_0_paginate a").css("margin","0 0.2%");
+
+    });
     //quitado el label del buscador datatables
     $('#DataTables_Table_0_filter label').remove();
     //selector diario form
     $('#appbundle_diarioaulaconvivencia_actitud').material_select();
     $('#appbundle_diarioaulaconvivencia label').css("color", "white");
-    //
+    $(window).on("click load", function () {
+        if ($(window).width() < "991") {
+            //accion al click en los paginadores del datatable
+            $("#DataTables_Table_0_paginate a").on("click", function () {
+                $("#DataTables_Table_0 th,#DataTables_Table_0 td").css("padding", "15px 18px");
+                $("#DataTables_Table_0").css("border-bottom", "0");
+
+            });
+            $("#DataTables_Table_0 th,#DataTables_Table_0 td").css("padding", "15px 18px");
+            $("#DataTables_Table_0").css("border-bottom", "0");
+            //estilo boton buscar en resolucion movil
+            $("#botonbus button").css("margin-top", "1%");
+            $("#botonbus .bus2").css("margin-top", "-4%");
+            $(".dataTables_filter").css("margin-top", "0");
+
+        }
+        //margen botones paginador en tablas
+        $("#DataTables_Table_0_paginate a").on("click", function () {
+            $("#DataTables_Table_0_paginate a").css("margin", "0.3% 0.2%");
+        });
+    });
+
+    //acciones cuando carga la pagina
+    //acciones cuando se redimensiona la pagina
     $(window).on("load resize", function () {
+
+        //iniciador select carnets admin
+        $("#carnetFilterPuntos").material_select();
+        //altura para el fondo en login
         $('#fondo,.back').css('min-height', $("main").height()+15);
 
         //clase para estilo partes conducta
         $("#parte_form_idConducta label").addClass("altura");
+        //pongo la hora correcta
         var tiempo = new Date();
         var fecha = tiempo.getDay()+"/"+tiempo.getMonth()+"/"+tiempo.getFullYear();
         var hora = tiempo.getHours();
@@ -58,8 +91,6 @@ $(document).ready(function () {
         }
         $("#HoraSalidaAula").val(hora+":"+minuto);
         $("#HoraLlegadaJefatura").val(hora+":"+minuto);
-        //$("#fechaComunicacion").val(fecha);
-        //$("#fechaConfirmacion").val(fecha);
         //oculto un icono que no tiene porque estar ahi
         $('.caret').css("display", "none");
         //estilo material para un selector en sanciones form
@@ -81,13 +112,14 @@ $(document).ready(function () {
         $('#sancion_form_Observaciones').attr("data-length", "200");
         $('#sancion_form_Observaciones').characterCounter();
         //estilo al paginador de datatable
-        $("#DataTables_Table_0_paginate").addClass("col s12 l8 right");
+        $("#DataTables_Table_0_paginate").addClass("col s12 m8 right");
+        $("#DataTables_Table_0_info").addClass("col s12 m4 left");
+        $("#DataTables_Table_0_paginate a").css("margin","0.3% 0.2%");
         //select mostrar datatables
         $('#DataTables_Table_0_length select').css("display", "block");
-        $('#DataTables_Table_0_length').addClass("col s4 l2");
-        $('#DataTables_Table_0_length').css("width", "10%");
+        $('#DataTables_Table_0_length').addClass("col s4 m3 l2");
         //estilo al filtro datatables
-        $('#DataTables_Table_0_filter').addClass("col s8 l3");
+        $('#DataTables_Table_0_filter').addClass("col s8 m6 l3");
         //quitado linea negra en el datatable
         $("table.dataTable.no-footer").css("border", "0");
         $("table.dataTable thead th, table.dataTable thead td").css("border-bottom", "0");
@@ -124,16 +156,22 @@ $(document).ready(function () {
             $("#DataTables_Table_0_paginate a").on("click", function () {
                 $("#DataTables_Table_0 th,#DataTables_Table_0 td").css("padding", "15px 18px");
                 $("#DataTables_Table_0").css("border-bottom", "0");
+
             });
             $("#DataTables_Table_0 th,#DataTables_Table_0 td").css("padding", "15px 18px");
             $("#DataTables_Table_0").css("border-bottom", "0");
             //estilo boton buscar en resolucion movil
             $("#botonbus button").css("margin-top", "1%");
             $("#botonbus .bus2").css("margin-top", "-4%");
-            $('#DataTables_Table_0_length').css("width", "33.3333%");
             $(".dataTables_filter").css("margin-top", "0");
 
         }
+        if ($(window).width() > "991") {
+            //dimension select al lado de busqueda
+            $('#DataTables_Table_0_length').css("width", "10%");
+        }
+
+
         //estilo banner para que tenga siempre la altura que lo contiene
         let $nav = $(".navbar-fixed");
         $('.navbar-fixed img').height($nav.height());
@@ -151,6 +189,4 @@ $(document).ready(function () {
     //estilo material para un selector
     $('#usuario_form div').addClass("input-field");
     $('#usuario_form ul>li').remove();
-    sss
-
 });

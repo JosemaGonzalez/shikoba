@@ -221,7 +221,7 @@ th {
 .clockpicker-canvas-bg, .clockpicker-canvas-bearing {
     fill: #1565c0;
 }
-
+/*Loader de las paginas*/
 .loaderIntro {
     width: 100px;
     height: 100px;
@@ -235,18 +235,18 @@ th {
     margin-left: -30px;
     margin-top: -60px;
 }
-
+/*Colocacion al centro de las cartas de tutor*/
 .carta {
     display: inline-block !important;
     float: inherit !important;
 }
-
+/*Colocacion cartas en resolucion pequeña*/
 @media (max-width: 600px) {
     .ancho {
         width: 49% !important;
     }
 }
-
+/*Fondo login*/
 #fondo .back {
     background-color: rgba(0, 0, 0, .9);
 }

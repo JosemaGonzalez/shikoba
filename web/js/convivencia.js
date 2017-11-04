@@ -264,7 +264,7 @@ $(document).ready(function () {
                 next: "<i class='material-icons pagi'>chevron_right</i>",
                 last: "Último"
             },
-            lengthMenu: "Mostrar Resultados _MENU_",
+            lengthMenu: "Mostrar _MENU_",
             emptyTable: "No hay registros en la tabla",
             info: "Mostrando _END_ registros de _TOTAL_ en total",
             infoEmpty: "No hay resultados",
@@ -278,8 +278,8 @@ $(document).ready(function () {
 
     $('.tableDataCarnets').DataTable({
         "drawCallback": function (settings) {
-            $(".paginate_button.current").addClass("btn blue darken-3 waves-effect waves-light z-depth-3");
-            $(".paginate_button").addClass("btn blue darken-3 waves-effect waves-light z-depth-3");
+            $(".paginate_button.current").addClass("btn  blue darken-4 waves-effect waves-light z-depth-3 pagi");
+            $(".paginate_button").addClass("btn  blue darken-2 waves-effect waves-light z-depth-3 pagi");
             $(".paginate_button.current").removeClass("paginate_button current");
             $(".paginate_button").removeClass("paginate_button");
         },
@@ -292,7 +292,7 @@ $(document).ready(function () {
                 next: "<i class='material-icons pagi'>chevron_right</i>",
                 last: "Último"
             },
-            lengthMenu: "Mostrar Resultados _MENU_",
+            lengthMenu: "Mostrar _MENU_",
             emptyTable: "No hay registros en la tabla",
             info: "Mostrando _END_ registros de _TOTAL_ en total",
             infoEmpty: "No hay resultados",
