@@ -2,18 +2,38 @@
  * Created by Josema on 04/10/2017.
  */
 //Spinner loader intro
-    //activar cuando todos esten terminados
-    /*
-var tmrReady = setInterval(isPageFullyLoaded, 200);
+//activar cuando todos esten terminados
+/*
+ var tmrReady = setInterval(isPageFullyLoaded, 200);
 
-function isPageFullyLoaded() {
-    if (document.readyState == "complete") {
-        $('.loaderIntro').fadeOut(1000);
-        $('.containerLoader > .row').css("display","block");
-        clearInterval(tmrReady);
-    }
-}*/
+ function isPageFullyLoaded() {
+ if (document.readyState == "complete") {
+ $('.loaderIntro').fadeOut(1000);
+ $('.containerLoader > .row').css("display","block");
+ clearInterval(tmrReady);
+ }
+ }*/
+
 $(document).ready(function () {
+    if (document.readyState == "complete") {
+        var puntos = $("#punto > span").text();
+        var punto = $("#punto span");
+        if (puntos == 0) {
+            punto.addClass("green white-text btn-large btn btn-floating");
+        }
+        else if (puntos > 0 && puntos <= 5) {
+            punto.addClass("amber black-text btn-large pulse btn btn-floating");
+        }
+        else if (puntos > 5 && puntos <= 7) {
+            punto.addClass("orange black-text btn-large pulse btn btn-floating");
+        }
+        else if (puntos > 7 && puntos <= 8) {
+            punto.addClass("red white-text btn-large pulse btn btn-floating");
+        }
+        else if (puntos > 9 && puntos <= 10) {
+            punto.addClass("red darken-3 white-text btn-large pulse btn btn-floating");
+        }
+    }
     $('.timepicker').pickatime({
         default: 'now', // Set default time: 'now', '1:30AM', '16:30'
         fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
@@ -23,7 +43,8 @@ $(document).ready(function () {
         canceltext: 'Cancelar', // Text for cancel-button
         autoclose: true, // automatic close timepicker
         ampmclickable: false, // make AM PM clickable
-        aftershow: function(){} //Function for after opening timepicker
+        aftershow: function () {
+        } //Function for after opening timepicker
     });
     //botones navegacion
     $(".dropdown-button").dropdown({hover: true});
@@ -35,7 +56,7 @@ $(document).ready(function () {
     $(".modal").modal();
     //margen botones paginador en tablas
     $("#DataTables_Table_0_paginate a").on("click", function () {
-        $("#DataTables_Table_0_paginate a").css("margin","0 0.2%");
+        $("#DataTables_Table_0_paginate a").css("margin", "0 0.2%");
 
     });
     //quitado el label del buscador datatables
@@ -72,13 +93,13 @@ $(document).ready(function () {
         //iniciador select carnets admin
         $("#carnetFilterPuntos").material_select();
         //altura para el fondo en login
-        $('#fondo,.back').css('min-height', $("main").height()+15);
+        $('#fondo,.back').css('min-height', $("main").height() + 15);
 
         //clase para estilo partes conducta
         $("#parte_form_idConducta label").addClass("altura");
         //pongo la hora correcta
         var tiempo = new Date();
-        var fecha = tiempo.getDay()+"/"+tiempo.getMonth()+"/"+tiempo.getFullYear();
+        var fecha = tiempo.getDay() + "/" + tiempo.getMonth() + "/" + tiempo.getFullYear();
         var hora = tiempo.getHours();
         var minuto = tiempo.getMinutes();
         let comhoras = new String(hora);
@@ -89,8 +110,8 @@ $(document).ready(function () {
         if (comminutos.length == 1) {
             minuto = "0" + minuto;
         }
-        $("#HoraSalidaAula").val(hora+":"+minuto);
-        $("#HoraLlegadaJefatura").val(hora+":"+minuto);
+        $("#HoraSalidaAula").val(hora + ":" + minuto);
+        $("#HoraLlegadaJefatura").val(hora + ":" + minuto);
         //oculto un icono que no tiene porque estar ahi
         $('.caret').css("display", "none");
         //estilo material para un selector en sanciones form
@@ -114,7 +135,7 @@ $(document).ready(function () {
         //estilo al paginador de datatable
         $("#DataTables_Table_0_paginate").addClass("col s12 m8 right");
         $("#DataTables_Table_0_info").addClass("col s12 m4 left");
-        $("#DataTables_Table_0_paginate a").css("margin","0.3% 0.2%");
+        $("#DataTables_Table_0_paginate a").css("margin", "0.3% 0.2%");
         //select mostrar datatables
         $('#DataTables_Table_0_length select').css("display", "block");
         $('#DataTables_Table_0_length').addClass("col s4 m3 l2");

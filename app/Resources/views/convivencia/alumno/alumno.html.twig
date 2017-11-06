@@ -1,40 +1,38 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
 {% block body %}
-
+    {% include 'convivencia/navegacion.html.twig' %}
     <script>(function (e, t, n) {
             var r = e.querySelectorAll("html")[0];
             r.className = r.className.replace(/(^|\s)no-js(\s|$)/, "$1js$2")
         })(document, window, 0);</script>
-    <main class="w3-container w3-margin-top">
-        {#TODO: AÑADIR NOMBRE DEL ALUMNO#}
-        <div class="row w3-center">
-            <h2 class="w3-center w3-padding w3-margin">{{ alumnoData.alumno.getNombreCompleto() }}</h2>
-            {% for flash_message in app.session.flashBag.get('alumno') %}
-                <div class="w3-panel w3-pale-green w3-round-large">
-                    <p class="w3-center">{{ flash_message }}</p>
-                </div>
-            {% endfor %}
+    <div class="">
+        <h3 class="center azul-prof fuente">{{ alumnoData.alumno.getNombreCompleto() }}</h3>
+        <h4 class="center fuente" id="punto">Puntos: <span style="margin-top: -10px; font-size: 2rem;">{{ alumnoData.alumno.puntos }}</span>/10</h4>
 
-            {% for flash_message in app.session.flashBag.get('alumnoError') %}
-                <div class="w3-panel w3-pale-red w3-round-large">
-                    <p class="w3-center">{{ flash_message }}</p>
-                </div>
-            {% endfor %}
+        {% for flash_message in app.session.flashBag.get('alumno') %}
+            <div class="w3-panel w3-pale-green w3-round-large">
+                <p class="w3-center">{{ flash_message }}</p>
+            </div>
+        {% endfor %}
+
+        {% for flash_message in app.session.flashBag.get('alumnoError') %}
+            <div class="w3-panel w3-pale-red w3-round-large">
+                <p class="w3-center">{{ flash_message }}</p>
+            </div>
+        {% endfor %}
+        <div class="row" id="row1">
             <div class="w3-col l6 marginTopNoMobile">
                 <header class="w3-container marginTopNoMobile">
                     {#<img class="w3-circle" src="https://www.w3schools.com/w3css/img_avatar3.png" style="width: 300px"#}
                     {#alt="avatar">#}
                     {% if alumnoData.alumno.foto == "" or alumnoData.alumno.foto == null %}
-                        <img class="w3-circle" src="{{ asset('img/alumnos/'~alumnoData.alumno.nie~'.PNG') }}"
-                             style="width: 300px"
+                        <img class="responsive-img circle" src="{{ asset('img/alumnos/'~alumnoData.alumno.nie~'.PNG') }}"
                              alt="avatar">
                     {% else %}
-                        <img class="w3-circle" src="{{ asset('img/alumnos/'~alumnoData.alumno.foto) }}"
-                             style="width: 300px"
+                        <img class="responsive-img circle" src="{{ asset('img/alumnos/'~alumnoData.alumno.foto) }}"
                              alt="avatar">
                     {% endif %}
-                    <h4 class="w3-center">Puntos: {{ alumnoData.alumno.puntos }}/10 </h4>
                 </header>
                 <div class="w3-container w3-center">
                     {#<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/EAN13.svg/220px-EAN13.svg.png"#}
@@ -44,16 +42,17 @@
                             <div class="content">
                                 <div class="box">
                                     <input type="file" accept="image/*" name="file" id="file"
-                                           class="inputfile inputfile-1" capture="camera">
-                                    <label for="file"><i class="fa fa-upload fa-1x"
-                                                           style="color: white; font-size: 1.5em;"> </i><span> Subir Imagen (2MB)</span></label>
+                                           class="inputfile inputfile-1" hidden capture="camera">
+                                    <label for="file" class="btn z-depth-3 blue darken-3 waves-effect waves-light">
+                                        <span style="margin-top: -5%;box-sizing: unset;"> Subir Imagen (2MB) <i class="material-icons">file_upload</i></span>
+                                    </label>
                                 </div>
                             </div>
                         </form>
                     {% endif %}
                 </div>
             </div>
-            <div class="w3-col l6">
+            <div class="w3-col l6" style="display: none;">
                 <div class="w3-row w3-center w3-text-center widthChartMobile">
                     <div class="w3-content marginBottom marginTopNoMobile">
                         <h4>Estadísticas Totales {{ alumnoData.getYear() }}</h4>
@@ -62,12 +61,12 @@
                 </div>
             </div>
         </div>
-        <div class="row w3-margin w3-padding">
-            <div class="w3-col l6 marginBottom">
+        <div class="row">
+            <div class="col s12 m6">
                 <h4 class="w3-padding">Partes {{ alumnoData.getYear() }}</h4>
                 <canvas id="myChart2"></canvas>
             </div>
-            <div class="w3-col l6 marginBottom">
+            <div class="col s12 m6">
                 <h4 class="w3-padding">Sanciones {{ alumnoData.getYear() }}</h4>
                 <canvas id="myChart3"></canvas>
             </div>
@@ -185,57 +184,38 @@
 
         </script>
 
-        <div class="w3-row w3-padding">
-            <div class="w3-col contenedorCartaAlumno marginBottom">
-                <div class="w3-card-2 cartaAlumno marginBottom marginTop">
-                    <header class="w3-container w3-center">
-                        <h2>Histórico Partes</h2>
-                    </header>
-                    <div class="w3-container">
+        <div class="row">
+            <div class="col s12 m6">
+                <div class="card white darken-1">
+                    <div class="card-content black-text">
+                        <span class="card-title center ">Histórico Partes</span>
                         {% set contadorPartes = 0 %}
                         {% set break = false %}
                         {% for parte in alumnoData.partes if not break %}
-                            {% set contadorPartes = contadorPartes + 1 %}
-                            <p>El {{ parte.fecha|date('d/m/Y') }} tuvo una falta {{ parte.idTipo.tipo }}
+                            <p style="margin-bottom: 2%">El {{ parte.fecha|date('d/m/Y') }} tuvo una falta {{ parte.idTipo.tipo }}
                                 , {{ parte.idProfesor.getNombreCompleto() }} indicó: <br/>
                                 {{ parte.descripcion }}</p>
-                            {% if contadorPartes > 9 %}
-                                <div class="w3-footer w3-center">
-                                    <p>...</p>
-                                    <a href="{{ path('show_partesAlumno', {'id': alumnoData.alumno.id}) }}"
-                                       class="w3-button w3-margin">Mostrar Todos</a>
-                                </div>
-                                {% set break = true %}
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="w3-card-2 cartaAlumno marginTop">
-                    <header class="w3-container w3-center">
-                        <h2>Histórico Sanciones</h2>
-                    </header>
-                    <div class="w3-container">
-                        {% set contadorSanciones = 0 %}
-                        {% set break = false %}
-                        {% for sancion in alumnoData.sanciones if not break %}
-                            {% set contadorSanciones = contadorSanciones + 1 %}
-                            <p>El {{ sancion.fecha|date('d/m/Y') }} tuvo una sanción de
-                                tipo {{ sancion.idTipo.tipo }}</p>
-                            {% if contadorSanciones > 9 %}
-                                <div class="w3-footer w3-center">
-                                    <p>...</p>
-                                    <a href="" class="w3-button w3-margin">Mostrar Todas</a>
-                                </div>
-                            {% endif %}
                         {% endfor %}
                     </div>
                 </div>
             </div>
+            <div class="col s12 m6">
+                <div class="card white darken-1">
+                    <div class="card-content black-text">
+                        <span class="card-title center">Histórico Sanciones</span>
+                    {% set contadorSanciones = 0 %}
+                    {% set break = false %}
+                    {% for sancion in alumnoData.sanciones if not break %}
+                        {% set contadorSanciones = contadorSanciones + 1 %}
+                        <p style="margin-bottom: 2%">El {{ sancion.fecha|date('d/m/Y') }} tuvo una sanción de
+                            tipo {{ sancion.idTipo.tipo }}<br/>sanción: {{ sancion.sancion }}</p>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-        </div>
-        </div>
+    </div>
+    </div>
 
-    </main>
 
     <script src="{{ asset('js/fileInput/custom-file-input.js') }}"></script>
 {% endblock %}
