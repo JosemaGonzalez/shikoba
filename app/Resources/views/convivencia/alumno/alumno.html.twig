@@ -8,33 +8,43 @@
         })(document, window, 0);</script>
     <div class="">
         <h3 class="center azul-prof fuente">{{ alumnoData.alumno.getNombreCompleto() }}</h3>
-        <h4 class="center fuente" id="punto">Puntos: <span style="margin-top: -10px; font-size: 2rem;">{{ alumnoData.alumno.puntos }}</span>/10</h4>
+        <h4 class="center fuente" id="punto">Puntos: <span
+                    style="margin-top: -10px; font-size: 2rem;">{{ alumnoData.alumno.puntos }}</span>/10</h4>
+        <div class="col s12 l6 offset-l3 center">
+            {% for flash_message in app.session.flashBag.get('alumno') %}
+                <div class="card-panel green white-text" style="position: relative;">
+                    <span class="spancaja">{{ flash_message }} </span><i class="material-icons spanico">done</i>
+                </div>
+            {% endfor %}
 
-        {% for flash_message in app.session.flashBag.get('alumno') %}
-            <div class="w3-panel w3-pale-green w3-round-large">
-                <p class="w3-center">{{ flash_message }}</p>
-            </div>
-        {% endfor %}
-
-        {% for flash_message in app.session.flashBag.get('alumnoError') %}
-            <div class="w3-panel w3-pale-red w3-round-large">
-                <p class="w3-center">{{ flash_message }}</p>
-            </div>
-        {% endfor %}
+            {% for flash_message in app.session.flashBag.get('alumnoError') %}
+                <div class="card-panel red white-text" style="position: relative;">
+                    <span class="spancaja">{{ flash_message }}</span> <i class="material-icons spanico">clear</i>
+                </div>
+            {% endfor %}
+        </div>
         <div class="row" id="row1">
-            <div class="w3-col l6 marginTopNoMobile">
-                <header class="w3-container marginTopNoMobile">
-                    {#<img class="w3-circle" src="https://www.w3schools.com/w3css/img_avatar3.png" style="width: 300px"#}
-                    {#alt="avatar">#}
-                    {% if alumnoData.alumno.foto == "" or alumnoData.alumno.foto == null %}
-                        <img class="responsive-img circle" src="{{ asset('img/alumnos/'~alumnoData.alumno.nie~'.PNG') }}"
-                             alt="avatar">
-                    {% else %}
-                        <img class="responsive-img circle" src="{{ asset('img/alumnos/'~alumnoData.alumno.foto) }}"
-                             alt="avatar">
-                    {% endif %}
-                </header>
-                <div class="w3-container w3-center">
+            <div class="pad col l6 s1 hide-on-large-only left">
+                <button id="esta" class="pad3 z-depth-3 btn btn-floating blue darken-3 waves-effect waves-light"
+                        type="button" value="Estadisticas" title="Estadisticas">
+                    <i class="material-icons right">assessment</i>
+                </button>
+            </div>
+            <div class="pad col s1 hide-on-large-only right">
+                <button id="histo" class="pad2 z-depth-3 btn btn-floating blue darken-3 waves-effect waves-light"
+                        type="button" value="Historico" title="Historico">
+                    <i class="material-icons right">assignment</i>
+                </button>
+            </div>
+            <div class="col l6 s10 center">
+                {% if alumnoData.alumno.foto == "" or alumnoData.alumno.foto == null %}
+                    <img class="responsive-img circle" src="{{ asset('img/alumnos/'~alumnoData.alumno.nie~'.PNG') }}"
+                         alt="avatar">
+                {% else %}
+                    <img class="responsive-img circle" src="{{ asset('img/alumnos/'~alumnoData.alumno.foto) }}"
+                         alt="avatar">
+                {% endif %}
+                <div class="center" style="padding-bottom: 1%">
                     {#<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/EAN13.svg/220px-EAN13.svg.png"#}
                     {#style="width:150px;">#}
                     {% if alumnoData.alumno.idUsuario.id == app.user.id %}
@@ -42,15 +52,20 @@
                             <div class="content">
                                 <div class="box">
                                     <input type="file" accept="image/*" name="file" id="file"
-                                           class="inputfile inputfile-1" hidden capture="camera">
-                                    <label for="file" class="btn z-depth-3 blue darken-3 waves-effect waves-light">
-                                        <span style="margin-top: -5%;box-sizing: unset;"> Subir Imagen (2MB) <i class="material-icons">file_upload</i></span>
+                                           class="inputfile inputfile-1 waves-effect waves-light" hidden
+                                           capture="camera">
+                                    <label for="file" class="waves-effect waves-light">
+                                        <span class="left"> Subir Imagen (2MB) </span><i
+                                                class="material-icons imag right">file_upload</i>
                                     </label>
                                 </div>
                             </div>
                         </form>
                     {% endif %}
                 </div>
+            </div>
+            <div class="col l6 s12 center indigo" id="not">
+                Se supone que aqui va la noticia
             </div>
             <div class="w3-col l6" style="display: none;">
                 <div class="w3-row w3-center w3-text-center widthChartMobile">
@@ -61,13 +76,26 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col s12 m6">
-                <h4 class="w3-padding">Partes {{ alumnoData.getYear() }}</h4>
+        <div class="row" id="row2">
+            <div class="pad col l6 s1 hide-on-large-only left">
+                <button id="noti" class="z-depth-3 pad3 btn btn-floating blue darken-3 waves-effect waves-light"
+                        type="button" value="Noticia" title="Noticia">
+                    <i class="material-icons right">face</i>
+                </button>
+            </div>
+            <div class="col pad s1 hide-on-large-only right">
+                <button id="histo" class="pad2 z-depth-3 btn btn-floating blue darken-3 waves-effect waves-light"
+                        type="button" value="Historico" title="Historico">
+                    <i class="material-icons right">assignment</i>
+                </button>
+            </div>
+            <div class="col s10 l6 center">
+                <h5 class="card-title">Partes {{ alumnoData.getYear() }}</h5>
                 <canvas id="myChart2"></canvas>
             </div>
-            <div class="col s12 m6">
-                <h4 class="w3-padding">Sanciones {{ alumnoData.getYear() }}</h4>
+
+            <div class="col offset-s1 s10 l6 center">
+                <h5 class="card-title">Sanciones {{ alumnoData.getYear() }}</h5>
                 <canvas id="myChart3"></canvas>
             </div>
         </div>
@@ -184,36 +212,50 @@
 
         </script>
 
-        <div class="row">
-            <div class="col s12 m6">
+        <div class="row" id="row3">
+            <div class="col s1 hide-on-large-only pad left">
+                <button id="noti" class="z-depth-3 pad3 btn btn-floating blue darken-3 waves-effect waves-light"
+                        type="button" value="Noticia" title="Noticia">
+                    <i class="material-icons right">face</i>
+                </button>
+            </div>
+            <div class="col s1 hide-on-large-only pad right">
+                <button id="esta" class="z-depth-3 pad2 btn btn-floating blue darken-3 waves-effect waves-light"
+                        type="button" value="Estadisticas" title="Estadisticas">
+                    <i class="material-icons right">assessment</i>
+                </button>
+            </div>
+            <div class="col s10 l6 center">
                 <div class="card white darken-1">
                     <div class="card-content black-text">
                         <span class="card-title center ">Histórico Partes</span>
                         {% set contadorPartes = 0 %}
                         {% set break = false %}
                         {% for parte in alumnoData.partes if not break %}
-                            <p style="margin-bottom: 2%">El {{ parte.fecha|date('d/m/Y') }} tuvo una falta {{ parte.idTipo.tipo }}
+                            <p style="margin-bottom: 2%">El {{ parte.fecha|date('d/m/Y') }} tuvo una
+                                falta {{ parte.idTipo.tipo }}
                                 , {{ parte.idProfesor.getNombreCompleto() }} indicó: <br/>
                                 {{ parte.descripcion }}</p>
                         {% endfor %}
                     </div>
                 </div>
             </div>
-            <div class="col s12 m6">
+
+            <div class="col s10 offset-s1 l6 center">
                 <div class="card white darken-1">
                     <div class="card-content black-text">
                         <span class="card-title center">Histórico Sanciones</span>
-                    {% set contadorSanciones = 0 %}
-                    {% set break = false %}
-                    {% for sancion in alumnoData.sanciones if not break %}
-                        {% set contadorSanciones = contadorSanciones + 1 %}
-                        <p style="margin-bottom: 2%">El {{ sancion.fecha|date('d/m/Y') }} tuvo una sanción de
-                            tipo {{ sancion.idTipo.tipo }}<br/>sanción: {{ sancion.sancion }}</p>
-                    {% endfor %}
+                        {% set contadorSanciones = 0 %}
+                        {% set break = false %}
+                        {% for sancion in alumnoData.sanciones if not break %}
+                            {% set contadorSanciones = contadorSanciones + 1 %}
+                            <p style="margin-bottom: 2%">El {{ sancion.fecha|date('d/m/Y') }} tuvo una sanción de
+                                tipo {{ sancion.idTipo.tipo }}<br/>sanción: {{ sancion.sancion }}</p>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
 

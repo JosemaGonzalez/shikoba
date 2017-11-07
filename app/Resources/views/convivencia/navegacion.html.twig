@@ -60,7 +60,7 @@
                                 {% endif %}
                                 {% elseif is_granted('ROLE_TUTOR') %}
                                     {#<li><a class="waves-effect waves-blue" href="{{ path('index') }}">Alumnado</a></li>#}
-                                   {#{% elseif is_granted('ROLE_USER') %}#}
+                                    {#{% elseif is_granted('ROLE_USER') %}#}
                                     {#<a class="waves-effect waves-blue" href="{{ path('registrarAlumno') }}"#}
                                     {#>Perfil</a>#}
                                 {% endif %}
@@ -82,10 +82,13 @@
                         <div class="col l8 left hide-on-med-and-down">
                             <ul class="left">
 
+                                <li>
+                                    <a href="{{ path('index') }}" class="ancla centro">
+                                        <img id="img_nav" src="/img/logo3.png" alt="">
+                                    </a>
+                                </li>
                                 {% if (is_granted('ROLE_ADMIN') or is_granted('ROLE_PROFESOR') or is_granted('ROLE_CONVIVENCIA')) %}
-                                    <li><a href="{{ path('index') }}" class="ancla centro"><img id="img_nav"
-                                                                                                src="/img/logo3.png"
-                                                                                                alt=""></a></li>
+
                                     <li><a href="{{ path('show_carnets') }}">Carnets</a></li>
                                     <li><a href="{{ path('gestion_partes') }}">Partes</a></li>
                                     <li><a href="{{ path('gestion_sanciones') }}">Medidas</a></li>

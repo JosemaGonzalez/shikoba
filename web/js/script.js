@@ -15,7 +15,46 @@
  }*/
 
 $(document).ready(function () {
-    if (document.readyState == "complete") {
+    //estilo banner para que tenga siempre la altura que lo contiene
+    let $nav = $(".navbar-fixed");
+    $('.navbar-fixed img').height($nav.height());
+    $('.navaltu').height($('.nav-wrapper').height());
+    $('.navbar-fixed .ancla').height($nav.height());
+    //alturas de las cajas de carnet alumno y imagen
+    let calculo = $(window).height() - $("header").outerHeight(true) - $("h3").outerHeight(true) - $("h4").outerHeight(true);
+    $("#row1,#row2,#row3").height(calculo);
+    $("#not").height(calculo*0.9);
+    $("#row1 img").height(calculo*0.8);
+    if ($(window).width() < "991") {
+        //oculto las cajas en dimensiones pequeñas
+        $("#row3,#row2").css("display", "none");
+        $("#row1 #esta").on("click",function () {
+            $("#row1").css("display", "none");
+            $("#row2").css("display", "block");
+        });
+        $("#row1 #histo").on("click",function () {
+            $("#row1").css("display", "none");
+            $("#row3").css("display", "block");
+        });
+        $("#row2 #histo").on("click",function () {
+            $("#row2").css("display", "none");
+            $("#row3").css("display", "block");
+        });
+        $("#row2 #noti").on("click",function () {
+            $("#row2").css("display", "none");
+            $("#row1").css("display", "block");
+        });
+        $("#row3 #esta").on("click",function () {
+            $("#row3").css("display", "none");
+            $("#row2").css("display", "block");
+        });
+        $("#row3 #noti").on("click",function () {
+            $("#row3").css("display", "none");
+            $("#row1").css("display", "block");
+        });
+    }
+    //boton de los puntos con colores
+    if (document.readyState == "interactive"||document.readyState == "complete") {
         var puntos = $("#punto > span").text();
         var punto = $("#punto span");
         if (puntos == 0) {
@@ -89,6 +128,9 @@ $(document).ready(function () {
     //acciones cuando carga la pagina
     //acciones cuando se redimensiona la pagina
     $(window).on("load resize", function () {
+        let calculo = $(window).height() - $("header").outerHeight(true) - $("h3").outerHeight(true) - $("h4").outerHeight(true);
+        $("#row1,#row2,#row3").height(calculo);
+        $("#row1 img").height(calculo*0.8);
 
         //iniciador select carnets admin
         $("#carnetFilterPuntos").material_select();
@@ -193,10 +235,6 @@ $(document).ready(function () {
         }
 
 
-        //estilo banner para que tenga siempre la altura que lo contiene
-        let $nav = $(".navbar-fixed");
-        $('.navbar-fixed img').height($nav.height());
-        $('.navaltu').height($('.nav-wrapper').height());
     });
     //Gestion alumnos twig
     $('#contenedorUpload').on('change', 'input:file', function () {

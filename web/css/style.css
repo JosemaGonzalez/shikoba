@@ -254,3 +254,50 @@ th {
     background-image: url('../img/class.jpeg');
     background-size: cover;
 }
+/*boton subir imagen*/
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    border: none;
+    border-radius: 2px;
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: #1565c0;
+    display: inline-block;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: #143e7c;
+}
+
+.inputfile + label {
+    cursor: pointer; /* "hand" cursor */
+}
+
+.inputfile:focus + label {
+    outline: 1px dotted #1565c0;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+/*Colocacion botones laterales carnet alumno*/
+.pad{
+    padding: 0!important;
+}
+.pad2{
+    padding: 0!important;
+    position: absolute;
+    right: 5px;
+}
+.pad3{
+    padding: 0!important;
+    position: absolute;
+    left: 5px;
+}
