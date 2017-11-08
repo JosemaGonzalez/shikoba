@@ -276,7 +276,7 @@ $(document).ready(function () {
         ],
     });
 
-    $('.tableDataCarnets').DataTable({
+   var table =  $('.tableDataCarnets').DataTable({
         "drawCallback": function (settings) {
             $(".paginate_button.current").addClass("btn  blue darken-4 waves-effect waves-light z-depth-3 pagi");
             $(".paginate_button").addClass("btn  blue darken-2 waves-effect waves-light z-depth-3 pagi");
@@ -299,16 +299,23 @@ $(document).ready(function () {
             infoFiltered: "(filtrado de _MAX_ en total)",
             zeroRecords: "No se encuentra ningun registro",
         },
+       dom: 'Blfrtip',
+       buttons: [
+           'excelHtml5',
+           'csvHtml5',
+           'pdfHtml5',
+           'print'
+       ]
     }).search(
         $('.dataTables_filter input').val(),
         true,
         false
     ).draw();
 
-
     //$('.dataTables_filter input').attr("placeholder", "Fecha, alumno, curso...");
     $('.dataTables_wrapper input').addClass("marginBottom");
     $('.dataTables_filter').css("text-align", "left");
+    $('.dt-buttons').css("float", "right");
     // $('.dataTables_wrapper label').addClass("contenedorFlex");
 
 });
