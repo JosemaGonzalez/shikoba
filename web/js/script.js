@@ -15,6 +15,18 @@
  }*/
 
 $(document).ready(function () {
+    $("#DataTables_Table_0_wrapper>.dt-buttons").after("<div id='nuevo' class='col s7 m4 l3'></div>");
+    if ($(window).width() < "991") {
+        $("#DataTables_Table_0_wrapper>.dt-buttons").after("<div id='nuevo' class='col s7 m4 l3'></div>");
+        $('.dt-buttons').css("margin-right", "2%");
+        $('.dt-buttons').css("text-align", "right");
+        $('.dt-buttons').removeClass("dt-buttons");
+    }else{
+        $("#DataTables_Table_0_wrapper>#DataTables_Table_0_filter").after("<div id='nuevo' class='col s7 m4 l3'></div>");
+    }
+    $("#aqui").appendTo("#nuevo");
+    $("#aqui2").appendTo("#nuevo");
+
     //estilo banner para que tenga siempre la altura que lo contiene
     let $nav = $(".navbar-fixed");
     $('.navbar-fixed img').height($nav.height());
@@ -23,38 +35,40 @@ $(document).ready(function () {
     //alturas de las cajas de carnet alumno y imagen
     let calculo = $(window).height() - $("header").outerHeight(true) - $("h3").outerHeight(true) - $("h4").outerHeight(true);
     $("#row1,#row2,#row3").height(calculo);
-    $("#not").height(calculo*0.9);
-    $("#row1 img").height(calculo*0.8);
+    $("#not").height(calculo * 0.9);
+    $("#row1 img").height(calculo * 0.8);
     if ($(window).width() < "991") {
         //oculto las cajas en dimensiones pequeñas
         $("#row3,#row2").css("display", "none");
-        $("#row1 #esta").on("click",function () {
+        $("#row1 #esta").on("click", function () {
             $("#row1").css("display", "none");
             $("#row2").css("display", "block");
         });
-        $("#row1 #histo").on("click",function () {
+        $("#row1 #histo").on("click", function () {
             $("#row1").css("display", "none");
             $("#row3").css("display", "block");
         });
-        $("#row2 #histo").on("click",function () {
+        $("#row2 #histo").on("click", function () {
             $("#row2").css("display", "none");
             $("#row3").css("display", "block");
         });
-        $("#row2 #noti").on("click",function () {
+        $("#row2 #noti").on("click", function () {
             $("#row2").css("display", "none");
             $("#row1").css("display", "block");
         });
-        $("#row3 #esta").on("click",function () {
+        $("#row3 #esta").on("click", function () {
             $("#row3").css("display", "none");
             $("#row2").css("display", "block");
         });
-        $("#row3 #noti").on("click",function () {
+        $("#row3 #noti").on("click", function () {
             $("#row3").css("display", "none");
             $("#row1").css("display", "block");
         });
     }
+
     //boton de los puntos con colores
-    if (document.readyState == "interactive"||document.readyState == "complete") {
+    if (document.readyState == "interactive" || document.readyState == "complete") {
+
         var puntos = $("#punto > span").text();
         var punto = $("#punto span");
         if (puntos == 0) {
@@ -128,9 +142,20 @@ $(document).ready(function () {
     //acciones cuando carga la pagina
     //acciones cuando se redimensiona la pagina
     $(window).on("load resize", function () {
+        if ($(window).width() < "991") {
+            $("#DataTables_Table_0_wrapper>.dt-buttons").after("<div id='nuevo' class='col s7 m4 l3'></div>");
+            $('.dt-buttons').css("margin-right", "2%");
+            $('.dt-buttons').css("text-align", "right");
+            $('.dt-buttons').removeClass("dt-buttons");
+        }else{
+            $("#DataTables_Table_0_wrapper>#DataTables_Table_0_filter").after("<div id='nuevo' class='col s7 m4 l3'></div>");
+        }
+
+        $("#aqui").appendTo("#nuevo");
+        $("#aqui2").appendTo("#nuevo");
         let calculo = $(window).height() - $("header").outerHeight(true) - $("h3").outerHeight(true) - $("h4").outerHeight(true);
         $("#row1,#row2,#row3").height(calculo);
-        $("#row1 img").height(calculo*0.8);
+        $("#row1 img").height(calculo * 0.8);
 
         //iniciador select carnets admin
         $("#carnetFilterPuntos").material_select();
@@ -175,19 +200,19 @@ $(document).ready(function () {
         $('#sancion_form_Observaciones').attr("data-length", "200");
         $('#sancion_form_Observaciones').characterCounter();
         //estilo al paginador de datatable
-        $("#DataTables_Table_0_paginate").addClass("col s12 m8 right");
-        $("#DataTables_Table_0_info").addClass("col s12 m4 left");
+        $("#DataTables_Table_0_paginate").addClass("col s12 l8 right");
+        $("#DataTables_Table_0_info").addClass("col s12 l4 left");
         $("#DataTables_Table_0_paginate a").css("margin", "0.3% 0.2%");
         //select mostrar datatables
         $('#DataTables_Table_0_length select').css("display", "block");
-        $('#DataTables_Table_0_length').addClass("col s4 m3 l2");
+        $('#DataTables_Table_0_length').addClass("col s4 m2 l1 left");
         //estilo al filtro datatables
-        $('#DataTables_Table_0_filter').addClass("col s8 m6 l3");
+        $('#DataTables_Table_0_filter').addClass("col s8 m6 l3 left");
         //quitado linea negra en el datatable
         $("table.dataTable.no-footer").css("border", "0");
         $("table.dataTable thead th, table.dataTable thead td").css("border-bottom", "0");
         //movido el buscador datatables a la izquierda
-        $('.dataTables_filter').css("float", "left");
+        //$('.dataTables_filter').css("float", "left");
         //buscador en diario
         $("#horasSelect_chosen").css("min-width", "100");
         //boton buscar movido
@@ -215,6 +240,7 @@ $(document).ready(function () {
         //$(".chosen-search-input").css("width", "93%");
         $("#diarioAulaForm #appbundle_diarioaulaconvivencia div").addClass("input-field");
         if ($(window).width() < "991") {
+            $('#DataTables_Table_0_length').css("margin-top","2%");
             //accion al click en los paginadores del datatable
             $("#DataTables_Table_0_paginate a").on("click", function () {
                 $("#DataTables_Table_0 th,#DataTables_Table_0 td").css("padding", "15px 18px");
@@ -231,7 +257,7 @@ $(document).ready(function () {
         }
         if ($(window).width() > "991") {
             //dimension select al lado de busqueda
-            $('#DataTables_Table_0_length').css("width", "10%");
+            //$('#DataTables_Table_0_length').css("width", "10%");
         }
 
 

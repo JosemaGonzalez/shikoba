@@ -8,8 +8,9 @@
 
         <form action="">
             <div class="row">
-                <div class="input-field col s12 m6 left l4">
-                    <div class=" col s6 m4">
+                <div class="input-field col s12 m6 left">
+                    <div class=" col s10" id="aqui" >
+                        <label>Filtra por puntos</label>
                         <select name="puntosFiltro" id="carnetFilterPuntos">
                             {% for puntos in puntosSelect %}
                                 {% if app.request.get('puntosFiltro') == puntos %}
@@ -20,15 +21,15 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div class="col s2">
+                    <div class="col s1" id="aqui2" style="margin-top: 8%;" >
                         <button class="bus2 z-depth-3 btn btn-floating blue darken-3 waves-effect waves-light"
                                 type="submit"
-                                value="Buscar" title="Buscar"><i class="material-icons right">search</i></button>
+                                value="Buscar" title="Buscar" ><i class="material-icons right">search</i></button>
                     </div>
-                    <div class="col s2" id="exp">
-                        <a href="{{ path('export_form_carnets') }}"
-                           class="btn z-depth-3  btn-floating blue darken-3 waves-effect waves-light"
-                           title="Exportar"><i class="material-icons">get_app</i></a>
+                    <div class="col s6 m4" id="exp">
+                        {#<a style="display: none" href="{{ path('export_form_carnets') }}"#}
+                           {#class="btn z-depth-3  btn-floating blue darken-3 waves-effect waves-light"#}
+                           {#title="Exportar"><i class="material-icons">get_app</i></a>#}
                     </div>
                 </div>
             </div>

@@ -8,8 +8,8 @@ $(window).bind("load", function () {
 
     "use strict";
 
-   $('.loaderIntro').fadeOut(1000);
-   $('.containerLoader').fadeOut(1000);
+    $('.loaderIntro').fadeOut(1000);
+    $('.containerLoader').fadeOut(1000);
 
 });
 
@@ -250,6 +250,11 @@ $(document).ready(function () {
 
     $('.tableData').DataTable({
         "drawCallback": function (settings) {
+            $(".dt-button").addClass("btn btn-floating blue darken-3");
+            $(".dt-button").removeClass("dt-button");
+            $("#DataTables_Table_0_wrapper>#DataTables_Table_0_filter").after("<div id='nuevo'></div>");
+            $("#aqui").appendTo("#nuevo");
+            $("#aqui2").appendTo("#nuevo");
             $(".paginate_button.current").addClass("btn  blue darken-4 waves-effect waves-light z-depth-3 pagi");
             $(".paginate_button").addClass("btn  blue darken-2 waves-effect waves-light z-depth-3 pagi");
             $(".paginate_button.current").removeClass("paginate_button current");
@@ -274,10 +279,36 @@ $(document).ready(function () {
         "aoColumnDefs": [
             {"sType": "date-eu", "aTargets": [1]}
         ],
+        dom: 'Blfrtip',
+        buttons: [
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="material-icons">picture_as_pdf</i>',
+                titleAttr: 'PDF'
+            },
+            {
+                extend: 'excelHtml5',
+                text: '<i class="excel"></i>',
+                titleAttr: 'Excel'
+            },
+            {
+                extend: 'csvHtml5',
+                text: '<i class="csv"></i>',
+                titleAttr: 'CSV'
+            },
+            {
+                extend: 'print',
+                text: '<i class="material-icons">print</i>',
+                titleAttr: 'Imprimir'
+            }
+        ]
     });
 
-   var table =  $('.tableDataCarnets').DataTable({
+    var table = $('.tableDataCarnets').DataTable({
         "drawCallback": function (settings) {
+            $(".dt-button").addClass("btn btn-floating blue darken-3");
+            $(".dt-button").removeClass("dt-button");
+
             $(".paginate_button.current").addClass("btn  blue darken-4 waves-effect waves-light z-depth-3 pagi");
             $(".paginate_button").addClass("btn  blue darken-2 waves-effect waves-light z-depth-3 pagi");
             $(".paginate_button.current").removeClass("paginate_button current");
@@ -299,23 +330,40 @@ $(document).ready(function () {
             infoFiltered: "(filtrado de _MAX_ en total)",
             zeroRecords: "No se encuentra ningun registro",
         },
-       dom: 'Blfrtip',
-       buttons: [
-           'excelHtml5',
-           'csvHtml5',
-           'pdfHtml5',
-           'print'
-       ]
+        dom: 'Blfrtip',
+        buttons: [
+            {
+                extend: 'pdfHtml5',
+                text: '<i class="material-icons">picture_as_pdf</i>',
+                titleAttr: 'PDF'
+            },
+            {
+                extend: 'excelHtml5',
+                text: '<i class="excel"></i>',
+                titleAttr: 'Excel'
+            },
+            {
+                extend: 'csvHtml5',
+                text: '<i class="csv"></i>',
+                titleAttr: 'CSV'
+            },
+            {
+                extend: 'print',
+                text: '<i class="material-icons">print</i>',
+                titleAttr: 'Imprimir'
+            }
+        ]
     }).search(
         $('.dataTables_filter input').val(),
         true,
         false
     ).draw();
-
-    //$('.dataTables_filter input').attr("placeholder", "Fecha, alumno, curso...");
+    //estilos para los botones encima de las tablas
     $('.dataTables_wrapper input').addClass("marginBottom");
     $('.dataTables_filter').css("text-align", "left");
-    $('.dt-buttons').css("float", "right");
-    // $('.dataTables_wrapper label').addClass("contenedorFlex");
-
+    $('.dt-buttons').addClass("right col s4 m6 l2 altur");
+    $('.dt-buttons').css("margin-top", "2%");
+    if ($(window).width() < "991") {
+        $('.altur').css("height", $('#DataTables_Table_0_filter').height());
+    }
 });

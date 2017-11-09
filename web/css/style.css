@@ -140,6 +140,7 @@ th {
     position: relative;
     float: left;
     margin-right: 5px;
+    margin-top: 4%;
 }
 
 /*separacion paginacion datatable*/
@@ -300,4 +301,22 @@ th {
     padding: 0!important;
     position: absolute;
     left: 5px;
+}
+.imag{
+    margin:0!important;
+    margin-top:3px!important;
+}
+.excel{
+    background: url("../img/excel.svg")no-repeat center;
+    background-size: contain;
+    vertical-align: middle;
+    width: 25px!important;
+    height: 25px;
+}
+.csv{
+    background: url("../img/csv2.svg")no-repeat center;
+    background-size: contain;
+    vertical-align: middle;
+    width: 25px!important;
+    height: 25px;
 }
