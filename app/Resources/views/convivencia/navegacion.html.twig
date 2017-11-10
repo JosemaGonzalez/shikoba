@@ -30,7 +30,7 @@
                                 <li><a class="waves-effect waves-blue" href="{{ path('show_diario') }}">Diario</a></li>
                                 <div class="divider"></div>
                                 {% if is_granted('ROLE_CONVIVENCIA') %}
-                                    <li><a class="waves-effect waves-blue" href="{{ path('admin') }}">Noticias</a>
+                                    <li><a class="waves-effect waves-blue" href="{{ path('noticias') }}">Noticias</a>
                                     </li>
                                 {% endif %}
                                 {% if is_granted('ROLE_ADMIN') %}
@@ -94,7 +94,7 @@
                                     <li><a href="{{ path('gestion_sanciones') }}">Medidas</a></li>
                                     <li><a href="{{ path('show_diario') }}">Diario</a></li>
                                     {% if is_granted('ROLE_CONVIVENCIA') %}
-                                        <li><a href="{{ path('admin') }}">Noticias</a></li>
+                                        <li><a href="{{ path('noticias') }}">Noticias</a></li>
 
                                     {% endif %}
                                     {% if is_granted('ROLE_ADMIN') %}
