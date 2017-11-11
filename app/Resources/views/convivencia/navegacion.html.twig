@@ -48,10 +48,10 @@
                                                                href="{{ path('admin_import_profesor') }}"
                                                             >Profesorado</a>
                                                         </li>
-                                                        <li><a class="waves-effect waves-blue"
-                                                               href="{{ path('admin_security') }}"
-                                                            >Copia
-                                                                de seguridad</a></li>
+                                                        {# <li><a class="waves-effect waves-blue"
+                                                                href="{{ path('admin_security') }}"
+                                                             >Copia
+                                                                 de seguridad</a></li>#}
                                                     </ul>
                                                 </div>
                                             </li>
@@ -107,19 +107,19 @@
                                             <li><a href="{{ path('admin_import_profesor') }}"
                                                    class="blue darken-2 white-text">Profesorado</a>
                                             </li>
-                                            <li><a href="{{ path('admin_security') }}"
+                                           {# <li><a href="{{ path('admin_security') }}"
                                                    class="blue darken-2 white-text">Copia
-                                                    de seguridad</a></li>
+                                                    de seguridad</a></li>#}
                                         </ul>
 
                                     {% endif %}
 
                                 {% elseif is_granted('ROLE_TUTOR') %}
-                                    <li><a href="{{ path('index') }}" class="ancla centro"><img id="img_nav"
-                                                                                                src="/img/logo3.png"
-                                                                                                alt=""></a></li>
+                                    {# <li><a href="{{ path('index') }}" class="ancla centro"><img id="img_nav"
+                                                                                                 src="/img/logo3.png"
+                                                                                                 alt=""></a></li>
 
-                                    {#{% elseif is_granted('ROLE_USER') %}#}
+                                     {% elseif is_granted('ROLE_USER') %}#}
                                     {#<a href="{{ path('registrarAlumno') }}"#}
                                     {#>Perfil</a>#}
                                 {% endif %}

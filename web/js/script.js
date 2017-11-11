@@ -2,28 +2,27 @@
  * Created by Josema on 04/10/2017.
  */
 //Spinner loader intro
-//activar cuando todos esten terminados
-/*
- var tmrReady = setInterval(isPageFullyLoaded, 200);
-
- function isPageFullyLoaded() {
- if (document.readyState == "complete") {
- $('.loaderIntro').fadeOut(1000);
- $('.containerLoader > .row').css("display","block");
- clearInterval(tmrReady);
- }
- }*/
+var tmrReady = setInterval(isPageFullyLoaded, 200);
+function isPageFullyLoaded() {
+    if (document.readyState == "complete") {
+        $('.loaderIntro').fadeOut(1000);
+        $('.containerLoader > .row').css("display", "block");
+        clearInterval(tmrReady);
+    }
+}
 
 $(document).ready(function () {
+    //botones de exportar tablas
     $("#DataTables_Table_0_wrapper>.dt-buttons").after("<div id='nuevo' class='col s7 m4 l3'></div>");
     if ($(window).width() < "991") {
         $("#DataTables_Table_0_wrapper>.dt-buttons").after("<div id='nuevo' class='col s7 m4 l3'></div>");
         $('.dt-buttons').css("margin-right", "2%");
         $('.dt-buttons').css("text-align", "right");
         $('.dt-buttons').removeClass("dt-buttons");
-    }else{
+    } else {
         $("#DataTables_Table_0_wrapper>#DataTables_Table_0_filter").after("<div id='nuevo' class='col s7 m4 l3'></div>");
     }
+    //muevo el contenido dentro de las tablas
     $("#aqui").appendTo("#nuevo");
     $("#aqui2").appendTo("#nuevo");
 
@@ -34,11 +33,11 @@ $(document).ready(function () {
     $('.navbar-fixed .ancla').height($nav.height());
     //alturas de las cajas de carnet alumno y imagen
     let calculo = $(window).height() - $("header").outerHeight(true) - $("h3").outerHeight(true) - $("h4").outerHeight(true);
-    $("#row1,#row2,#row3").height(calculo);
-    $("#not").height(calculo * 0.9);
-    $("#row1 img").height(calculo * 0.8);
+    $("#row1,#row2,#row3").height(calculo*0.8);
+    $("#not").height(calculo * 0.8);
+    $("#row1 img").height(calculo * 0.7);
     if ($(window).width() < "991") {
-        //oculto las cajas en dimensiones pequeñas
+        //oculto las cajas en dimensiones pequeñas de carnet de alumno
         $("#row3,#row2").css("display", "none");
         $("#row1 #esta").on("click", function () {
             $("#row1").css("display", "none");
@@ -143,19 +142,20 @@ $(document).ready(function () {
     //acciones cuando se redimensiona la pagina
     $(window).on("load resize", function () {
         if ($(window).width() < "991") {
+            //botones de exortar en tablas
             $("#DataTables_Table_0_wrapper>.dt-buttons").after("<div id='nuevo' class='col s7 m4 l3'></div>");
             $('.dt-buttons').css("margin-right", "2%");
             $('.dt-buttons').css("text-align", "right");
             $('.dt-buttons').removeClass("dt-buttons");
-        }else{
+        } else {
             $("#DataTables_Table_0_wrapper>#DataTables_Table_0_filter").after("<div id='nuevo' class='col s7 m4 l3'></div>");
         }
-
+        //muevo el contenido dentro de las tablas
         $("#aqui").appendTo("#nuevo");
         $("#aqui2").appendTo("#nuevo");
         let calculo = $(window).height() - $("header").outerHeight(true) - $("h3").outerHeight(true) - $("h4").outerHeight(true);
-        $("#row1,#row2,#row3").height(calculo);
-        $("#row1 img").height(calculo * 0.8);
+        $("#row1,#row2,#row3").height(calculo*0.8);
+        $("#row1 img").height(calculo * 0.7);
 
         //iniciador select carnets admin
         $("#carnetFilterPuntos").material_select();
@@ -211,8 +211,6 @@ $(document).ready(function () {
         //quitado linea negra en el datatable
         $("table.dataTable.no-footer").css("border", "0");
         $("table.dataTable thead th, table.dataTable thead td").css("border-bottom", "0");
-        //movido el buscador datatables a la izquierda
-        //$('.dataTables_filter').css("float", "left");
         //buscador en diario
         $("#horasSelect_chosen").css("min-width", "100");
         //boton buscar movido
@@ -240,7 +238,7 @@ $(document).ready(function () {
         //$(".chosen-search-input").css("width", "93%");
         $("#diarioAulaForm #appbundle_diarioaulaconvivencia div").addClass("input-field");
         if ($(window).width() < "991") {
-            $('#DataTables_Table_0_length').css("margin-top","2%");
+            $('#DataTables_Table_0_length').css("margin-top", "2%");
             //accion al click en los paginadores del datatable
             $("#DataTables_Table_0_paginate a").on("click", function () {
                 $("#DataTables_Table_0 th,#DataTables_Table_0 td").css("padding", "15px 18px");
@@ -255,12 +253,6 @@ $(document).ready(function () {
             $(".dataTables_filter").css("margin-top", "0");
 
         }
-        if ($(window).width() > "991") {
-            //dimension select al lado de busqueda
-            //$('#DataTables_Table_0_length').css("width", "10%");
-        }
-
-
     });
     //Gestion alumnos twig
     $('#contenedorUpload').on('change', 'input:file', function () {

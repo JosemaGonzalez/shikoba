@@ -32,6 +32,7 @@ class SancionController extends Controller
     public function crearSancionAction(Request $request)
     {
         if (!in_array('ROLE_ADMIN', $this->getUser()->getRoles())
+            && !in_array("ROLE_CONVIVENCIA", $this->getUser()->getRoles())
             && !in_array("ROLE_PROFESOR", $this->getUser()->getRoles()))
             return $this->redirectToRoute('index');
 

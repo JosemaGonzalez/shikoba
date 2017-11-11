@@ -306,6 +306,7 @@ th {
     margin:0!important;
     margin-top:3px!important;
 }
+/*Icono exportar excel*/
 .excel{
     background: url("../img/excel.svg")no-repeat center;
     background-size: contain;
@@ -313,6 +314,7 @@ th {
     width: 25px!important;
     height: 25px;
 }
+/*Icono exportar csv*/
 .csv{
     background: url("../img/csv2.svg")no-repeat center;
     background-size: contain;

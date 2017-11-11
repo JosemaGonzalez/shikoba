@@ -763,9 +763,6 @@ class appDevDebugProjectContainer extends Container
         $instance->addListener('kernel.request', array(0 => function () {
             return ${($_ = isset($this->services['debug.debug_handlers_listener']) ? $this->services['debug.debug_handlers_listener'] : $this->get('debug.debug_handlers_listener')) && false ?: '_'};
         }, 1 => 'configure'), 2048);
-        $instance->addListener('console.command', array(0 => function () {
-            return ${($_ = isset($this->services['debug.debug_handlers_listener']) ? $this->services['debug.debug_handlers_listener'] : $this->get('debug.debug_handlers_listener')) && false ?: '_'};
-        }, 1 => 'configure'), 2048);
         $instance->addListener('kernel.request', array(0 => function () {
             return ${($_ = isset($this->services['router_listener']) ? $this->services['router_listener'] : $this->get('router_listener')) && false ?: '_'};
         }, 1 => 'onKernelRequest'), 32);
@@ -2238,43 +2235,46 @@ class appDevDebugProjectContainer extends Container
 
         $s = new \Symfony\Component\HttpFoundation\RequestMatcher('^/carnet/');
 
-        $t = new \Symfony\Component\HttpFoundation\RequestMatcher('^/');
+        $t = new \Symfony\Component\HttpFoundation\RequestMatcher('^/noticias$');
 
-        $u = new \Symfony\Component\Security\Http\AccessMap();
-        $u->add($i, array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
-        $u->add($j, array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
-        $u->add($k, array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
-        $u->add($l, array(0 => 'ROLE_ADMIN'), NULL);
-        $u->add($m, array(0 => 'ROLE_ADMIN', 1 => 'ROLE_CONVIVENCIA'), NULL);
-        $u->add($n, array(0 => 'ROLE_ADMIN', 1 => 'ROLE_CONVIVENCIA'), NULL);
-        $u->add($o, array(0 => 'ROLE_ADMIN', 1 => 'ROLE_CONVIVENCIA', 2 => 'ROLE_PROFESOR'), NULL);
-        $u->add($p, array(0 => 'ROLE_ADMIN', 1 => 'ROLE_CONVIVENCIA', 2 => 'ROLE_PROFESOR'), NULL);
-        $u->add($q, array(0 => 'ROLE_ADMIN', 1 => 'ROLE_CONVIVENCIA', 2 => 'ROLE_PROFESOR'), NULL);
-        $u->add($r, array(0 => 'ROLE_ADMIN', 1 => 'ROLE_CONVIVENCIA', 2 => 'ROLE_PROFESOR'), NULL);
-        $u->add($s, array(0 => 'ROLE_ADMIN', 1 => 'ROLE_CONVIVENCIA', 2 => 'ROLE_PROFESOR'), NULL);
-        $u->add($t, array(0 => 'ROLE_USER'), NULL);
+        $u = new \Symfony\Component\HttpFoundation\RequestMatcher('^/');
 
-        $v = new \Symfony\Component\Security\Http\HttpUtils($f, $f);
+        $v = new \Symfony\Component\Security\Http\AccessMap();
+        $v->add($i, array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
+        $v->add($j, array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
+        $v->add($k, array(0 => 'IS_AUTHENTICATED_ANONYMOUSLY'), NULL);
+        $v->add($l, array(0 => 'ROLE_ADMIN'), NULL);
+        $v->add($m, array(0 => 'ROLE_ADMIN', 1 => 'ROLE_CONVIVENCIA'), NULL);
+        $v->add($n, array(0 => 'ROLE_ADMIN', 1 => 'ROLE_CONVIVENCIA'), NULL);
+        $v->add($o, array(0 => 'ROLE_ADMIN', 1 => 'ROLE_CONVIVENCIA', 2 => 'ROLE_PROFESOR'), NULL);
+        $v->add($p, array(0 => 'ROLE_ADMIN', 1 => 'ROLE_CONVIVENCIA', 2 => 'ROLE_PROFESOR'), NULL);
+        $v->add($q, array(0 => 'ROLE_ADMIN', 1 => 'ROLE_CONVIVENCIA', 2 => 'ROLE_PROFESOR'), NULL);
+        $v->add($r, array(0 => 'ROLE_ADMIN', 1 => 'ROLE_CONVIVENCIA', 2 => 'ROLE_PROFESOR'), NULL);
+        $v->add($s, array(0 => 'ROLE_ADMIN', 1 => 'ROLE_CONVIVENCIA', 2 => 'ROLE_PROFESOR'), NULL);
+        $v->add($t, array(0 => 'ROLE_CONVIVENCIA'), NULL);
+        $v->add($u, array(0 => 'ROLE_USER'), NULL);
 
-        $w = new \Symfony\Component\Security\Http\RememberMe\TokenBasedRememberMeServices(array(0 => $c), 'ThisTokenIsNotSoSecretChangeIt', 'main', array('lifetime' => 300, 'path' => '/', 'name' => 'REMEMBERME', 'domain' => NULL, 'secure' => false, 'httponly' => true, 'always_remember_me' => false, 'remember_me_parameter' => '_remember_me'), $a);
+        $w = new \Symfony\Component\Security\Http\HttpUtils($f, $f);
 
-        $x = new \Symfony\Component\Security\Http\Firewall\LogoutListener($b, $v, new \Symfony\Component\Security\Http\Logout\DefaultLogoutSuccessHandler($v, '/login'), array('csrf_parameter' => '_csrf_token', 'csrf_token_id' => 'logout', 'logout_path' => '/logout'));
-        $x->addHandler(new \Symfony\Component\Security\Http\Logout\SessionLogoutHandler());
-        $x->addHandler($w);
+        $x = new \Symfony\Component\Security\Http\RememberMe\TokenBasedRememberMeServices(array(0 => $c), 'ThisTokenIsNotSoSecretChangeIt', 'main', array('lifetime' => 300, 'path' => '/', 'name' => 'REMEMBERME', 'domain' => NULL, 'secure' => false, 'httponly' => true, 'always_remember_me' => false, 'remember_me_parameter' => '_remember_me'), $a);
 
-        $y = new \Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy('migrate');
+        $y = new \Symfony\Component\Security\Http\Firewall\LogoutListener($b, $w, new \Symfony\Component\Security\Http\Logout\DefaultLogoutSuccessHandler($w, '/login'), array('csrf_parameter' => '_csrf_token', 'csrf_token_id' => 'logout', 'logout_path' => '/logout'));
+        $y->addHandler(new \Symfony\Component\Security\Http\Logout\SessionLogoutHandler());
+        $y->addHandler($x);
 
-        $z = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler($v, array());
-        $z->setOptions(array('login_path' => 'login', 'always_use_default_target_path' => false, 'default_target_path' => '/', 'target_path_parameter' => '_target_path', 'use_referer' => false));
-        $z->setProviderKey('main');
+        $z = new \Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy('migrate');
 
-        $aa = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($g, $v, array(), $a);
-        $aa->setOptions(array('login_path' => 'login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'));
+        $aa = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler($w, array());
+        $aa->setOptions(array('login_path' => 'login', 'always_use_default_target_path' => false, 'default_target_path' => '/', 'target_path_parameter' => '_target_path', 'use_referer' => false));
+        $aa->setProviderKey('main');
 
-        $ba = new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $h, $y, $v, 'main', $z, $aa, array('check_path' => 'login', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'csrf_token_id' => 'authenticate', 'post_only' => true), $a, $d, NULL);
-        $ba->setRememberMeServices($w);
+        $ba = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($g, $w, array(), $a);
+        $ba->setOptions(array('login_path' => 'login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'));
 
-        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($u, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $c, 1 => new \Symfony\Component\Security\Core\User\InMemoryUserProvider()), 'main', $a, $d, $e), 2 => $x, 3 => $ba, 4 => new \Symfony\Component\Security\Http\Firewall\RememberMeListener($b, $w, $h, $a, $d, true, $y), 5 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '59f789879480b7.16699942', $a, $h), 6 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, ${($_ = isset($this->services['debug.security.access.decision_manager']) ? $this->services['debug.security.access.decision_manager'] : $this->getDebug_Security_Access_DecisionManagerService()) && false ?: '_'}, $u, $h)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $e, $v, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($g, $v, 'login', false), NULL, NULL, $a, false), new \Symfony\Bundle\SecurityBundle\Security\FirewallConfig('main', 'security.user_checker', NULL, true, false, 'security.user.provider.concrete.user_provider', 'main', 'security.authentication.form_entry_point.main', NULL, NULL, array(0 => 'logout', 1 => 'form_login', 2 => 'remember_me', 3 => 'anonymous')));
+        $ca = new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $h, $z, $w, 'main', $aa, $ba, array('check_path' => 'login', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'csrf_token_id' => 'authenticate', 'post_only' => true), $a, $d, NULL);
+        $ca->setRememberMeServices($x);
+
+        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($v, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $c, 1 => new \Symfony\Component\Security\Core\User\InMemoryUserProvider()), 'main', $a, $d, $e), 2 => $y, 3 => $ca, 4 => new \Symfony\Component\Security\Http\Firewall\RememberMeListener($b, $x, $h, $a, $d, true, $z), 5 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '5a06fa58829036.81570698', $a, $h), 6 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, ${($_ = isset($this->services['debug.security.access.decision_manager']) ? $this->services['debug.security.access.decision_manager'] : $this->getDebug_Security_Access_DecisionManagerService()) && false ?: '_'}, $v, $h)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $e, $w, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($g, $w, 'login', false), NULL, NULL, $a, false), new \Symfony\Bundle\SecurityBundle\Security\FirewallConfig('main', 'security.user_checker', NULL, true, false, 'security.user.provider.concrete.user_provider', 'main', 'security.authentication.form_entry_point.main', NULL, NULL, array(0 => 'logout', 1 => 'form_login', 2 => 'remember_me', 3 => 'anonymous')));
     }
 
     /**
@@ -3077,7 +3077,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getCache_Annotations_RecorderInnerService($lazyLoad = true)
     {
-        return $this->services['cache.annotations.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('uSW9zbiRXa', 0, 'HByyU+LX2T9dZJH7JS1s33', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        return $this->services['cache.annotations.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('uSW9zbiRXa', 0, '1sWSHZgpRFoGr5YP0NE5t5', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
     }
 
     /**
@@ -3103,7 +3103,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getCache_Serializer_RecorderInnerService($lazyLoad = true)
     {
-        return $this->services['cache.serializer.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('cMU0lPatoz', 0, 'HByyU+LX2T9dZJH7JS1s33', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        return $this->services['cache.serializer.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('cMU0lPatoz', 0, '1sWSHZgpRFoGr5YP0NE5t5', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
     }
 
     /**
@@ -3113,7 +3113,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getCache_System_RecorderInnerService($lazyLoad = true)
     {
-        return $this->services['cache.system.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('pU3WIUY3cY', 0, 'HByyU+LX2T9dZJH7JS1s33', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        return $this->services['cache.system.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('pU3WIUY3cY', 0, '1sWSHZgpRFoGr5YP0NE5t5', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
     }
 
     /**
@@ -3133,7 +3133,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getCache_Validator_RecorderInnerService($lazyLoad = true)
     {
-        return $this->services['cache.validator.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('qHX72VvaTz', 0, 'HByyU+LX2T9dZJH7JS1s33', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        return $this->services['cache.validator.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('qHX72VvaTz', 0, '1sWSHZgpRFoGr5YP0NE5t5', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
     }
 
     /**
@@ -3395,7 +3395,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSecurity_Authentication_Provider_Anonymous_MainService()
     {
-        return $this->services['security.authentication.provider.anonymous.main'] = new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('59f789879480b7.16699942');
+        return $this->services['security.authentication.provider.anonymous.main'] = new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('5a06fa58829036.81570698');
     }
 
     /**

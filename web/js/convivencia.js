@@ -1,21 +1,12 @@
 /**
- * Created by maze on 24/04/17.
+ * Created by Josema on 04/10/2017.
  */
-
-//Spinner loader intro
-
 $(window).bind("load", function () {
-
     "use strict";
-
-    $('.loaderIntro').fadeOut(1000);
-    $('.containerLoader').fadeOut(1000);
-
 });
 
 $(document).ready(function () {
 
-    $('.containerLoader img').css('height', $(window).height() - 1).css('width', $(window).width());
     const SANCION_TYPE_HORAS = 5;
     const HORAS_CLASE = {
         '1': '8:15 - 9:15',
@@ -157,14 +148,6 @@ $(document).ready(function () {
         radioClass: 'iradio_square-blue',
     });
 
-    //$('.wall').css('min-height', $(window).height());
-    //$('.overlay').css('min-height', $(window).height());
-
-    $(window).on('resize', function () {
-        //$('.wall').css('min-height', $(window).height());
-        //$('.overlay').css('min-height', $(window).height());
-
-    });
 
     // Hamburguer Nav
 
@@ -249,6 +232,7 @@ $(document).ready(function () {
     });
 
     $('.tableData').DataTable({
+        //css para cambiar el estilo al cargar la tabla
         "drawCallback": function (settings) {
             $(".dt-button").addClass("btn btn-floating blue darken-3");
             $(".dt-button").removeClass("dt-button");
@@ -279,6 +263,7 @@ $(document).ready(function () {
         "aoColumnDefs": [
             {"sType": "date-eu", "aTargets": [1]}
         ],
+        //botones para exportacion
         dom: 'Blfrtip',
         buttons: [
             {
@@ -305,10 +290,13 @@ $(document).ready(function () {
     });
 
     var table = $('.tableDataCarnets').DataTable({
+        //css para cambiar el estilo al cargar la tabla
         "drawCallback": function (settings) {
             $(".dt-button").addClass("btn btn-floating blue darken-3");
             $(".dt-button").removeClass("dt-button");
-
+            $("#DataTables_Table_0_wrapper>#DataTables_Table_0_filter").after("<div id='nuevo'></div>");
+            $("#aqui").appendTo("#nuevo");
+            $("#aqui2").appendTo("#nuevo");
             $(".paginate_button.current").addClass("btn  blue darken-4 waves-effect waves-light z-depth-3 pagi");
             $(".paginate_button").addClass("btn  blue darken-2 waves-effect waves-light z-depth-3 pagi");
             $(".paginate_button.current").removeClass("paginate_button current");
@@ -330,6 +318,7 @@ $(document).ready(function () {
             infoFiltered: "(filtrado de _MAX_ en total)",
             zeroRecords: "No se encuentra ningun registro",
         },
+        //botones para exportacion
         dom: 'Blfrtip',
         buttons: [
             {

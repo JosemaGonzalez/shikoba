@@ -50,6 +50,7 @@ security:
         - { path: ^/sanciones$, roles: [ROLE_ADMIN, ROLE_CONVIVENCIA, ROLE_PROFESOR] }
         - { path: ^/sancion/, roles: [ROLE_ADMIN, ROLE_CONVIVENCIA, ROLE_PROFESOR] }
         - { path: ^/carnet/, roles: [ROLE_ADMIN, ROLE_CONVIVENCIA, ROLE_PROFESOR] }
+        - { path: ^/noticias$, roles: [ROLE_CONVIVENCIA] }
         - { path: ^/, roles: ROLE_USER }
             # activate different ways to authenticate
 

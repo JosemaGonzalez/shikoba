@@ -10,7 +10,13 @@
                 <div class="col s6 m4 l2 carta ancho">
                     <div class="card">
                         <div class="card-image">
-                            <img src="{{ asset('img/alumnos/'~alumno.foto) }}">
+                            {% if alumno.foto == "" or alumno.foto == null %}
+                                <img src="{{ asset('img/alumnos/'~alumno.nie~'.PNG') }}"
+                                     alt="avatar">
+                            {% else %}
+                                <img src="{{ asset('img/alumnos/'~alumno.foto) }}">
+
+                            {% endif %}
                             <span class="card-title"></span>
                         </div>
 
