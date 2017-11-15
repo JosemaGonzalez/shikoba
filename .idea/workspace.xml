@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25d14157-562d-42a5-a0c2-3922855430fb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base2.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base2.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/convivencia/partes/partes.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/convivencia/partes/partes.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/convivencia.js" afterPath="$PROJECT_DIR$/web/js/convivencia.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/script.js" afterPath="$PROJECT_DIR$/web/js/script.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,15 +20,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="302">
+              <caret line="322" column="17" lean-forward="false" selection-start-line="322" selection-start-column="17" selection-end-line="322" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="convivencia.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/js/convivencia.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="264" column="61" lean-forward="true" selection-start-line="264" selection-start-column="61" selection-end-line="264" selection-end-column="61" />
+            <state relative-caret-position="505">
+              <caret line="276" column="34" lean-forward="false" selection-start-line="276" selection-start-column="34" selection-end-line="276" selection-end-column="34" />
               <folding>
-                <marker date="1510745097149" expanded="true" signature="1927:1944" ph="..." />
-                <marker date="1510745097149" expanded="true" signature="8268:8285" ph="..." />
-                <marker date="1510745097149" expanded="true" signature="12556:12573" ph="..." />
+                <marker date="1510754161767" expanded="true" signature="1866:1883" ph="..." />
+                <marker date="1510754161767" expanded="true" signature="8232:8249" ph="..." />
+                <marker date="1510754161767" expanded="true" signature="12798:12815" ph="..." />
               </folding>
             </state>
           </provider>
@@ -43,8 +47,8 @@
       <file leaf-file-name="script.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/js/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="233" column="0" lean-forward="false" selection-start-line="233" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
+            <state relative-caret-position="183">
+              <caret line="139" column="0" lean-forward="false" selection-start-line="139" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -53,9 +57,10 @@
       <file leaf-file-name="partes.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/convivencia/partes/partes.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="27" column="52" lean-forward="false" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
+            <state relative-caret-position="180">
+              <caret line="33" column="81" lean-forward="false" selection-start-line="33" selection-start-column="56" selection-end-line="33" selection-end-column="81" />
               <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -63,12 +68,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/css/style.css">
+      <file leaf-file-name="sanciones.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/convivencia/sanciones/sanciones.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1068">
-              <caret line="322" column="17" lean-forward="false" selection-start-line="322" selection-start-column="17" selection-end-line="322" selection-end-column="17" />
-              <folding />
+            <state relative-caret-position="180">
+              <caret line="31" column="38" lean-forward="false" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
+              <folding>
+                <element signature="e#1237#1276#0#HTML" expanded="true" />
+                <element signature="e#1629#1663#0#HTML" expanded="true" />
+                <element signature="e#1738#1763#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -109,6 +118,7 @@
       <find>length</find>
       <find>appen</find>
       <find>botonbus</find>
+      <find>mater</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -308,7 +318,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="partes" />
+              <option name="myItemId" value="sanciones" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -440,7 +450,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70837000" />
+    <option name="totallyTimeSpent" value="71882000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
@@ -790,8 +800,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/convivencia/sanciones/sanciones.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="53" column="80" lean-forward="false" selection-start-line="50" selection-start-column="30" selection-end-line="53" selection-end-column="80" />
+        <state relative-caret-position="180">
+          <caret line="31" column="38" lean-forward="false" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
+          <folding>
+            <element signature="e#1237#1276#0#HTML" expanded="true" />
+            <element signature="e#1629#1663#0#HTML" expanded="true" />
+            <element signature="e#1738#1763#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -804,7 +819,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1068">
+        <state relative-caret-position="302">
           <caret line="322" column="17" lean-forward="false" selection-start-line="322" selection-start-column="17" selection-end-line="322" selection-end-column="17" />
           <folding />
         </state>
@@ -814,15 +829,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-560">
           <caret line="8" column="57" lean-forward="false" selection-start-line="8" selection-start-column="57" selection-end-line="8" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/convivencia/partes/partes.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="27" column="52" lean-forward="false" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
+        <state relative-caret-position="180">
+          <caret line="33" column="81" lean-forward="false" selection-start-line="33" selection-start-column="56" selection-end-line="33" selection-end-column="81" />
           <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
           </folding>
@@ -831,20 +846,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="233" column="0" lean-forward="false" selection-start-line="233" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
+        <state relative-caret-position="183">
+          <caret line="139" column="0" lean-forward="false" selection-start-line="139" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/convivencia.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="264" column="61" lean-forward="true" selection-start-line="264" selection-start-column="61" selection-end-line="264" selection-end-column="61" />
+        <state relative-caret-position="505">
+          <caret line="276" column="34" lean-forward="false" selection-start-line="276" selection-start-column="34" selection-end-line="276" selection-end-column="34" />
           <folding>
-            <marker date="1510745097149" expanded="true" signature="1927:1944" ph="..." />
-            <marker date="1510745097149" expanded="true" signature="8268:8285" ph="..." />
-            <marker date="1510745097149" expanded="true" signature="12556:12573" ph="..." />
+            <marker date="1510754161767" expanded="true" signature="1866:1883" ph="..." />
+            <marker date="1510754161767" expanded="true" signature="8232:8249" ph="..." />
+            <marker date="1510754161767" expanded="true" signature="12798:12815" ph="..." />
           </folding>
         </state>
       </provider>

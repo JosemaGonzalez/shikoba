@@ -273,6 +273,10 @@ $(document).ready(function () {
             $(".paginate_button").addClass("btn  blue darken-2 waves-effect waves-light z-depth-3 pagi");
             $(".paginate_button.current").removeClass("paginate_button current");
             $(".paginate_button").removeClass("paginate_button");
+            //muestro los select de las tablas
+            $("#DataTables_Table_0_length select").css("display","block");
+
+
         },
         "lengthMenu": [[5, 10, 20, 30, -1], [5, 10, 20, 30, "Todos"]],
         language: {
@@ -352,6 +356,11 @@ $(document).ready(function () {
             $(".paginate_button").addClass("btn  blue darken-2 waves-effect waves-light z-depth-3 pagi");
             $(".paginate_button.current").removeClass("paginate_button current");
             $(".paginate_button").removeClass("paginate_button");
+            //muestro los select de las tablas
+            $("#DataTables_Table_0_length select").css("display","block");
+            $("#carnetFilterPuntos").material_select();
+
+
         },
         "lengthMenu": [[5, 10, 20, 30, -1], [5, 10, 20, 30, "Todos"]],
         language: {
