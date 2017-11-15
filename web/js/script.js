@@ -132,7 +132,6 @@ $(document).ready(function () {
     //acciones cuando carga la pagina
     //acciones cuando se redimensiona la pagina
     $(window).on("load resize", function () {
-
         let calculo = $(window).height() - $("header").outerHeight(true) - $("h3").outerHeight(true) - $("h4").outerHeight(true);
         $("#row1,#row2,#row3").height(calculo*0.8);
         $("#row1 img").height(calculo * 0.7);
@@ -217,10 +216,8 @@ $(document).ready(function () {
         $(".chosen-choices").css("background-color", "none");
         $(".chosen-choices").css("background-image", "none");
         $(".chosen-choices").css("border", "0");
-        //$(".chosen-search-input").css("width", "93%");
         $("#diarioAulaForm #appbundle_diarioaulaconvivencia div").addClass("input-field");
         if ($(window).width() < "991") {
-            //$('#DataTables_Table_0_length').css("margin-top", "2%");
             //accion al click en los paginadores del datatable
             $("#DataTables_Table_0_paginate a").on("click", function () {
                 $("#DataTables_Table_0 th,#DataTables_Table_0 td").css("padding", "15px 18px");
