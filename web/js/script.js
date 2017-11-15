@@ -12,19 +12,6 @@ function isPageFullyLoaded() {
 }
 
 $(document).ready(function () {
-    //botones de exportar tablas
-    $("#DataTables_Table_0_wrapper>.dt-buttons").after("<div id='nuevo' class='col s7 m4 l3'></div>");
-    if ($(window).width() < "991") {
-        $("#DataTables_Table_0_wrapper>.dt-buttons").after("<div id='nuevo' class='col s7 m4 l3'></div>");
-        $('.dt-buttons').css("margin-right", "2%");
-        $('.dt-buttons').css("text-align", "right");
-        $('.dt-buttons').removeClass("dt-buttons");
-    } else {
-        $("#DataTables_Table_0_wrapper>#DataTables_Table_0_filter").after("<div id='nuevo' class='col s7 m4 l3'></div>");
-    }
-    //muevo el contenido dentro de las tablas
-    $("#aqui").appendTo("#nuevo");
-    $("#aqui2").appendTo("#nuevo");
 
     //estilo banner para que tenga siempre la altura que lo contiene
     let $nav = $(".navbar-fixed");
@@ -145,18 +132,7 @@ $(document).ready(function () {
     //acciones cuando carga la pagina
     //acciones cuando se redimensiona la pagina
     $(window).on("load resize", function () {
-        if ($(window).width() < "991") {
-            //botones de exortar en tablas
-            $("#DataTables_Table_0_wrapper>.dt-buttons").after("<div id='nuevo' class='col s7 m4 l3'></div>");
-            $('.dt-buttons').css("margin-right", "2%");
-            $('.dt-buttons').css("text-align", "right");
-            $('.dt-buttons').removeClass("dt-buttons");
-        } else {
-            $("#DataTables_Table_0_wrapper>#DataTables_Table_0_filter").after("<div id='nuevo' class='col s7 m4 l3'></div>");
-        }
-        //muevo el contenido dentro de las tablas
-        $("#aqui").appendTo("#nuevo");
-        $("#aqui2").appendTo("#nuevo");
+
         let calculo = $(window).height() - $("header").outerHeight(true) - $("h3").outerHeight(true) - $("h4").outerHeight(true);
         $("#row1,#row2,#row3").height(calculo*0.8);
         $("#row1 img").height(calculo * 0.7);
@@ -210,11 +186,13 @@ $(document).ready(function () {
         //select mostrar datatables
         $('#DataTables_Table_0_length select').css("display", "block");
         $('#DataTables_Table_0_length').addClass("col s4 m2 l1 left");
+
         //estilo al filtro datatables
         $('#DataTables_Table_0_filter').addClass("col s8 m6 l3 left");
         //quitado linea negra en el datatable
         $("table.dataTable.no-footer").css("border", "0");
         $("table.dataTable thead th, table.dataTable thead td").css("border-bottom", "0");
+        $("table.dataTable thead th, table.dataTable thead td").css("width", "inherit");
         //buscador en diario
         $("#horasSelect_chosen").css("min-width", "100");
         //boton buscar movido
@@ -242,7 +220,7 @@ $(document).ready(function () {
         //$(".chosen-search-input").css("width", "93%");
         $("#diarioAulaForm #appbundle_diarioaulaconvivencia div").addClass("input-field");
         if ($(window).width() < "991") {
-            $('#DataTables_Table_0_length').css("margin-top", "2%");
+            //$('#DataTables_Table_0_length').css("margin-top", "2%");
             //accion al click en los paginadores del datatable
             $("#DataTables_Table_0_paginate a").on("click", function () {
                 $("#DataTables_Table_0 th,#DataTables_Table_0 td").css("padding", "15px 18px");
@@ -253,10 +231,12 @@ $(document).ready(function () {
             $("#DataTables_Table_0").css("border-bottom", "0");
             //estilo boton buscar en resolucion movil
             $("#botonbus button").css("margin-top", "1%");
+            $("#botonbus button").css("margin-right", "4%");
             $("#botonbus .bus2").css("margin-top", "-4%");
             $(".dataTables_filter").css("margin-top", "0");
 
         }
+
     });
     //Gestion alumnos twig
     $('#contenedorUpload').on('change', 'input:file', function () {

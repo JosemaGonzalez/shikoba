@@ -1,10 +1,10 @@
 /**
  * Created by Josema on 04/10/2017.
- */
-$(window).bind("load", function () {
+
+ $(window).bind("load", function () {
     "use strict";
 });
-
+ */
 $(document).ready(function () {
 
     const SANCION_TYPE_HORAS = 5;
@@ -235,16 +235,40 @@ $(document).ready(function () {
         //css para cambiar el estilo al cargar la tabla
         "drawCallback": function (settings) {
             $(".dt-button").addClass("btn btn-floating blue darken-3");
+            $("#DataTables_Table_0_wrapper>div:first-child").addClass("col s12 m4 center");
             $(".dt-button").removeClass("dt-button");
-            //$("#DataTables_Table_0_wrapper>#DataTables_Table_0_filter").after("<div id='nuevo'></div>");
-            if ($(window).width() < "991") {
-                //botones de exortar en tablas
-                $("#DataTables_Table_0_wrapper>.dt-buttons").after("<div id='nuevo' class='col s7 m4 l3'></div>");
-                $('.dt-buttons').css("margin-right", "2%");
-                $('.dt-buttons').css("text-align", "right");
-                $('.dt-buttons').removeClass("dt-buttons");
-            } else {
-                $("#DataTables_Table_0_wrapper>#DataTables_Table_0_filter").after("<div id='nuevo' class='col s7 m4 l3'></div>");
+            //botones de exortar en tablas
+            $("#DataTables_Table_0_wrapper>.dt-buttons").after("<div id='nuevo' class='col s12 m4 l3'></div>");
+            $('.dt-buttons').css("margin-right", "2%");
+            //$('.dt-buttons').css("text-align", "right");
+            $("#DataTables_Table_0_wrapper>div>.remo").remove();
+            $("#DataTables_Table_0_wrapper>div>.buttons-pdf").before("<label style='margin-right: 3%;' class='remo'>Exportar</label>");
+            $('.dt-buttons').removeClass("dt-buttons");
+            if ($(window).width() > "600" && $(window).width() < "990") {
+                $("#DataTables_Table_0_wrapper>div:first-child").addClass("right offset-m8");
+                $("#DataTables_Table_0_wrapper>div:first-child").removeClass("center");
+                if ( $("#parte").length > 0 ) {
+                    $("#DataTables_Table_0_wrapper>div.offset-m8").before("<div id='botonnuevo' class='col m3 left'></div>");
+                    $("#DataTables_Table_0_wrapper>div.offset-m8").addClass("offset-m4");
+                    $("#DataTables_Table_0_wrapper>div.offset-m8").removeClass("offset-m8");
+                    $("#parte").appendTo("#botonnuevo");
+                }
+
+            }
+            if ($(window).width() > "991") {
+                $("#DataTables_Table_0_wrapper>div:first-child").removeClass("center");
+                $("#DataTables_Table_0_wrapper>div:first-child").addClass("right l3");
+                $("#DataTables_Table_0_wrapper>div:first-child").css("text-align","end");
+                $("#DataTables_Table_0_wrapper>div:first-child").css("margin-top","2%");
+                $("#nuevo").addClass("center");
+                if ( $("#parte").length > 0 ) {
+                    $("#botonbus button").css("left", "-5%");
+                    $("#nuevo").addClass("l4");
+                    $("#nuevo").removeClass("l3");
+
+                }
+
+
             }
             $("#aqui").appendTo("#nuevo");
             $("#aqui2").appendTo("#nuevo");
@@ -302,16 +326,27 @@ $(document).ready(function () {
         //css para cambiar el estilo al cargar la tabla
         "drawCallback": function (settings) {
             $(".dt-button").addClass("btn btn-floating blue darken-3");
+            $("#DataTables_Table_0_wrapper>div:first-child").addClass("col s12 m4 center");
             $(".dt-button").removeClass("dt-button");
-           // $("#DataTables_Table_0_wrapper>#DataTables_Table_0_filter").after("<div id='nuevo'></div>");
-            if ($(window).width() < "991") {
-                //botones de exortar en tablas
-                $("#DataTables_Table_0_wrapper>.dt-buttons").after("<div id='nuevo' class='col s7 m4 l3'></div>");
-                $('.dt-buttons').css("margin-right", "2%");
-                $('.dt-buttons').css("text-align", "right");
-                $('.dt-buttons').removeClass("dt-buttons");
-            } else {
-                $("#DataTables_Table_0_wrapper>#DataTables_Table_0_filter").after("<div id='nuevo' class='col s7 m4 l3'></div>");
+            //botones de exortar en tablas
+            $("#DataTables_Table_0_wrapper>.dt-buttons").after("<div id='nuevo' class='col s12 m4 l3'></div>");
+            $('.dt-buttons').css("margin-right", "2%");
+            //$('.dt-buttons').css("text-align", "right");
+            $("#DataTables_Table_0_wrapper>div>.remo").remove();
+            $("#DataTables_Table_0_wrapper>div>.buttons-pdf").before("<label style='margin-right: 3%;' class='remo'>Exportar</label>");
+            $('.dt-buttons').removeClass("dt-buttons");
+            if ($(window).width() > "600" && $(window).width() < "990") {
+                $("#DataTables_Table_0_wrapper>div:first-child").addClass("right offset-m8");
+                $("#DataTables_Table_0_wrapper>div:first-child").removeClass("center");
+
+            }
+            if ($(window).width() > "991") {
+                $("#DataTables_Table_0_wrapper>div:first-child").removeClass("center");
+                $("#DataTables_Table_0_wrapper>div:first-child").addClass("right l3");
+                $("#DataTables_Table_0_wrapper>div:first-child").css("text-align","end");
+                $("#DataTables_Table_0_wrapper>div:first-child").css("margin-top","2%");
+                $("#nuevo").addClass("center");
+
             }
             $("#aqui").appendTo("#nuevo");
             $("#aqui2").appendTo("#nuevo");
