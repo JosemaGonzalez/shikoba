@@ -236,7 +236,16 @@ $(document).ready(function () {
         "drawCallback": function (settings) {
             $(".dt-button").addClass("btn btn-floating blue darken-3");
             $(".dt-button").removeClass("dt-button");
-            $("#DataTables_Table_0_wrapper>#DataTables_Table_0_filter").after("<div id='nuevo'></div>");
+            //$("#DataTables_Table_0_wrapper>#DataTables_Table_0_filter").after("<div id='nuevo'></div>");
+            if ($(window).width() < "991") {
+                //botones de exortar en tablas
+                $("#DataTables_Table_0_wrapper>.dt-buttons").after("<div id='nuevo' class='col s7 m4 l3'></div>");
+                $('.dt-buttons').css("margin-right", "2%");
+                $('.dt-buttons').css("text-align", "right");
+                $('.dt-buttons').removeClass("dt-buttons");
+            } else {
+                $("#DataTables_Table_0_wrapper>#DataTables_Table_0_filter").after("<div id='nuevo' class='col s7 m4 l3'></div>");
+            }
             $("#aqui").appendTo("#nuevo");
             $("#aqui2").appendTo("#nuevo");
             $(".paginate_button.current").addClass("btn  blue darken-4 waves-effect waves-light z-depth-3 pagi");
@@ -294,9 +303,19 @@ $(document).ready(function () {
         "drawCallback": function (settings) {
             $(".dt-button").addClass("btn btn-floating blue darken-3");
             $(".dt-button").removeClass("dt-button");
-            $("#DataTables_Table_0_wrapper>#DataTables_Table_0_filter").after("<div id='nuevo'></div>");
+           // $("#DataTables_Table_0_wrapper>#DataTables_Table_0_filter").after("<div id='nuevo'></div>");
+            if ($(window).width() < "991") {
+                //botones de exortar en tablas
+                $("#DataTables_Table_0_wrapper>.dt-buttons").after("<div id='nuevo' class='col s7 m4 l3'></div>");
+                $('.dt-buttons').css("margin-right", "2%");
+                $('.dt-buttons').css("text-align", "right");
+                $('.dt-buttons').removeClass("dt-buttons");
+            } else {
+                $("#DataTables_Table_0_wrapper>#DataTables_Table_0_filter").after("<div id='nuevo' class='col s7 m4 l3'></div>");
+            }
             $("#aqui").appendTo("#nuevo");
             $("#aqui2").appendTo("#nuevo");
+
             $(".paginate_button.current").addClass("btn  blue darken-4 waves-effect waves-light z-depth-3 pagi");
             $(".paginate_button").addClass("btn  blue darken-2 waves-effect waves-light z-depth-3 pagi");
             $(".paginate_button.current").removeClass("paginate_button current");

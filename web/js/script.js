@@ -102,6 +102,8 @@ $(document).ready(function () {
     $(".dropdown-button").dropdown({hover: true});
     let drop = $(".dropdown-button").width();
     $(".dropdown-content").css("margin-left", drop);
+    let drop2 = $("nav li:last").width();
+    $("nav .dropdown-content").css("margin-left", drop2);
     //activador barra lateral
     $('.button-collapse').sideNav();
     //ventanas modales
@@ -137,6 +139,8 @@ $(document).ready(function () {
             $("#DataTables_Table_0_paginate a").css("margin", "0.3% 0.2%");
         });
     });
+    //altura para el fondo en login
+    $('#fondo,.back').css('min-height', $("main").outerHeight(true));
 
     //acciones cuando carga la pagina
     //acciones cuando se redimensiona la pagina
@@ -160,7 +164,7 @@ $(document).ready(function () {
         //iniciador select carnets admin
         $("#carnetFilterPuntos").material_select();
         //altura para el fondo en login
-        $('#fondo,.back').css('min-height', $("main").height() + 15);
+        $('#fondo,.back').css('min-height', $("main").outerHeight(true));
 
         //clase para estilo partes conducta
         $("#parte_form_idConducta label").addClass("altura");

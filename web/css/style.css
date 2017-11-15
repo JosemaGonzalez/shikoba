@@ -322,3 +322,7 @@ th {
     width: 25px!important;
     height: 25px;
 }
+/*Contenedor del chosen que se quita el ancho*/
+.chosen-container{
+    min-width: 100%!important;
+}
