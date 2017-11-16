@@ -56,6 +56,8 @@ class ComposerStaticInit59540302f09d243e09a53e7ebc2bc78f
         ),
         'K' => 
         array (
+            'Knp\\Snappy\\' => 11,
+            'Knp\\Bundle\\SnappyBundle\\' => 24,
             'Knp\\Bundle\\PaginatorBundle\\' => 27,
         ),
         'I' => 
@@ -179,6 +181,14 @@ class ComposerStaticInit59540302f09d243e09a53e7ebc2bc78f
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'Knp\\Snappy\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/knplabs/knp-snappy/src/Knp/Snappy',
+        ),
+        'Knp\\Bundle\\SnappyBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/knplabs/knp-snappy-bundle',
         ),
         'Knp\\Bundle\\PaginatorBundle\\' => 
         array (

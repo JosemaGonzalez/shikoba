@@ -173,6 +173,8 @@ class appDevDebugProjectContainer extends Container
             'knp_paginator.subscriber.sliding_pagination' => 'getKnpPaginator_Subscriber_SlidingPaginationService',
             'knp_paginator.subscriber.sortable' => 'getKnpPaginator_Subscriber_SortableService',
             'knp_paginator.twig.extension.pagination' => 'getKnpPaginator_Twig_Extension_PaginationService',
+            'knp_snappy.image' => 'getKnpSnappy_ImageService',
+            'knp_snappy.pdf' => 'getKnpSnappy_PdfService',
             'locale_listener' => 'getLocaleListenerService',
             'logger' => 'getLoggerService',
             'monolog.activation_strategy.not_found' => 'getMonolog_ActivationStrategy_NotFoundService',
@@ -189,6 +191,7 @@ class appDevDebugProjectContainer extends Container
             'monolog.logger.request' => 'getMonolog_Logger_RequestService',
             'monolog.logger.router' => 'getMonolog_Logger_RouterService',
             'monolog.logger.security' => 'getMonolog_Logger_SecurityService',
+            'monolog.logger.snappy' => 'getMonolog_Logger_SnappyService',
             'monolog.logger.templating' => 'getMonolog_Logger_TemplatingService',
             'monolog.processor.psr_log_message' => 'getMonolog_Processor_PsrLogMessageService',
             'profiler' => 'getProfilerService',
@@ -1748,6 +1751,40 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
+     * Gets the public 'knp_snappy.image' shared service.
+     *
+     * @return \Knp\Snappy\Image
+     */
+    protected function getKnpSnappy_ImageService()
+    {
+        $this->services['knp_snappy.image'] = $instance = new \Knp\Snappy\Image('wkhtmltoimage', array(), array());
+
+        if ($this->has('monolog.logger.snappy')) {
+            $instance->setLogger(${($_ = isset($this->services['monolog.logger.snappy']) ? $this->services['monolog.logger.snappy'] : $this->get('monolog.logger.snappy', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        }
+        $instance->setTemporaryFolder(__DIR__);
+
+        return $instance;
+    }
+
+    /**
+     * Gets the public 'knp_snappy.pdf' shared service.
+     *
+     * @return \Knp\Snappy\Pdf
+     */
+    protected function getKnpSnappy_PdfService()
+    {
+        $this->services['knp_snappy.pdf'] = $instance = new \Knp\Snappy\Pdf('"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe"', array('no-outline' => true, 'page-size' => 'LETTER', 'encoding' => 'UTF-8'), array());
+
+        if ($this->has('monolog.logger.snappy')) {
+            $instance->setLogger(${($_ = isset($this->services['monolog.logger.snappy']) ? $this->services['monolog.logger.snappy'] : $this->get('monolog.logger.snappy', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        }
+        $instance->setTemporaryFolder(__DIR__);
+
+        return $instance;
+    }
+
+    /**
      * Gets the public 'locale_listener' shared service.
      *
      * @return \Symfony\Component\HttpKernel\EventListener\LocaleListener
@@ -1966,6 +2003,22 @@ class appDevDebugProjectContainer extends Container
     protected function getMonolog_Logger_SecurityService()
     {
         $this->services['monolog.logger.security'] = $instance = new \Symfony\Bridge\Monolog\Logger('security');
+
+        $instance->pushProcessor(${($_ = isset($this->services['debug.log_processor']) ? $this->services['debug.log_processor'] : $this->getDebug_LogProcessorService()) && false ?: '_'});
+        $instance->pushHandler(${($_ = isset($this->services['monolog.handler.console']) ? $this->services['monolog.handler.console'] : $this->get('monolog.handler.console')) && false ?: '_'});
+        $instance->pushHandler(${($_ = isset($this->services['monolog.handler.main']) ? $this->services['monolog.handler.main'] : $this->get('monolog.handler.main')) && false ?: '_'});
+
+        return $instance;
+    }
+
+    /**
+     * Gets the public 'monolog.logger.snappy' shared service.
+     *
+     * @return \Symfony\Bridge\Monolog\Logger
+     */
+    protected function getMonolog_Logger_SnappyService()
+    {
+        $this->services['monolog.logger.snappy'] = $instance = new \Symfony\Bridge\Monolog\Logger('snappy');
 
         $instance->pushProcessor(${($_ = isset($this->services['debug.log_processor']) ? $this->services['debug.log_processor'] : $this->getDebug_LogProcessorService()) && false ?: '_'});
         $instance->pushHandler(${($_ = isset($this->services['monolog.handler.console']) ? $this->services['monolog.handler.console'] : $this->get('monolog.handler.console')) && false ?: '_'});
@@ -2274,7 +2327,7 @@ class appDevDebugProjectContainer extends Container
         $ca = new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $h, $z, $w, 'main', $aa, $ba, array('check_path' => 'login', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'csrf_token_id' => 'authenticate', 'post_only' => true), $a, $d, NULL);
         $ca->setRememberMeServices($x);
 
-        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($v, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $c, 1 => new \Symfony\Component\Security\Core\User\InMemoryUserProvider()), 'main', $a, $d, $e), 2 => $y, 3 => $ca, 4 => new \Symfony\Component\Security\Http\Firewall\RememberMeListener($b, $x, $h, $a, $d, true, $z), 5 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '5a06fa58829036.81570698', $a, $h), 6 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, ${($_ = isset($this->services['debug.security.access.decision_manager']) ? $this->services['debug.security.access.decision_manager'] : $this->getDebug_Security_Access_DecisionManagerService()) && false ?: '_'}, $v, $h)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $e, $w, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($g, $w, 'login', false), NULL, NULL, $a, false), new \Symfony\Bundle\SecurityBundle\Security\FirewallConfig('main', 'security.user_checker', NULL, true, false, 'security.user.provider.concrete.user_provider', 'main', 'security.authentication.form_entry_point.main', NULL, NULL, array(0 => 'logout', 1 => 'form_login', 2 => 'remember_me', 3 => 'anonymous')));
+        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($v, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $c, 1 => new \Symfony\Component\Security\Core\User\InMemoryUserProvider()), 'main', $a, $d, $e), 2 => $y, 3 => $ca, 4 => new \Symfony\Component\Security\Http\Firewall\RememberMeListener($b, $x, $h, $a, $d, true, $z), 5 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '5a0d6b8d83a7f3.29959523', $a, $h), 6 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, ${($_ = isset($this->services['debug.security.access.decision_manager']) ? $this->services['debug.security.access.decision_manager'] : $this->getDebug_Security_Access_DecisionManagerService()) && false ?: '_'}, $v, $h)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $e, $w, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($g, $w, 'login', false), NULL, NULL, $a, false), new \Symfony\Bundle\SecurityBundle\Security\FirewallConfig('main', 'security.user_checker', NULL, true, false, 'security.user.provider.concrete.user_provider', 'main', 'security.authentication.form_entry_point.main', NULL, NULL, array(0 => 'logout', 1 => 'form_login', 2 => 'remember_me', 3 => 'anonymous')));
     }
 
     /**
@@ -3077,7 +3130,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getCache_Annotations_RecorderInnerService($lazyLoad = true)
     {
-        return $this->services['cache.annotations.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('uSW9zbiRXa', 0, '1sWSHZgpRFoGr5YP0NE5t5', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        return $this->services['cache.annotations.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('uSW9zbiRXa', 0, 'FyxmohYaoeJMmxwB3kCJYz', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
     }
 
     /**
@@ -3103,7 +3156,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getCache_Serializer_RecorderInnerService($lazyLoad = true)
     {
-        return $this->services['cache.serializer.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('cMU0lPatoz', 0, '1sWSHZgpRFoGr5YP0NE5t5', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        return $this->services['cache.serializer.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('cMU0lPatoz', 0, 'FyxmohYaoeJMmxwB3kCJYz', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
     }
 
     /**
@@ -3113,7 +3166,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getCache_System_RecorderInnerService($lazyLoad = true)
     {
-        return $this->services['cache.system.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('pU3WIUY3cY', 0, '1sWSHZgpRFoGr5YP0NE5t5', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        return $this->services['cache.system.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('pU3WIUY3cY', 0, 'FyxmohYaoeJMmxwB3kCJYz', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
     }
 
     /**
@@ -3133,7 +3186,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getCache_Validator_RecorderInnerService($lazyLoad = true)
     {
-        return $this->services['cache.validator.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('qHX72VvaTz', 0, '1sWSHZgpRFoGr5YP0NE5t5', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
+        return $this->services['cache.validator.recorder_inner'] = \Symfony\Component\Cache\Adapter\AbstractAdapter::createSystemCache('qHX72VvaTz', 0, 'FyxmohYaoeJMmxwB3kCJYz', (__DIR__.'/pools'), ${($_ = isset($this->services['monolog.logger.cache']) ? $this->services['monolog.logger.cache'] : $this->get('monolog.logger.cache', ContainerInterface::NULL_ON_INVALID_REFERENCE)) && false ?: '_'});
     }
 
     /**
@@ -3395,7 +3448,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSecurity_Authentication_Provider_Anonymous_MainService()
     {
-        return $this->services['security.authentication.provider.anonymous.main'] = new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('5a06fa58829036.81570698');
+        return $this->services['security.authentication.provider.anonymous.main'] = new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('5a0d6b8d83a7f3.29959523');
     }
 
     /**
@@ -3689,6 +3742,11 @@ class appDevDebugProjectContainer extends Container
                     'path' => ($this->targetDirs[3].'\\vendor\\knplabs\\knp-paginator-bundle'),
                     'namespace' => 'Knp\\Bundle\\PaginatorBundle',
                 ),
+                'KnpSnappyBundle' => array(
+                    'parent' => NULL,
+                    'path' => 'C:/xampp/htdocs/shikoba/vendor/knplabs/knp-snappy-bundle',
+                    'namespace' => 'Knp\\Bundle\\SnappyBundle',
+                ),
                 'DebugBundle' => array(
                     'parent' => NULL,
                     'path' => ($this->targetDirs[3].'\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\DebugBundle'),
@@ -3746,6 +3804,7 @@ class appDevDebugProjectContainer extends Container
                 'SensioFrameworkExtraBundle' => 'Sensio\\Bundle\\FrameworkExtraBundle\\SensioFrameworkExtraBundle',
                 'AppBundle' => 'AppBundle\\AppBundle',
                 'KnpPaginatorBundle' => 'Knp\\Bundle\\PaginatorBundle\\KnpPaginatorBundle',
+                'KnpSnappyBundle' => 'Knp\\Bundle\\SnappyBundle\\KnpSnappyBundle',
                 'DebugBundle' => 'Symfony\\Bundle\\DebugBundle\\DebugBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
                 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle',
@@ -4009,6 +4068,22 @@ class appDevDebugProjectContainer extends Container
             'knp_paginator.template.filtration' => 'KnpPaginatorBundle:Pagination:filtration.html.twig',
             'knp_paginator.template.sortable' => 'KnpPaginatorBundle:Pagination:sortable_link.html.twig',
             'knp_paginator.page_range' => 5,
+            'knp_snappy.pdf.binary' => '"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe"',
+            'knp_snappy.pdf.options' => array(
+                'no-outline' => true,
+                'page-size' => 'LETTER',
+                'encoding' => 'UTF-8',
+            ),
+            'knp_snappy.pdf.env' => array(
+
+            ),
+            'knp_snappy.image.binary' => 'wkhtmltoimage',
+            'knp_snappy.image.options' => array(
+
+            ),
+            'knp_snappy.image.env' => array(
+
+            ),
             'web_profiler.debug_toolbar.position' => 'bottom',
             'web_profiler.debug_toolbar.intercept_redirects' => false,
             'web_profiler.debug_toolbar.mode' => 2,

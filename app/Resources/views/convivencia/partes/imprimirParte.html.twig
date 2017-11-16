@@ -1,0 +1,162 @@
+<meta charset="UTF-8"/>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    * {
+        font-size: 18px;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+    }
+
+    .faltas {
+        border: 0;
+        border-left: 1px solid black;
+    }
+
+    .faltas2 {
+        border: 0;
+        border-right: 1px solid black;
+    }
+
+    .alig {
+        text-align: right;
+    }
+
+    .back {
+        background-color: darkgrey;
+    }
+
+    .borde {
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 2%;
+        padding: 20px;
+        border: 3px solid black;
+    }
+</style>
+
+<div>
+    <br>
+    <div style="width: 10%;display: inline-block"><img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Logotipo_de_la_Junta_de_Andaluc%C3%ADa.svg/1200px-Logotipo_de_la_Junta_de_Andaluc%C3%ADa.svg.png"
+                width="110" height="90"></div>
+    <div style="width: 28%;display: inline-block;vertical-align: top;margin-top: 2%;margin-left: 1%">CONSEJERERÍA DE
+        EDUCACIÓN<br>IES GRAN CAPITÁN<br>Córdoba
+    </div>
+    <div style="width: 50%;display: inline-block;vertical-align: middle"><h2 style="font-size: 22px">PARTE DE INCIDENCIAS</h2></div>
+    <table>
+        <tr>
+            <td COLSPAN="2">APELLIDOS DEL ALUMNO<br>jjjujjj
+            </td>
+            <td>NOMBRE DEL ALUMNO<br>jjjgkh
+            </td>
+            <td>CURSO<br>1º ESO
+            </td>
+        </tr>
+        <tr>
+            <td COLSPAN="2">PROFESOR QUE TRAMITA EL PARTE<br>PACO PEPE
+            </td>
+            <td colspan="2">TUTOR DEL GRUPO DEL ALUMNO<br>PEDRO PEREZ
+            </td>
+        </tr>
+        <tr class="back">
+            <td COLSPAN="4">CAUSAS DEL PARTE (marcar todas las que correspondan)</td>
+        </tr>
+        <tr>
+            <td>A/ FALTAS LEVES</td>
+            <td class="alig">PUNTOS</td>
+            <td>A/ FALTAS GRAVES</td>
+            <td class="alig">PUNTOS</td>
+        </tr>
+        <TR>
+            <TD class="faltas">FALTA 1</TD>
+            <TD class="faltas2 alig">1</TD>
+            <TD class="faltas">FALTA 2</TD>
+            <TD class="faltas2 alig">10</TD>
+
+        </TR>
+        <TR style="border-bottom: 1px solid black!important;">
+            <TD class="faltas">FALTA 1</TD>
+            <TD class="faltas2 alig">1</TD>
+            <TD class="faltas">FALTA 2</TD>
+            <TD class="faltas2 alig">10</TD>
+
+        </TR>
+        <tr class="back">
+            <td COLSPAN="4">DETALLE DE LA CONDUCTA</td>
+        </tr>
+        <TR>
+            <TD COLSPAN="4">
+                {#{% if parte.descripcion is null %}#}
+                    {#No es necesario#}
+                {#{% else %}#}
+                {#{{ parte.descripcion }}#}
+                {#{% endif %}#}
+
+            </TD>
+        </TR>
+        <tr class="back">
+            <td COLSPAN="4">TAREA PROPUESTA</td>
+        </tr>
+        <TR>
+            <TD COLSPAN="4">
+                {#{% if parte.tareas is null %}#}
+                    {#No es necesario#}
+                {#{% else %}#}
+                {#{{ parte.tareas }}#}
+                {#{% endif %}#}
+
+            </TD>
+        </TR>
+        <tr class="back">
+            <td COLSPAN="4">SI IMPLICA EXULSIÓN DEL AULA</td>
+        </tr>
+        <tr>
+            <td>Hora de salida del aula</td>
+            <td>
+                {#{{ parte.horaSalidaAula|date('H:i:s') }}#}
+            </td>
+            <td>Hora de llegada a jefatura</td>
+            <td>
+                {#{{ parte.horaLlegadaJefatura|date('H:i:s') }}#}
+            </td>
+        </tr>
+        <tr>
+            <td>Fecha</td>
+            <td>
+                {#{{ parte.fecha|date('d/m/Y') }}#}
+            </td>
+            <td>Firma del profesor</td>
+            <td><br><br></td>
+        </tr>
+        <tr>
+            {#{% if parte.recupera != 0 %}#}
+                {#<td COLSPAN="4"><input type="checkbox" checked> Actitud correcta en el aula de convivencia y/o#}
+                    {#realización de tareas (Rebaja 1 punto)#}
+                {#</td>#}
+            {#{% endif %}#}
+            {#{% if parte.recupera == 0 %}#}
+                <td COLSPAN="4"><input type="checkbox"> Actitud correcta en el aula de convivencia y/o realización de
+                    tareas (Rebaja 1 punto)
+                </td>
+            {#{% endif %}#}
+
+        </tr>
+
+    </table>
+    <div class="borde"><p>D./Dña. _____________________________________________________________________________</p>
+        <p>padre/madre/tutor legal de alumnoaqui,</p>
+        <p>ha recibido el Parte de Incidencias relativo a su hijo/a.</p>
+        <p><br><br> En Córdoba a ______ de ___________________ de 20_____</p>
+        <p style="text-align: right">Firma</p>
+    </div>
+    <div style="font-size: 12px"><br>(El presente parte de incidencias se devolverá Firmado al día siguiente de su
+        recepción.)
+    </div>
+
+</div>

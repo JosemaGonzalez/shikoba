@@ -18,6 +18,7 @@
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
       <parameter key="AppBundle">AppBundle\AppBundle</parameter>
       <parameter key="KnpPaginatorBundle">Knp\Bundle\PaginatorBundle\KnpPaginatorBundle</parameter>
+      <parameter key="KnpSnappyBundle">Knp\Bundle\SnappyBundle\KnpSnappyBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -69,6 +70,11 @@
         <parameter key="parent">null</parameter>
         <parameter key="path">C:\xampp\htdocs\shikoba\vendor\knplabs\knp-paginator-bundle</parameter>
         <parameter key="namespace">Knp\Bundle\PaginatorBundle</parameter>
+      </parameter>
+      <parameter key="KnpSnappyBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">C:/xampp/htdocs/shikoba/vendor/knplabs/knp-snappy-bundle</parameter>
+        <parameter key="namespace">Knp\Bundle\SnappyBundle</parameter>
       </parameter>
       <parameter key="DebugBundle" type="collection">
         <parameter key="parent">null</parameter>
@@ -347,6 +353,16 @@
     <parameter key="knp_paginator.template.filtration">KnpPaginatorBundle:Pagination:filtration.html.twig</parameter>
     <parameter key="knp_paginator.template.sortable">KnpPaginatorBundle:Pagination:sortable_link.html.twig</parameter>
     <parameter key="knp_paginator.page_range">5</parameter>
+    <parameter key="knp_snappy.pdf.binary">"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe"</parameter>
+    <parameter key="knp_snappy.pdf.options" type="collection">
+      <parameter key="no-outline">true</parameter>
+      <parameter key="page-size">LETTER</parameter>
+      <parameter key="encoding">UTF-8</parameter>
+    </parameter>
+    <parameter key="knp_snappy.pdf.env" type="collection"/>
+    <parameter key="knp_snappy.image.binary">wkhtmltoimage</parameter>
+    <parameter key="knp_snappy.image.options" type="collection"/>
+    <parameter key="knp_snappy.image.env" type="collection"/>
     <parameter key="web_profiler.debug_toolbar.position">bottom</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
     <parameter key="web_profiler.debug_toolbar.mode">2</parameter>
@@ -632,7 +648,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>1sWSHZgpRFoGr5YP0NE5t5</argument>
+      <argument>FyxmohYaoeJMmxwB3kCJYz</argument>
       <argument>C:\xampp\htdocs\shikoba\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -642,7 +658,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>1sWSHZgpRFoGr5YP0NE5t5</argument>
+      <argument>FyxmohYaoeJMmxwB3kCJYz</argument>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -2485,12 +2501,12 @@
     </service>
     <service id="security.authentication.listener.anonymous.main" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
-      <argument>5a06fa58829036.81570698</argument>
+      <argument>5a0d6b8d83a7f3.29959523</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.authentication.provider.anonymous.main" class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-      <argument>5a06fa58829036.81570698</argument>
+      <argument>5a0d6b8d83a7f3.29959523</argument>
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
       <argument type="service" id="security.token_storage"/>
@@ -3395,6 +3411,34 @@
       <tag name="twig.extension"/>
       <argument type="service" id="knp_paginator.helper.processor"/>
     </service>
+    <service id="knp_snappy.pdf" class="Knp\Snappy\Pdf">
+      <tag name="monolog.logger" channel="snappy"/>
+      <argument>"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe"</argument>
+      <argument type="collection">
+        <argument key="no-outline">true</argument>
+        <argument key="page-size">LETTER</argument>
+        <argument key="encoding">UTF-8</argument>
+      </argument>
+      <argument type="collection"/>
+      <call method="setLogger">
+        <argument type="service" id="monolog.logger.snappy" on-invalid="ignore"/>
+      </call>
+      <call method="setTemporaryFolder">
+        <argument>C:\xampp\htdocs\shikoba\var\cache\dev</argument>
+      </call>
+    </service>
+    <service id="knp_snappy.image" class="Knp\Snappy\Image">
+      <tag name="monolog.logger" channel="snappy"/>
+      <argument>wkhtmltoimage</argument>
+      <argument type="collection"/>
+      <argument type="collection"/>
+      <call method="setLogger">
+        <argument type="service" id="monolog.logger.snappy" on-invalid="ignore"/>
+      </call>
+      <call method="setTemporaryFolder">
+        <argument>C:\xampp\htdocs\shikoba\var\cache\dev</argument>
+      </call>
+    </service>
     <service id="twig.extension.dump" class="Symfony\Bridge\Twig\Extension\DumpExtension" public="false">
       <tag name="twig.extension"/>
       <argument type="service" id="var_dumper.cloner"/>
@@ -3696,6 +3740,18 @@
         <argument type="service" id="monolog.handler.main"/>
       </call>
     </service>
+    <service id="monolog.logger.snappy" class="Symfony\Bridge\Monolog\Logger">
+      <argument>snappy</argument>
+      <call method="pushProcessor">
+        <argument type="service" id="debug.log_processor"/>
+      </call>
+      <call method="pushHandler">
+        <argument type="service" id="monolog.handler.console"/>
+      </call>
+      <call method="pushHandler">
+        <argument type="service" id="monolog.handler.main"/>
+      </call>
+    </service>
     <service id="monolog.handler.null_internal" class="Monolog\Handler\NullHandler"/>
     <service id="debug.event_dispatcher.inner" class="Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher" public="false">
       <argument type="service" id="service_container"/>
@@ -3762,7 +3818,7 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>pU3WIUY3cY</argument>
       <argument>0</argument>
-      <argument>1sWSHZgpRFoGr5YP0NE5t5</argument>
+      <argument>FyxmohYaoeJMmxwB3kCJYz</argument>
       <argument>C:\xampp\htdocs\shikoba\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3770,7 +3826,7 @@
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>qHX72VvaTz</argument>
       <argument>0</argument>
-      <argument>1sWSHZgpRFoGr5YP0NE5t5</argument>
+      <argument>FyxmohYaoeJMmxwB3kCJYz</argument>
       <argument>C:\xampp\htdocs\shikoba\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3778,7 +3834,7 @@
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>cMU0lPatoz</argument>
       <argument>0</argument>
-      <argument>1sWSHZgpRFoGr5YP0NE5t5</argument>
+      <argument>FyxmohYaoeJMmxwB3kCJYz</argument>
       <argument>C:\xampp\htdocs\shikoba\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3786,7 +3842,7 @@
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>uSW9zbiRXa</argument>
       <argument>0</argument>
-      <argument>1sWSHZgpRFoGr5YP0NE5t5</argument>
+      <argument>FyxmohYaoeJMmxwB3kCJYz</argument>
       <argument>C:\xampp\htdocs\shikoba\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>

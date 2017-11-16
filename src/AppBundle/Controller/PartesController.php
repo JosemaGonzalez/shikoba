@@ -28,6 +28,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class PartesController extends Controller
 {
@@ -134,6 +135,54 @@ class PartesController extends Controller
             'sanciones' => $sanciones,
             'conductas' => $conductas
         ));
+    }
+    /**
+     * @Route("/imprimirParte", name="printParte")
+     * @Method({"GET", "POST"})
+     */
+    public function printParteAction(Request $request)
+    {
+        //$recupera = false;
+        $em = $this->getDoctrine()->getManager();
+        /** @var AlumnoHelper $alumnoHelper */
+        //$alumnoHelper = $this->get('app.alumnoHelper');
+        /** @var PartesHelper $parteHelper */
+       // $parteHelper = $this->get('app.partesHelper');
+       // $repositoryAccionPartes = $em->getRepository('AppBundle:AccionEstadoParte');
+        /** @var CursosRepository $repositoryACursos */
+      //  $repositoryACursos = $em->getRepository('AppBundle:Cursos');
+        /** @var ConductasRepository $repositoryAConductas */
+      //  $repositoryAConductas = $em->getRepository('AppBundle:Conductas');
+        /** @var SancionesRepository $repositorySanciones */
+       // $repositorySanciones = $em->getRepository('AppBundle:Sanciones');
+        /** @var PartesRepository $repositoryPartes */
+        $repositoryPartes = $em->getRepository('AppBundle:Partes');
+        /** @var Cursos $curso */
+      //  $cursos = $repositoryACursos->getCursosGroupByCursos();
+        /** @var Conductas $conductas */
+      //  $conductas = $repositoryAConductas->getConductas();
+        /** @var Partes $parte */
+        $parte = $repositoryPartes->getParteByIdImpresion($request);
+
+        $snappy = $this->get('knp_snappy.pdf');
+        $snappy->setOption('no-outline', true);
+        $snappy->setOption('page-size','LETTER');
+        $snappy->setOption('encoding', 'UTF-8');
+        $html = $this->renderView('convivencia/partes/imprimirParte.html.twig', array(
+            'parte' => $parte,
+            'user' => $this->getUser(),
+
+        ));
+        $filename = 'Parte';
+
+        return new Response(
+            $snappy->getOutputFromHtml($html),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf;',
+                'Content-Disposition'   => 'inline; filename="'.$filename.'.pdf"'
+            )
+        );
     }
 
     /**
