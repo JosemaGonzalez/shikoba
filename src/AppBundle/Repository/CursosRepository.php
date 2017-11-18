@@ -33,8 +33,23 @@ class CursosRepository extends \Doctrine\ORM\EntityRepository
     public function getCursosByCurso($curso){
         $qb = $this->getEntityManager()->createQuery(
             'SELECT c
-             FROM AppBundle\Entity\Cursos c
-             WHERE c.curso = :curso'
+             FROM AppBundle\Entity\Cursos c,AppBundle\Entity\Alumnos al
+             WHERE al.idAlumno = :curso and al.idCurso = c.id'
+        );
+
+        $qb->setParameter('curso', $curso);
+        return $qb->getResult();
+    }
+    /**
+     * Función que devuelve los cursos que contengan el curso del parámetro
+     * @param $curso
+     * @return array
+     */
+    public function getCursoById($curso){
+        $qb = $this->getEntityManager()->createQuery(
+            'SELECT c
+             FROM AppBundle\Entity\Cursos c,AppBundle\Entity\Alumnos al
+             WHERE c.id = al.idCurso and al.id = :curso'
         );
 
         $qb->setParameter('curso', $curso);

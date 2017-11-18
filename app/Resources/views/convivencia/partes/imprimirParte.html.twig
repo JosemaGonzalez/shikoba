@@ -1,3 +1,8 @@
+{#{% extends 'base2.html.twig' %}#}
+
+{#{% block body %}#}
+    {#{% include 'convivencia/navegacion.html.twig' %}#}
+
 <meta charset="UTF-8"/>
 <style>
     table {
@@ -39,6 +44,7 @@
         border: 3px solid black;
     }
 </style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 <div>
     <br>
@@ -48,115 +54,150 @@
     <div style="width: 28%;display: inline-block;vertical-align: top;margin-top: 2%;margin-left: 1%">CONSEJERERÍA DE
         EDUCACIÓN<br>IES GRAN CAPITÁN<br>Córdoba
     </div>
-    <div style="width: 50%;display: inline-block;vertical-align: middle"><h2 style="font-size: 22px">PARTE DE INCIDENCIAS</h2></div>
-    <table>
-        <tr>
-            <td COLSPAN="2">APELLIDOS DEL ALUMNO<br>jjjujjj
-            </td>
-            <td>NOMBRE DEL ALUMNO<br>jjjgkh
-            </td>
-            <td>CURSO<br>1º ESO
-            </td>
-        </tr>
-        <tr>
-            <td COLSPAN="2">PROFESOR QUE TRAMITA EL PARTE<br>PACO PEPE
-            </td>
-            <td colspan="2">TUTOR DEL GRUPO DEL ALUMNO<br>PEDRO PEREZ
-            </td>
-        </tr>
-        <tr class="back">
-            <td COLSPAN="4">CAUSAS DEL PARTE (marcar todas las que correspondan)</td>
-        </tr>
-        <tr>
-            <td>A/ FALTAS LEVES</td>
-            <td class="alig">PUNTOS</td>
-            <td>A/ FALTAS GRAVES</td>
-            <td class="alig">PUNTOS</td>
-        </tr>
-        <TR>
-            <TD class="faltas">FALTA 1</TD>
-            <TD class="faltas2 alig">1</TD>
-            <TD class="faltas">FALTA 2</TD>
-            <TD class="faltas2 alig">10</TD>
+    <div style="width: 50%;display: inline-block;vertical-align: middle"><h2 style="font-size: 22px">PARTE DE
+            INCIDENCIAS</h2></div>
+    <div>RESULTADOS<br>{{ dump(parte) }}</div>
+    {#<div>RESULTADOS2<br>{{ dump(conducta3) }}</div>#}
+    {% for partes in parte %}
 
-        </TR>
-        <TR style="border-bottom: 1px solid black!important;">
-            <TD class="faltas">FALTA 1</TD>
-            <TD class="faltas2 alig">1</TD>
-            <TD class="faltas">FALTA 2</TD>
-            <TD class="faltas2 alig">10</TD>
+        <table>
 
-        </TR>
-        <tr class="back">
-            <td COLSPAN="4">DETALLE DE LA CONDUCTA</td>
-        </tr>
-        <TR>
-            <TD COLSPAN="4">
-                {#{% if parte.descripcion is null %}#}
-                    {#No es necesario#}
-                {#{% else %}#}
-                {#{{ parte.descripcion }}#}
-                {#{% endif %}#}
-
-            </TD>
-        </TR>
-        <tr class="back">
-            <td COLSPAN="4">TAREA PROPUESTA</td>
-        </tr>
-        <TR>
-            <TD COLSPAN="4">
-                {#{% if parte.tareas is null %}#}
-                    {#No es necesario#}
-                {#{% else %}#}
-                {#{{ parte.tareas }}#}
-                {#{% endif %}#}
-
-            </TD>
-        </TR>
-        <tr class="back">
-            <td COLSPAN="4">SI IMPLICA EXULSIÓN DEL AULA</td>
-        </tr>
-        <tr>
-            <td>Hora de salida del aula</td>
-            <td>
-                {#{{ parte.horaSalidaAula|date('H:i:s') }}#}
-            </td>
-            <td>Hora de llegada a jefatura</td>
-            <td>
-                {#{{ parte.horaLlegadaJefatura|date('H:i:s') }}#}
-            </td>
-        </tr>
-        <tr>
-            <td>Fecha</td>
-            <td>
-                {#{{ parte.fecha|date('d/m/Y') }}#}
-            </td>
-            <td>Firma del profesor</td>
-            <td><br><br></td>
-        </tr>
-        <tr>
-            {#{% if parte.recupera != 0 %}#}
-                {#<td COLSPAN="4"><input type="checkbox" checked> Actitud correcta en el aula de convivencia y/o#}
-                    {#realización de tareas (Rebaja 1 punto)#}
-                {#</td>#}
-            {#{% endif %}#}
-            {#{% if parte.recupera == 0 %}#}
-                <td COLSPAN="4"><input type="checkbox"> Actitud correcta en el aula de convivencia y/o realización de
-                    tareas (Rebaja 1 punto)
+            <tr>
+                <td COLSPAN="2">APELLIDOS DEL
+                    ALUMNO<br> {{ partes.idAlumno.apellido1 ~ " " ~ partes.idAlumno.apellido2 }}
                 </td>
-            {#{% endif %}#}
+                <td>NOMBRE DEL ALUMNO<br>
+                    {{ partes.idAlumno.nombre }}
+                </td>
+                {#{% for cursos in curso %}#}
+                <td>CURSO<br>
+                    {#{{ cursos.grupo }}#}
+                </td>
+                {#{% endfor %}#}
 
-        </tr>
+            </tr>
+            <tr>
+                <td COLSPAN="2">PROFESOR QUE TRAMITA EL
+                    PARTE<br>{{ partes.idProfesor.nombre ~ " " ~ partes.idProfesor.apellido1 ~ " " ~ partes.idProfesor.apellido2 }}
+                </td>
+                <td colspan="2">TUTOR DEL GRUPO DEL ALUMNO<br>PEDRO PEREZ
+                </td>
+            </tr>
+            <tr class="back">
+                <td COLSPAN="4">CAUSAS DEL PARTE (marcar todas las que correspondan)</td>
+            </tr>
+            <tr class="back">
+                <td COLSPAN="1">A/ FALTAS LEVES</td>
+                <td COLSPAN="1" class="alig">PUNTOS</td>
+                <td COLSPAN="1" class="back">A/ FALTAS GRAVES</td>
+                <td COLSPAN="1" class="alig">PUNTOS</td>
+            </tr>
 
-    </table>
-    <div class="borde"><p>D./Dña. _____________________________________________________________________________</p>
-        <p>padre/madre/tutor legal de alumnoaqui,</p>
-        <p>ha recibido el Parte de Incidencias relativo a su hijo/a.</p>
-        <p><br><br> En Córdoba a ______ de ___________________ de 20_____</p>
-        <p style="text-align: right">Firma</p>
-    </div>
-    <div style="font-size: 12px"><br>(El presente parte de incidencias se devolverá Firmado al día siguiente de su
-        recepción.)
-    </div>
+            {% for conductas in conducta %}
+                <TR id="conducta">
+                    {% if(conductas.puntos > -8) %}
+                        <TD COLSPAN="1" class="faltas"><input type="checkbox" id="{{ conductas.id }}"><label
+                                    for="{{ conductas.id }}">{{ conductas.conducta }}</label></TD>
+                        <TD COLSPAN="1" class="faltas2 alig">{{ conductas.puntos }}</TD>
+                    {% else %}
+                        <TD COLSPAN="1" class="faltas"></TD>
+                        <TD COLSPAN="1" class="faltas2 alig"></TD>
+                        <TD COLSPAN="1" class="faltas"><input type="checkbox" id="{{ conductas.id }}"><label
+                                    for="{{ conductas.id }}">{{ conductas.conducta }}</label></TD>
+                        <TD COLSPAN="1" class="faltas2 alig">{{ conductas.puntos }}</TD>
+                    {% endif %}
+                </TR>
+
+
+            {% endfor %}
+            {#<tr>#}
+            {#<td COLSPAN="3"class="back">A/ FALTAS GRAVES</td>#}
+            {#<td COLSPAN="1" class="alig">PUNTOS</td>#}
+            {#</tr>#}
+            {#{% for conductas in conducta %}#}
+            {##}
+
+            {#{% endfor %}#}
+
+
+            <tr class="back">
+                <td COLSPAN="4">DETALLE DE LA CONDUCTA</td>
+            </tr>
+            <TR>
+                <TD COLSPAN="4">
+                    {% if partes.descripcion is null %}
+                        No es necesario
+                    {% else %}
+                        {{ partes.descripcion }}
+                    {% endif %}
+
+                </TD>
+            </TR>
+            <tr class="back">
+                <td COLSPAN="4">TAREA PROPUESTA</td>
+            </tr>
+            <TR>
+                <TD COLSPAN="4">
+                    {% if partes.tareas is null %}
+                        No es necesario
+                    {% else %}
+                        {{ partes.tareas }}
+                    {% endif %}
+
+                </TD>
+            </TR>
+            <tr class="back">
+                <td COLSPAN="4">SI IMPLICA EXULSIÓN DEL AULA</td>
+            </tr>
+            <tr>
+                <td>Hora de salida del aula</td>
+                <td>
+                    {{ partes.horaSalidaAula|date('H:i') }}
+                </td>
+                <td>Hora de llegada a jefatura</td>
+                <td>
+                    {{ partes.horaLlegadaJefatura|date('H:i') }}
+                </td>
+            </tr>
+            <tr>
+                <td>Fecha</td>
+                <td>
+                    {{ partes.fecha|date('d/m/Y') }}
+                </td>
+                <td>Firma del profesor</td>
+                <td><br><br></td>
+            </tr>
+            <tr>
+                {% if partes.recupera != 0 %}
+                    <td COLSPAN="4"><input type="checkbox" checked id="checkbo"><label for="checkbo"> Actitud correcta
+                            en el aula de convivencia y/o
+                            realización de tareas (Rebaja 1 punto)</label>
+                    </td>
+                {% endif %}
+                {% if partes.recupera == 0 %}
+                    <td COLSPAN="4"><input type="checkbox" id="checkbo"><label for="checkbo"> Actitud correcta en el
+                            aula de convivencia y/o
+                            realización de tareas (Rebaja 1 punto)</label>
+                    </td>
+                {% endif %}
+
+            </tr>
+
+        </table>
+        <div class="borde"><p>D./Dña.
+                _____________________________________________________________________________</p>
+            <p>padre/madre/tutor legal
+                de {{ partes.idAlumno.nombre ~ " " ~ partes.idAlumno.apellido1 ~ " " ~ partes.idAlumno.apellido2 }}
+                ,</p>
+            <p>ha recibido el Parte de Incidencias relativo a su hijo/a.</p>
+            <p><br><br> En Córdoba a ______ de ___________________ de 20_____</p>
+            <p style="text-align: right">Firma</p>
+        </div>
+        <div style="font-size: 12px"><br>(El presente parte de incidencias se devolverá Firmado al día siguiente de
+            su
+            recepción.)
+        </div>
+    {% endfor %}
 
 </div>
+{#{% endblock %}#}

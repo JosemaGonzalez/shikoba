@@ -21,6 +21,7 @@ class Noticias
     private $id;
 
     /**
+     * @ORM\Column(name="noticia_texto", type="string", length=255)
      * @var string
      */
     private $noticia_texto;

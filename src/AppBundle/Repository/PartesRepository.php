@@ -5,6 +5,7 @@ namespace AppBundle\Repository;
 use AppBundle\AppBundle;
 use AppBundle\Entity\Alumno;
 use AppBundle\Entity\Profesores;
+use AppBundle\Entity\Partes;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -103,6 +104,7 @@ class PartesRepository extends \Doctrine\ORM\EntityRepository
         $query->setParameter('curso', $curso);
         return $query->getQuery()->getResult();
     }
+
     /**
      * Función que devuelve todos los partes ordenados por fecha
      * @return array
@@ -142,6 +144,7 @@ class PartesRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getSingleResult();
     }
+
     /**
      * Función que devuelve un parte por id.
      * @param $id
@@ -149,9 +152,30 @@ class PartesRepository extends \Doctrine\ORM\EntityRepository
      */
     public function getParteByIdImpresion($id)
     {
+
        $query = $this->getEntityManager()->createQuery(
-            'SELECT p FROM AppBundle\Entity\Partes p
-             WHERE p.id = :id'
+            "SELECT p FROM AppBundle\Entity\Partes p
+             JOIN p.idAlumno as alumno
+             JOIN p.idProfesor as profesor
+             JOIN p.idTipo as tipo
+             JOIN p.idEstado as estado
+             WHERE p.id = :id"
+        );
+
+        $query->setParameter('id', $id);
+        return $query->getResult();
+    }
+    /**
+     * Función que devuelve un parte por id.
+     * @param $id
+     * @return mixed
+     */
+    public function getParteById2($id)
+    {
+
+        $query = $this->getEntityManager()->createQuery(
+            "SELECT p FROM AppBundle\Entity\Partes p
+             WHERE p.id = :id"
         );
 
         $query->setParameter('id', $id);

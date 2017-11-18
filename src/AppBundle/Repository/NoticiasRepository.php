@@ -19,7 +19,7 @@ class NoticiasRepository extends \Doctrine\ORM\EntityRepository
     public function getNoticias()
     {
         $query = $this->getEntityManager()->createQuery(
-            'SELECT n 
+            'SELECT n
              FROM AppBundle\Entity\Noticias n
              WHERE n.idCurso IN 
              (SELECT c.grupo 

@@ -142,47 +142,45 @@ class PartesController extends Controller
      */
     public function printParteAction(Request $request)
     {
-        //$recupera = false;
         $em = $this->getDoctrine()->getManager();
-        /** @var AlumnoHelper $alumnoHelper */
-        //$alumnoHelper = $this->get('app.alumnoHelper');
+        /** @var PartesRepository $partesRepository */
+        $partesRepository = $em->getRepository("AppBundle:Partes");
+        $parte = $partesRepository->getParteByIdImpresion($request->get('idParte'));
         /** @var PartesHelper $parteHelper */
-       // $parteHelper = $this->get('app.partesHelper');
-       // $repositoryAccionPartes = $em->getRepository('AppBundle:AccionEstadoParte');
-        /** @var CursosRepository $repositoryACursos */
-      //  $repositoryACursos = $em->getRepository('AppBundle:Cursos');
-        /** @var ConductasRepository $repositoryAConductas */
-      //  $repositoryAConductas = $em->getRepository('AppBundle:Conductas');
-        /** @var SancionesRepository $repositorySanciones */
-       // $repositorySanciones = $em->getRepository('AppBundle:Sanciones');
-        /** @var PartesRepository $repositoryPartes */
-        $repositoryPartes = $em->getRepository('AppBundle:Partes');
-        /** @var Cursos $curso */
-      //  $cursos = $repositoryACursos->getCursosGroupByCursos();
-        /** @var Conductas $conductas */
-      //  $conductas = $repositoryAConductas->getConductas();
-        /** @var Partes $parte */
-        $parte = $repositoryPartes->getParteByIdImpresion($request);
+        $parteHelper = $this->get('app.partesHelper');
+        //$parte2 = $parteHelper->getParteFromRequest($request);
 
+        /** @var CursosRepository $cursosRepository */
+       // $cursosRepository = $em->getRepository("AppBundle:Cursos");
+
+        //$cursos = $cursosRepository->getCursoById($parte2->getIdAlumno());
+        /** @var ConductasRepository $repositoryAConductas */
+        $repositoryAConductas = $em->getRepository('AppBundle:Conductas');
+        /** @var Conductas $conductas2 */
+        $conductas = $repositoryAConductas->getConductas();
+        /** @var Conductas $conductas */
         $snappy = $this->get('knp_snappy.pdf');
         $snappy->setOption('no-outline', true);
         $snappy->setOption('page-size','LETTER');
         $snappy->setOption('encoding', 'UTF-8');
-        $html = $this->renderView('convivencia/partes/imprimirParte.html.twig', array(
-            'parte' => $parte,
-            'user' => $this->getUser(),
-
-        ));
         $filename = 'Parte';
 
-        return new Response(
+        return $this->render('convivencia/partes/imprimirParte.html.twig', array(
+            'parte' => $parte,
+            'conducta' => $conductas,
+            //'curso' => $cursos,
+            'user' => $this->getUser()
+
+        ));
+
+         /*return new Response(
             $snappy->getOutputFromHtml($html),
             200,
             array(
                 'Content-Type'          => 'application/pdf;',
                 'Content-Disposition'   => 'inline; filename="'.$filename.'.pdf"'
             )
-        );
+        );*/
     }
 
     /**

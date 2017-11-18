@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+
 use AppBundle\Entity\Conductas;
 
 /**
@@ -26,11 +27,13 @@ class ConductasRepository extends \Doctrine\ORM\EntityRepository
         }
         return $arrConductas;
     }
+
     /**
      * Función que devuelve las conductas
      * @return array
      */
-    public function getConductas(){
+    public function getConductas()
+    {
         $qb = $this->getEntityManager()->createQuery(
             'SELECT c.id,c.conducta,c.puntos
            FROM AppBundle\Entity\Conductas c'
@@ -38,5 +41,20 @@ class ConductasRepository extends \Doctrine\ORM\EntityRepository
 
         return $qb->getResult();
     }
+
+    /**
+     * Función que devuelve las conductas
+     * @return array
+     */
+    public function getConductas2()
+    {
+        $qb = $this->getEntityManager()->createQuery(
+            'SELECT c.id,c.conducta,c.puntos
+           FROM AppBundle\Entity\Conductas c where c.puntos < 8'
+        );
+
+        return $qb->getResult();
+    }
+
 
 }
