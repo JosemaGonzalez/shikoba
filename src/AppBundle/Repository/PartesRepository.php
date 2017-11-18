@@ -145,52 +145,6 @@ class PartesRepository extends \Doctrine\ORM\EntityRepository
             ->getSingleResult();
     }
 
-    /**
-     * Función que devuelve un parte por id.
-     * @param $id
-     * @return mixed
-     */
-    public function getParteByIdImpresion($id)
-    {
-
-//       $query = $this->getEntityManager()->createQuery(
-//            "SELECT p FROM AppBundle\Entity\Partes p
-//             JOIN p.idAlumno as alumno
-//             JOIN p.idProfesor as profesor
-//             JOIN p.idTipo as tipo
-//             JOIN p.idEstado as estado
-//             WHERE p.id = :id"
-//        );
-
-        $query = $this->getEntityManager()->createQuery(
-            "SELECT p FROM AppBundle\Entity\Partes p
-             JOIN p.idAlumno as alumno
-             JOIN p.idProfesor as profesor
-             JOIN alumno.idCurso IN 
-             (SELECT c.grupo 
-             FROM AppBundle\Entity\Cursos c)
-             WHERE p.id = :id"
-        );
-
-        $query->setParameter('id', $id);
-        return $query->getResult();
-    }
-    /**
-     * Función que devuelve un parte por id.
-     * @param $id
-     * @return mixed
-     */
-    public function getParteById2($id)
-    {
-
-        $query = $this->getEntityManager()->createQuery(
-            "SELECT p FROM AppBundle\Entity\Partes p
-             WHERE p.id = :id"
-        );
-
-        $query->setParameter('id', $id);
-        return $query->getResult();
-    }
 
     /**
      * Función que devuelve los partes que contienen la cadena pasada por parámetro
