@@ -153,12 +153,22 @@ class PartesRepository extends \Doctrine\ORM\EntityRepository
     public function getParteByIdImpresion($id)
     {
 
-       $query = $this->getEntityManager()->createQuery(
+//       $query = $this->getEntityManager()->createQuery(
+//            "SELECT p FROM AppBundle\Entity\Partes p
+//             JOIN p.idAlumno as alumno
+//             JOIN p.idProfesor as profesor
+//             JOIN p.idTipo as tipo
+//             JOIN p.idEstado as estado
+//             WHERE p.id = :id"
+//        );
+
+        $query = $this->getEntityManager()->createQuery(
             "SELECT p FROM AppBundle\Entity\Partes p
              JOIN p.idAlumno as alumno
              JOIN p.idProfesor as profesor
-             JOIN p.idTipo as tipo
-             JOIN p.idEstado as estado
+             JOIN alumno.idCurso IN 
+             (SELECT c.grupo 
+             FROM AppBundle\Entity\Cursos c)
              WHERE p.id = :id"
         );
 

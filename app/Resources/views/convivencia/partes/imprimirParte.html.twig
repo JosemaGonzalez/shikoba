@@ -1,8 +1,3 @@
-{#{% extends 'base2.html.twig' %}#}
-
-{#{% block body %}#}
-    {#{% include 'convivencia/navegacion.html.twig' %}#}
-
 <meta charset="UTF-8"/>
 <style>
     table {
@@ -17,13 +12,23 @@
     table, th, td {
         border: 1px solid black;
     }
+    td{
+        padding: 1%;
+    }
 
     .faltas {
         border: 0;
         border-left: 1px solid black;
+        width: 43%;
+    }
+    .curso{
+        width: 14%;
+
     }
 
     .faltas2 {
+        width: 6%;
+
         border: 0;
         border-right: 1px solid black;
     }
@@ -44,8 +49,6 @@
         border: 3px solid black;
     }
 </style>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
 <div>
     <br>
     <div style="width: 10%;display: inline-block"><img
@@ -56,31 +59,27 @@
     </div>
     <div style="width: 50%;display: inline-block;vertical-align: middle"><h2 style="font-size: 22px">PARTE DE
             INCIDENCIAS</h2></div>
-    <div>RESULTADOS<br>{{ dump(parte) }}</div>
-    {#<div>RESULTADOS2<br>{{ dump(conducta3) }}</div>#}
-    {% for partes in parte %}
+    {#<div>RESULTADOS<br>{{ dump(partes) }}</div>#}
 
         <table>
 
             <tr>
-                <td COLSPAN="2">APELLIDOS DEL
+                <td COLSPAN="2" class="faltas">APELLIDOS DEL
                     ALUMNO<br> {{ partes.idAlumno.apellido1 ~ " " ~ partes.idAlumno.apellido2 }}
                 </td>
-                <td>NOMBRE DEL ALUMNO<br>
+                <td class="faltas">NOMBRE DEL ALUMNO<br>
                     {{ partes.idAlumno.nombre }}
                 </td>
-                {#{% for cursos in curso %}#}
-                <td>CURSO<br>
-                    {#{{ cursos.grupo }}#}
+                <td class="curso">CURSO<br>
+                    {{ partes.idAlumno.idCurso.grupo }}
                 </td>
-                {#{% endfor %}#}
 
             </tr>
             <tr>
                 <td COLSPAN="2">PROFESOR QUE TRAMITA EL
                     PARTE<br>{{ partes.idProfesor.nombre ~ " " ~ partes.idProfesor.apellido1 ~ " " ~ partes.idProfesor.apellido2 }}
                 </td>
-                <td colspan="2">TUTOR DEL GRUPO DEL ALUMNO<br>PEDRO PEREZ
+                <td colspan="2">TUTOR DEL GRUPO DEL ALUMNO<br><br>
                 </td>
             </tr>
             <tr class="back">
@@ -89,35 +88,28 @@
             <tr class="back">
                 <td COLSPAN="1">A/ FALTAS LEVES</td>
                 <td COLSPAN="1" class="alig">PUNTOS</td>
-                <td COLSPAN="1" class="back">A/ FALTAS GRAVES</td>
+                <td COLSPAN="1" class="back">B/ FALTAS GRAVES</td>
                 <td COLSPAN="1" class="alig">PUNTOS</td>
             </tr>
 
-            {% for conductas in conducta %}
+            {% for conductas in partes.idConducta %}
                 <TR id="conducta">
                     {% if(conductas.puntos > -8) %}
-                        <TD COLSPAN="1" class="faltas"><input type="checkbox" id="{{ conductas.id }}"><label
+                        <TD COLSPAN="1" class="faltas"><input type="checkbox" checked id="{{ conductas.id }}"><label
                                     for="{{ conductas.id }}">{{ conductas.conducta }}</label></TD>
                         <TD COLSPAN="1" class="faltas2 alig">{{ conductas.puntos }}</TD>
+                        <TD COLSPAN="1" class="faltas"></TD>
+                        <TD COLSPAN="1" class="faltas2 alig"></TD>
                     {% else %}
                         <TD COLSPAN="1" class="faltas"></TD>
                         <TD COLSPAN="1" class="faltas2 alig"></TD>
-                        <TD COLSPAN="1" class="faltas"><input type="checkbox" id="{{ conductas.id }}"><label
+                        <TD COLSPAN="1" class="faltas"><input type="checkbox" checked id="{{ conductas.id }}"><label
                                     for="{{ conductas.id }}">{{ conductas.conducta }}</label></TD>
                         <TD COLSPAN="1" class="faltas2 alig">{{ conductas.puntos }}</TD>
                     {% endif %}
                 </TR>
-
-
             {% endfor %}
-            {#<tr>#}
-            {#<td COLSPAN="3"class="back">A/ FALTAS GRAVES</td>#}
-            {#<td COLSPAN="1" class="alig">PUNTOS</td>#}
-            {#</tr>#}
-            {#{% for conductas in conducta %}#}
-            {##}
 
-            {#{% endfor %}#}
 
 
             <tr class="back">
@@ -164,8 +156,8 @@
                 <td>
                     {{ partes.fecha|date('d/m/Y') }}
                 </td>
-                <td>Firma del profesor</td>
-                <td><br><br></td>
+                <td style="border-right: 0">Firma del profesor</td>
+                <td style="border-left: 0"><br><br></td>
             </tr>
             <tr>
                 {% if partes.recupera != 0 %}
@@ -184,12 +176,13 @@
             </tr>
 
         </table>
+    <br><br>
+    <br><br>
         <div class="borde"><p>D./Dña.
                 _____________________________________________________________________________</p>
             <p>padre/madre/tutor legal
-                de {{ partes.idAlumno.nombre ~ " " ~ partes.idAlumno.apellido1 ~ " " ~ partes.idAlumno.apellido2 }}
-                ,</p>
-            <p>ha recibido el Parte de Incidencias relativo a su hijo/a.</p>
+                de <b>{{ partes.idAlumno.nombre ~ " " ~ partes.idAlumno.apellido1 ~ " " ~ partes.idAlumno.apellido2 }}
+                </b>, ha recibido el Parte de Incidencias relativo a su hijo/a.</p>
             <p><br><br> En Córdoba a ______ de ___________________ de 20_____</p>
             <p style="text-align: right">Firma</p>
         </div>
@@ -197,7 +190,5 @@
             su
             recepción.)
         </div>
-    {% endfor %}
 
 </div>
-{#{% endblock %}#}

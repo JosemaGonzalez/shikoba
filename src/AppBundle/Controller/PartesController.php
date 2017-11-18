@@ -142,45 +142,27 @@ class PartesController extends Controller
      */
     public function printParteAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        /** @var PartesRepository $partesRepository */
-        $partesRepository = $em->getRepository("AppBundle:Partes");
-        $parte = $partesRepository->getParteByIdImpresion($request->get('idParte'));
         /** @var PartesHelper $parteHelper */
         $parteHelper = $this->get('app.partesHelper');
-        //$parte2 = $parteHelper->getParteFromRequest($request);
+        $parte = $parteHelper->getParteFromRequest($request);
 
-        /** @var CursosRepository $cursosRepository */
-       // $cursosRepository = $em->getRepository("AppBundle:Cursos");
-
-        //$cursos = $cursosRepository->getCursoById($parte2->getIdAlumno());
-        /** @var ConductasRepository $repositoryAConductas */
-        $repositoryAConductas = $em->getRepository('AppBundle:Conductas');
-        /** @var Conductas $conductas2 */
-        $conductas = $repositoryAConductas->getConductas();
-        /** @var Conductas $conductas */
+        $html= $this->renderView('convivencia/partes/imprimirParte.html.twig', array(
+            'partes' => $parte,
+        ));
         $snappy = $this->get('knp_snappy.pdf');
         $snappy->setOption('no-outline', true);
         $snappy->setOption('page-size','LETTER');
         $snappy->setOption('encoding', 'UTF-8');
-        $filename = 'Parte';
-
-        return $this->render('convivencia/partes/imprimirParte.html.twig', array(
-            'parte' => $parte,
-            'conducta' => $conductas,
-            //'curso' => $cursos,
-            'user' => $this->getUser()
-
-        ));
-
-         /*return new Response(
+        $titulo = $parte->getIdAlumno()->getApellido1().$parte->getIdAlumno()->getApellido2().$parte->getIdAlumno()->getNombre();
+        $filename = 'Parte'.$titulo;
+        return new Response(
             $snappy->getOutputFromHtml($html),
             200,
             array(
                 'Content-Type'          => 'application/pdf;',
                 'Content-Disposition'   => 'inline; filename="'.$filename.'.pdf"'
             )
-        );*/
+        );
     }
 
     /**

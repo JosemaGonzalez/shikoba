@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25d14157-562d-42a5-a0c2-3922855430fb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/convivencia/partes/imprimirParte.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/convivencia/partes/imprimirParte.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/PartesController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/PartesController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Noticias.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Noticias.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Repository/ConductasRepository.php" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/ConductasRepository.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Repository/CursosRepository.php" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/CursosRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Repository/NoticiasRepository.php" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/NoticiasRepository.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Repository/PartesRepository.php" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/PartesRepository.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,22 +32,40 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="imprimirParte.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/convivencia/partes/imprimirParte.html.twig">
+      <file leaf-file-name="PartesController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PartesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="67" column="21" lean-forward="false" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
+            <state relative-caret-position="100">
+              <caret line="145" column="54" lean-forward="false" selection-start-line="145" selection-start-column="54" selection-end-line="145" selection-end-column="54" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="partesForm.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/convivencia/partes/partesForm.html.twig">
+      <file leaf-file-name="CursosRepository.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/CursosRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1680">
-              <caret line="84" column="39" lean-forward="false" selection-start-line="84" selection-start-column="29" selection-end-line="84" selection-end-column="39" />
-              <folding />
+            <state relative-caret-position="290">
+              <caret line="33" column="52" lean-forward="false" selection-start-line="33" selection-start-column="52" selection-end-line="33" selection-end-column="52" />
+              <folding>
+                <marker date="1511031709520" expanded="true" signature="441:525" ph="SELECT c.cur... AppBundle" />
+                <marker date="1511031709520" expanded="true" signature="791:864" ph="SELECT c.cur... AppBundle" />
+                <marker date="1511031709520" expanded="true" signature="1205:1347" ph="SELECT c FRO... AppBundle" />
+                <marker date="1511031709520" expanded="true" signature="1687:1823" ph="SELECT c FRO... AppBundle" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="imprimirParte.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/convivencia/partes/imprimirParte.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1500">
+              <caret line="90" column="46" lean-forward="false" selection-start-line="90" selection-start-column="46" selection-end-line="90" selection-end-column="46" />
+              <folding>
+                <element signature="n#style#0;n#td#2;n#tr#8;n#table#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#3;n#tr#8;n#table#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -59,94 +73,32 @@
       <file leaf-file-name="PartesRepository.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/PartesRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="161" column="29" lean-forward="false" selection-start-line="156" selection-start-column="13" selection-end-line="161" selection-end-column="29" />
+            <state relative-caret-position="-360">
+              <caret line="163" column="0" lean-forward="false" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
               <folding>
                 <element signature="e#40#64#0#PHP" expanded="true" />
-                <marker date="1510926889719" expanded="true" signature="819:1022" ph="SELECT p FRO... AppBundle" />
-                <marker date="1510926889719" expanded="true" signature="1130:1370" ph="SELECT p FRO... AppBundle" />
-                <marker date="1510926889719" expanded="true" signature="4448:4796" ph="SELECT p FRO... AppBundle" />
-                <marker date="1510926889719" expanded="true" signature="4518:4743" ph="SELECT p FRO... AppBundle" />
-                <marker date="1510926889719" expanded="true" signature="5056:5125" ph="SELECT p FRO... AppBundle" />
-                <marker date="1510926889719" expanded="true" signature="5227:5365" ph="/** * Funció... " />
-                <marker date="1510926889719" expanded="true" signature="5625:6272" ph="SELECT p FRO... AppBundle" />
-                <marker date="1510926889719" expanded="true" signature="6384:6986" ph="SELECT p FRO... AppBundle" />
-                <marker date="1510926889719" expanded="true" signature="8423:8536" ph="SELECT p FRO... AppBundle" />
+                <marker date="1511030448637" expanded="true" signature="819:1022" ph="SELECT p FRO... AppBundle" />
+                <marker date="1511030448637" expanded="true" signature="1130:1370" ph="SELECT p FRO... AppBundle" />
+                <marker date="1511030448637" expanded="true" signature="4448:5159" ph="SELECT p FRO... AppBundle" />
+                <marker date="1511030448637" expanded="true" signature="4522:4757" ph="SELECT p FRO... AppBundle" />
+                <marker date="1511030448637" expanded="true" signature="4843:5106" ph="SELECT p FRO... AppBundle" />
+                <marker date="1511030448637" expanded="true" signature="5419:5488" ph="SELECT p FRO... AppBundle" />
+                <marker date="1511030448637" expanded="true" signature="5590:5728" ph="/** * Funció... " />
+                <marker date="1511030448637" expanded="true" signature="5988:6635" ph="SELECT p FRO... AppBundle" />
+                <marker date="1511030448637" expanded="true" signature="6747:7349" ph="SELECT p FRO... AppBundle" />
+                <marker date="1511030448637" expanded="true" signature="8786:8899" ph="SELECT p FRO... AppBundle" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="noticias.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/convivencia/noticias/noticias.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="38" column="36" lean-forward="false" selection-start-line="38" selection-start-column="36" selection-end-line="38" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NoticiasController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/NoticiasController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="20" column="26" lean-forward="false" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Noticias.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Noticias.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="55" column="46" lean-forward="false" selection-start-line="55" selection-start-column="46" selection-end-line="55" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NoticiasRepository.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="NoticiasRepository.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/NoticiasRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="21" column="21" lean-forward="false" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
+            <state relative-caret-position="293">
+              <caret line="23" column="32" lean-forward="false" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
               <folding>
                 <marker date="1511029901116" expanded="true" signature="463:625" ph="SELECT n FRO... AppBundle" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PartesController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PartesController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="161" column="0" lean-forward="false" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Partes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Partes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="71" column="65" lean-forward="false" selection-start-line="71" selection-start-column="65" selection-end-line="71" selection-end-column="65" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConductasRepository.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/ConductasRepository.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="42" column="5" lean-forward="false" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
-              <folding>
-                <marker date="1511014370001" expanded="true" signature="950:1026" ph="SELECT c.id,... AppBundle" />
-                <marker date="1511014370001" expanded="true" signature="1268:1363" ph="SELECT c.id,... AppBundle" />
               </folding>
             </state>
           </provider>
@@ -193,6 +145,7 @@
       <find>imprimirParte</find>
       <find>printParte</find>
       <find>getParteFromRequest</find>
+      <find>script</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -242,14 +195,14 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Form/ParteFormType2.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/Parte2FormType.php" />
         <option value="/&lt;Generic SQL&gt; Fragment (PartesRepository.php:4900).sql" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Repository/PartesRepository.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Repository/CursosRepository.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/ConductasRepository.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/PartesController.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/convivencia/partes/imprimirParte.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/convivencia/noticias/noticias.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Noticias.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/NoticiasRepository.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Repository/PartesRepository.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Repository/CursosRepository.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/convivencia/partes/imprimirParte.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/PartesController.php" />
       </list>
     </option>
   </component>
@@ -645,6 +598,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.startup.tasks" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/SQL Dialects" value="MySQL" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -764,12 +718,12 @@
       <workItem from="1510903023163" duration="599000" />
       <workItem from="1510909275682" duration="11124000" />
       <workItem from="1511006251495" duration="8132000" />
-      <workItem from="1511026955826" duration="2746000" />
+      <workItem from="1511026955826" duration="6702000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113726000" />
+    <option name="totallyTimeSpent" value="117682000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1048,18 +1002,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/Parte2FormType.php" />
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/CursosRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="51" column="36" lean-forward="false" selection-start-line="51" selection-start-column="36" selection-end-line="51" selection-end-column="36" />
-          <folding>
-            <marker date="1510927179726" expanded="true" signature="441:525" ph="SELECT c.cur... AppBundle" />
-            <marker date="1510927179726" expanded="true" signature="826:968" ph="SELECT c FRO... AppBundle" />
-            <marker date="1510927179726" expanded="true" signature="1308:1444" ph="SELECT c FRO... AppBundle" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Services/PartesHelper.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -1115,57 +1057,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/convivencia/partes/partesForm.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Noticias.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1680">
-          <caret line="84" column="39" lean-forward="false" selection-start-line="84" selection-start-column="29" selection-end-line="84" selection-end-column="39" />
+        <state relative-caret-position="150">
+          <caret line="55" column="46" lean-forward="false" selection-start-line="55" selection-start-column="46" selection-end-line="55" selection-end-column="46" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/ConductasRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="42" column="5" lean-forward="false" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
-          <folding>
-            <marker date="1511014370001" expanded="true" signature="950:1026" ph="SELECT c.id,... AppBundle" />
-            <marker date="1511014370001" expanded="true" signature="1268:1363" ph="SELECT c.id,... AppBundle" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/convivencia/partes/imprimirParte.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="67" column="21" lean-forward="false" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PartesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="161" column="0" lean-forward="false" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/PartesRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="161" column="29" lean-forward="false" selection-start-line="156" selection-start-column="13" selection-end-line="161" selection-end-column="29" />
-          <folding>
-            <element signature="e#40#64#0#PHP" expanded="true" />
-            <marker date="1510926889719" expanded="true" signature="819:1022" ph="SELECT p FRO... AppBundle" />
-            <marker date="1510926889719" expanded="true" signature="1130:1370" ph="SELECT p FRO... AppBundle" />
-            <marker date="1510926889719" expanded="true" signature="4448:4796" ph="SELECT p FRO... AppBundle" />
-            <marker date="1510926889719" expanded="true" signature="4518:4743" ph="SELECT p FRO... AppBundle" />
-            <marker date="1510926889719" expanded="true" signature="5056:5125" ph="SELECT p FRO... AppBundle" />
-            <marker date="1510926889719" expanded="true" signature="5227:5365" ph="/** * Funció... " />
-            <marker date="1510926889719" expanded="true" signature="5625:6272" ph="SELECT p FRO... AppBundle" />
-            <marker date="1510926889719" expanded="true" signature="6384:6986" ph="SELECT p FRO... AppBundle" />
-            <marker date="1510926889719" expanded="true" signature="8423:8536" ph="SELECT p FRO... AppBundle" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1193,21 +1089,84 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Noticias.php">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/ConductasRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="55" column="46" lean-forward="false" selection-start-line="55" selection-start-column="46" selection-end-line="55" selection-end-column="46" />
+        <state relative-caret-position="70">
+          <caret line="42" column="5" lean-forward="false" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+          <folding>
+            <marker date="1511014370001" expanded="true" signature="950:1026" ph="SELECT c.id,... AppBundle" />
+            <marker date="1511014370001" expanded="true" signature="1268:1363" ph="SELECT c.id,... AppBundle" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/convivencia/partes/partesForm.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="84" column="39" lean-forward="false" selection-start-line="84" selection-start-column="29" selection-end-line="84" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/NoticiasRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="21" column="21" lean-forward="false" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
+        <state relative-caret-position="293">
+          <caret line="23" column="32" lean-forward="false" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
           <folding>
             <marker date="1511029901116" expanded="true" signature="463:625" ph="SELECT n FRO... AppBundle" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/PartesRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-360">
+          <caret line="163" column="0" lean-forward="false" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+          <folding>
+            <element signature="e#40#64#0#PHP" expanded="true" />
+            <marker date="1511030448637" expanded="true" signature="819:1022" ph="SELECT p FRO... AppBundle" />
+            <marker date="1511030448637" expanded="true" signature="1130:1370" ph="SELECT p FRO... AppBundle" />
+            <marker date="1511030448637" expanded="true" signature="4448:5159" ph="SELECT p FRO... AppBundle" />
+            <marker date="1511030448637" expanded="true" signature="4522:4757" ph="SELECT p FRO... AppBundle" />
+            <marker date="1511030448637" expanded="true" signature="4843:5106" ph="SELECT p FRO... AppBundle" />
+            <marker date="1511030448637" expanded="true" signature="5419:5488" ph="SELECT p FRO... AppBundle" />
+            <marker date="1511030448637" expanded="true" signature="5590:5728" ph="/** * Funció... " />
+            <marker date="1511030448637" expanded="true" signature="5988:6635" ph="SELECT p FRO... AppBundle" />
+            <marker date="1511030448637" expanded="true" signature="6747:7349" ph="SELECT p FRO... AppBundle" />
+            <marker date="1511030448637" expanded="true" signature="8786:8899" ph="SELECT p FRO... AppBundle" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/CursosRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="33" column="52" lean-forward="false" selection-start-line="33" selection-start-column="52" selection-end-line="33" selection-end-column="52" />
+          <folding>
+            <marker date="1511031709520" expanded="true" signature="441:525" ph="SELECT c.cur... AppBundle" />
+            <marker date="1511031709520" expanded="true" signature="791:864" ph="SELECT c.cur... AppBundle" />
+            <marker date="1511031709520" expanded="true" signature="1205:1347" ph="SELECT c FRO... AppBundle" />
+            <marker date="1511031709520" expanded="true" signature="1687:1823" ph="SELECT c FRO... AppBundle" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/convivencia/partes/imprimirParte.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1500">
+          <caret line="90" column="46" lean-forward="false" selection-start-line="90" selection-start-column="46" selection-end-line="90" selection-end-column="46" />
+          <folding>
+            <element signature="n#style#0;n#td#2;n#tr#8;n#table#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#3;n#tr#8;n#table#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PartesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="145" column="54" lean-forward="false" selection-start-line="145" selection-start-column="54" selection-end-line="145" selection-end-column="54" />
+          <folding />
         </state>
       </provider>
     </entry>
