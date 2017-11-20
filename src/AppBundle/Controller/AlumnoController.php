@@ -10,7 +10,7 @@ use AppBundle\Form\ImportFormType;
 use AppBundle\Form\PerfilAlumnoFormType;
 use AppBundle\Repository\AlumnoRepository;
 use AppBundle\Repository\CursosRepository;
-use AppBundle\Repository\PartesRepository;
+use AppBundle\Repository\NoticiasRepository;
 use AppBundle\Services\AlumnoHelper;
 use AppBundle\Services\ImportHelper;
 use AppBundle\Utils\CsvResponse;
@@ -49,8 +49,14 @@ class AlumnoController extends Controller
 
         $userData = $alumnoHelper->getUserData(
             $alumnoHelper->getAlumnoLogueado($this->getUser()), true);
+        $em = $this->getDoctrine()->getManager();
+        /** @var NoticiasRepository $repositoryNoticias */
+        $repositoryNoticias = $em->getRepository("AppBundle:Noticias");
+        $noticias = $repositoryNoticias->getNoticiasCurso($userData->getAlumno()->getIdCurso());
+
         return $this->render('convivencia/alumno/alumno.html.twig', array(
                 'alumnoData' => $userData,
+                'noticia' => $noticias,
             )
         );
     }
@@ -74,10 +80,17 @@ class AlumnoController extends Controller
             !$alumnoHelper->isTutorAlumno($alumno, $alumnoHelper->getTutorByUsuario($this->getUser()))
         )
             return $this->redirectToRoute("index");
-
         $userData = $alumnoHelper->getUserData($alumno, true);
+
+        $em = $this->getDoctrine()->getManager();
+
+        /** @var NoticiasRepository $repositoryNoticias */
+        $repositoryNoticias = $em->getRepository("AppBundle:Noticias");
+        $noticias = $repositoryNoticias->getNoticiasCurso($userData->getAlumno()->getIdCurso());
+
         return $this->render('convivencia/alumno/alumno.html.twig', array(
                 'alumnoData' => $userData,
+                'noticia' => $noticias,
                 'userAdmin' => $this->getUser(),
             )
         );
@@ -109,7 +122,8 @@ class AlumnoController extends Controller
             return $this->redirectToRoute('alumno');
         }
 
-        return $this->render('convivencia/alumno/registroAlumno.html.twig', array(
+//        return $this->render('convivencia/alumno/registroAlumno.html.twig', array(
+        return $this->render('convivencia/index.html.twig', array(
             'alumno' => $this->getUser(),
             'form' => $form->createView(),
         ));
@@ -246,17 +260,15 @@ class AlumnoController extends Controller
         $repositoryAlumnos = $em->getRepository('AppBundle:Alumno');
         /** @var CursosRepository $repositoryCursos */
         $repositoryCursos = $em->getRepository('AppBundle:Cursos');
-        if($alumnosSeleccionados == "Todos"){
+        if ($alumnosSeleccionados == "Todos") {
             $alumnos = $repositoryAlumnos->findAll();
-        }
-        else{
+        } else {
             $alumnos = $repositoryAlumnos->findById($alumnosSeleccionados);
         }
 
-        if($cursosSeleccionados == "Todos"){
+        if ($cursosSeleccionados == "Todos") {
             $cursos = $repositoryCursos->findAll();
-        }
-        else{
+        } else {
             $cursos = $repositoryCursos->findById($cursosSeleccionados);
         }
 

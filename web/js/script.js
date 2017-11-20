@@ -27,6 +27,8 @@ $(document).ready(function () {
     let calculo = $(window).height() - $("header").outerHeight(true) - $("h3").outerHeight(true) - $("h4").outerHeight(true);
     $("#row1,#row2,#row3").height(calculo*0.8);
     $("#not").height(calculo * 0.8);
+    //si la ventana de noticia se sale del rango
+    $("#not").css("overflow","scroll");
     $("#row1 img").height(calculo * 0.7);
     if ($(window).width() < "991") {
         //oculto las cajas en dimensiones pequeñas de carnet de alumno

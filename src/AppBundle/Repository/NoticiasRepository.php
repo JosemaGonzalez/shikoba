@@ -29,4 +29,21 @@ class NoticiasRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
 
     }
+    /**
+     * Función que devuelve noticia para el alumno
+     * @return array
+     */
+    public function getNoticiasCurso($curso)
+    {
+        $query = $this->getEntityManager()->createQuery(
+            'SELECT n
+             FROM AppBundle\Entity\Noticias n
+             WHERE n.idCurso = :curso ORDER BY n.fecha desc'
+        );
+        $query->setParameter(':curso', $curso);
+        $query->setMaxResults(1);
+
+        return $query->getResult();
+
+    }
 }
