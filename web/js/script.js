@@ -4,7 +4,9 @@
 //Spinner loader intro
 var tmrReady = setInterval(isPageFullyLoaded, 200);
 function isPageFullyLoaded() {
+
     if (document.readyState == "complete") {
+
         $('.loaderIntro').fadeOut(1000);
         $('.containerLoader > .row').css("display", "block");
         clearInterval(tmrReady);
@@ -12,6 +14,7 @@ function isPageFullyLoaded() {
 }
 
 $(document).ready(function () {
+
     //select noticias form
     $('#cursosnoticias').material_select();
     $("#noticiascursos .select-wrapper li label").css("top","-11px");
