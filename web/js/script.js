@@ -12,7 +12,9 @@ function isPageFullyLoaded() {
 }
 
 $(document).ready(function () {
-
+    //select noticias form
+    $('#cursosnoticias').material_select();
+    $("#noticiascursos .select-wrapper li label").css("top","-11px");
     //estilo banner para que tenga siempre la altura que lo contiene
     let $nav = $(".navbar-fixed");
     $('.navbar-fixed img').height($nav.height());

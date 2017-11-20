@@ -1,0 +1,67 @@
+{% extends 'base2.html.twig' %}
+
+{% block body %}
+    <!-- Include external CSS. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet"
+          type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css">
+
+    <!-- Include Editor style. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.1/css/froala_editor.pkgd.min.css"
+          rel="stylesheet" type="text/css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.1/css/froala_style.min.css" rel="stylesheet"
+          type="text/css"/>
+
+    {% include 'convivencia/navegacion.html.twig' %}
+
+    <div class="">
+        <h3 class="center azul-prof fuente">Nueva Noticia</h3>
+        <form>
+            <div class="input-field col s12 m4 offset-m4" id="noticiascursos">
+                <select id="cursosnoticias" multiple name="cursos[]">
+                    <option value="" disabled selected>Elige Grupo</option>
+                    {% for curso in cursos %}
+                        <option value="{{ curso.id }}">{{ curso.grupo }}</option>
+                    {% endfor %}
+                </select>
+                <label>Cursos</label>
+            </div>
+            <div class="col s12 m8 offset-m2">
+                <!-- Create a tag that we will use as the editable area. -->
+                <!-- You can use a div tag as well. -->
+                <textarea></textarea>
+            </div>
+
+            <div style="margin-top: 2%" class="col s12 center">
+                <a href="{{ path('noticias') }}" data-title="Cancelar"
+                   class="z-depth-3 btn blue darken-3 waves-effect waves-light botonSubmit confirm"
+                   style="margin-bottom: 1%">Cancelar<i
+                            class="material-icons left">undo</i></a>
+                <button class="btn z-depth-3 blue darken-4 waves-effect waves-light" type="submit"
+                        style="margin-bottom: 1%"
+                        value="Enviar">Enviar <i class="material-icons right">send</i></button>
+            </div>
+        </form>
+
+    </div>
+    </div>
+    <!-- Include external JS libs. -->
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
+
+    <!-- Include Editor JS files. -->
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.7.1/js/froala_editor.pkgd.min.js"></script>
+
+    <!-- Initialize the editor. -->
+    <script type="text/javascript" src="{{ asset('js/froala/languages/es.js') }}"></script>
+
+    <script> $(function () {
+            $('textarea').froalaEditor({
+                // Set the language code.
+                language: 'es'
+            })
+        }); </script>
+{% endblock %}

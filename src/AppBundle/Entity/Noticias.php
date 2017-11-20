@@ -13,6 +13,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Noticias
 {
     /**
+     * @var \DateTime
+     * @ORM\Column(name="fecha", type="datetime", nullable=true)
+     */
+    private $fecha;
+
+    public function __construct()
+    {
+        $this->fecha = new \DateTime();
+    }
+    /**
      * @var int
      * @ORM\Id
      * @ORM\Column(name="id", type="integer", nullable=false)
@@ -21,10 +31,11 @@ class Noticias
     private $id;
 
     /**
-     * @ORM\Column(name="noticia_texto", type="string", length=255)
+     * @ORM\Column(name="noticia_texto", type="text")
      * @var string
      */
     private $noticia_texto;
+
 
     /**
      * @var int
@@ -32,6 +43,7 @@ class Noticias
      * @ORM\JoinColumn(name="idCurso", referencedColumnName="id")
      */
     private $idCurso;
+
 
 
     /**
@@ -66,6 +78,29 @@ class Noticias
     public function getNoticia_texto()
     {
         return $this->noticia_texto;
+    }
+    /**
+     * Set fecha
+     *
+     * @param string $fecha
+     *
+     * @return Noticias
+     */
+    public function setFecha($fecha)
+    {
+        $this->fecha = $fecha;
+
+        return $this;
+    }
+
+    /**
+     * Get fecha
+     *
+     * @return string
+     */
+    public function getFecha()
+    {
+        return $this->fecha;
     }
 
     /**

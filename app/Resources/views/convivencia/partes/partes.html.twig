@@ -112,7 +112,8 @@
                                     <a class="confirm paddingRightLeft "
                                        href="{{ path('borrar_parte', {'id': parte.id}) }}"
                                        data-title="Eliminar Parte"><i class="material-icons ">delete</i></a>
-
+                                    <a href="{{ path('printParte') }}?idParte={{ parte.id }}">
+                                        <i class="material-icons">print</i></a>
                                 {% else %}
                                     <td></td>
                                 {% endif %}

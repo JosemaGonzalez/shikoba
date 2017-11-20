@@ -2,8 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Repository\CursosRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use AppBundle\Form\NoticiasType;
 use AppBundle\Repository\NoticiasRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -21,8 +21,7 @@ class NoticiasController extends Controller
         /** @var NoticiasRepository $repositoryNoticias */
         $repositoryNoticias = $em->getRepository("AppBundle:Noticias");
 
-        $query = $repositoryNoticias->getNoticias();
-        $noticias = $query;
+        $noticias = $repositoryNoticias->findAll();
         return $this->render('convivencia/noticias/noticias.html.twig', array(
             'noticias' => $noticias,
             'user' => $this->getUser(),
@@ -34,16 +33,15 @@ class NoticiasController extends Controller
      */
     public function showNoticiasForm(Request $request)
     {
-
         $em = $this->getDoctrine()->getManager();
-        /** @var NoticiasRepository $repositoryNoticias */
-        $repositoryNoticias = $em->getRepository("AppBundle:Noticias");
-
-        $query = $repositoryNoticias->getNoticias();
-        $noticias = $query;
+        /** @var CursosRepository $repositoryACursos */
+        $repositoryACursos = $em->getRepository('AppBundle:Cursos');
+        /** @var Cursos $cursos */
+        $cursos = $repositoryACursos->getCursosGroupByCursos2();
         return $this->render('convivencia/noticias/noticiasForm.html.twig', array(
-            'noticias' => $noticias,
+            'cursos' => $cursos,
             'user' => $this->getUser(),
         ));
     }
+
 }

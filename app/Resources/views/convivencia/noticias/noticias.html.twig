@@ -2,47 +2,38 @@
 
 {% block body %}
     {% include 'convivencia/navegacion.html.twig' %}
-
     <div class="">
         <h3 class="center azul-prof fuente">Gestión Noticias</h3>
 
-        <form action="">
-            <div class="row" id="busq">
-
-                <div class="col s12 l6">
-
-                    <a href="{{ path('nuevaNoticia') }}"
-                       class="btn z-depth-3 blue darken-3 waves-effect waves-light"
-                       title="Nueva Noticia">Nuevo<i
-                                class="material-icons right" style="margin-top: -2%;">add</i></a>
-                </div>
-
-
-                <div class="col s2 l1">
-
-                </div>
+            <div class="row center">
+                <a href="{{ path('nuevaNoticia') }}"
+                   class="btn z-depth-3 blue darken-3 waves-effect waves-light"
+                   title="Nueva Noticia">Nueva<i
+                            class="material-icons right" style="margin-top: -2%;">add</i></a>
             </div>
-    <div class="row">
-        <table class="responsive-table highlight tableData z-depth-3" data-order='[[ 1, "desc" ]]'
-               style="margin-bottom: 1%">
-            <thead>
-            <tr class="blue darken-3 white-text">
-                <th>id</th>
-                <th>Noticia</th>
-                <th>Grupo</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for noticia in noticias %}
-                <tr>
-                    <td>{{ noticia.id }}</td>
-                    <td>{{ noticia.noticia_texto }}</td>
-                    <td>{{ noticia.idCurso.grupo }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    </form>
+
+            <div class="row" style="margin-top: 2%">
+                <table class="responsive-table highlight z-depth-3" data-order='[[ 1, "desc" ]]'
+                       style="margin-bottom: 1%">
+                    <thead>
+                    <tr class="blue darken-3 white-text">
+                        <th>id</th>
+                        <th>Noticia</th>
+                        <th>Fecha</th>
+                        <th>Grupo</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for noticia in noticias %}
+                        <tr>
+                            <td>{{ noticia.id }}</td>
+                            <td>{{ noticia.noticia_texto }}</td>
+                            <td>{{ noticia.fecha|date("d/m/Y") }}</td>
+                            <td>{{ noticia.idCurso.grupo }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
     </div>
 {% endblock %}

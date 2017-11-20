@@ -23,15 +23,10 @@ class NoticiasRepository extends \Doctrine\ORM\EntityRepository
              FROM AppBundle\Entity\Noticias n
              WHERE n.idCurso IN 
              (SELECT c.grupo 
-             FROM AppBundle\Entity\Cursos c)'
+             FROM AppBundle\Entity\Cursos c) ORDER BY n.id ASC'
         );
-        //$query = $this->createQueryBuilder('noticias');
-      //  $query->select('noticias');
 
-      //  $query->orderBy('noticias.id', 'DESC');
-     //   $query = $query->getQuery();
         return $query->getResult();
 
-//        return $query->getResult();
     }
 }

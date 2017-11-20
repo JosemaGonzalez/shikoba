@@ -24,6 +24,20 @@ class CursosRepository extends \Doctrine\ORM\EntityRepository
 
         return $qb->getResult();
     }
+    /**
+     * Función que devuelve los cursos agrupados por curso
+     * @return array
+     */
+    public function getCursosGroupByCursos2(){
+        $qb = $this->getEntityManager()->createQuery(
+            'SELECT c
+           FROM AppBundle\Entity\Cursos c
+           order BY c.curso'
+        );
+
+        return $qb->getResult();
+    }
+
 
     /**
      * Función que devuelve los cursos que contengan el curso del parámetro

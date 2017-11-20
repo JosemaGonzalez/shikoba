@@ -2,29 +2,25 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Noticias;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class NoticiasType extends AbstractType
 {
-
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Noticias'
-        ));
+        $this->traitChoices = $options['compound'];
+
+
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
+    public function setDefaultOptions(OptionsResolver $resolver)
     {
-        return 'appbundle_noticias';
+        $resolver->setDefaults(array(
+            'data_class' => Noticias::class
+        ));
     }
 
 
