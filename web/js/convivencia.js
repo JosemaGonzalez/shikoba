@@ -99,7 +99,7 @@ $(document).ready(function () {
         $('#checkEditSancion').hide();
         if ($(this).val() == SANCION_TYPE_HORAS) {
             $('.contenedorFlexEdit').css('visibility', 'visible');
-            let buttonAdd = '<div class="col s12 center"><input type="button" class="btn z-depth-3 blue darken-3 waves-effect waves-light checkNewSancion" value="+"></div>';
+            let buttonAdd = '<div class="col s12 center"><input type="button" class="btn z-depth-1 blue darken-3 waves-effect waves-light checkNewSancion" value="+"></div>';
             contenedorNewHoraSancion(buttonAdd);
         } else {
             $('.contenedorFlex').hide();

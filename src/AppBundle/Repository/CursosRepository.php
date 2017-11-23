@@ -47,8 +47,8 @@ class CursosRepository extends \Doctrine\ORM\EntityRepository
     public function getCursosByCurso($curso){
         $qb = $this->getEntityManager()->createQuery(
             'SELECT c
-             FROM AppBundle\Entity\Cursos c,AppBundle\Entity\Alumnos al
-             WHERE al.idAlumno = :curso and al.idCurso = c.id'
+             FROM AppBundle\Entity\Cursos c,AppBundle\Entity\Alumno al
+             WHERE al.idCurso = :curso and al.idCurso = c.id'
         );
 
         $qb->setParameter('curso', $curso);
@@ -62,7 +62,7 @@ class CursosRepository extends \Doctrine\ORM\EntityRepository
     public function getCursoById($curso){
         $qb = $this->getEntityManager()->createQuery(
             'SELECT c
-             FROM AppBundle\Entity\Cursos c,AppBundle\Entity\Alumnos al
+             FROM AppBundle\Entity\Cursos c,AppBundle\Entity\Alumno al
              WHERE c.id = al.idCurso and al.id = :curso'
         );
 

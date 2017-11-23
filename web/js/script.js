@@ -27,9 +27,77 @@ $(document).ready(function () {
     let calculo = $(window).height() - $("header").outerHeight(true) - $("h3").outerHeight(true) - $("h4").outerHeight(true);
     $("#row1,#row2,#row3").height(calculo*0.8);
     $("#not").height(calculo * 0.8);
+    $("#row1 #img > img").height(calculo * 0.6);
+
+    //efectos botones de alumno
+    if ($(window).width() < "991") {
+
+        $("#row2,#row3").css("opacity", "0");
+        $("#row1 #esta").click(function () {
+            $("#row1,#row2,#row3").removeClass("flipInY animated");
+            $("#row2,#row3").removeClass("flipOutY animated");
+            $("#row1").toggleClass("flipOutY animated");
+            $("#row1").css("opacity", "0");
+            $("#row1").css("z-index", "10");
+            $("#row2").css("z-index", "20");
+            $("#row2").css("opacity", "1");
+            $("#row2").toggleClass("flipInY animated");
+        });
+        $("#row3 #esta").click(function () {
+            $("#row1,#row2,#row3").removeClass("flipInY animated");
+            $("#row2,#row1").removeClass("flipOutY animated");
+            $("#row3").toggleClass("flipOutY animated");
+            $("#row3").css("opacity", "0");
+            $("#row3").css("z-index", "10");
+            $("#row2").css("z-index", "20");
+            $("#row2").css("opacity", "1");
+            $("#row2").toggleClass("flipInY animated");
+        });
+        $("#row3 #noti").click(function () {
+            $("#row1,#row2,#row3").removeClass("flipInY animated");
+            $("#row2,#row1").removeClass("flipOutY animated");
+            $("#row3").toggleClass("flipOutY animated");
+            $("#row3").css("opacity", "0");
+            $("#row3").css("z-index", "10");
+            $("#row1").css("z-index", "20");
+            $("#row1").css("opacity", "1");
+            $("#row1").toggleClass("flipInY animated");
+        });
+        $("#row2 #noti").click(function () {
+            $("#row1,#row2,#row3").removeClass("flipInY animated");
+            $("#row1,#row3").removeClass("flipOutY animated");
+            $("#row2").toggleClass("flipOutY animated");
+            $("#row2").css("opacity", "0");
+            $("#row2").css("z-index", "10");
+            $("#row1").css("z-index", "20");
+            $("#row1").css("opacity", "1");
+            $("#row1").toggleClass("flipInY animated");
+        });
+        $("#row2 #histo").click(function () {
+            $("#row1,#row2,#row3").removeClass("flipInY animated");
+            $("#row1,#row3").removeClass("flipOutY animated");
+            $("#row2").toggleClass("flipOutY animated");
+            $("#row2").css("opacity", "0");
+            $("#row2").css("z-index", "10");
+            $("#row3").css("z-index", "20");
+            $("#row3").css("opacity", "1");
+            $("#row3").toggleClass("flipInY animated");
+        });
+        $("#row1 #histo").click(function () {
+            $("#row1,#row2,#row3").removeClass("flipInY animated");
+            $("#row2,#row3").removeClass("flipOutY animated");
+            $("#row1").toggleClass("flipOutY animated");
+            $("#row1").css("opacity", "0");
+            $("#row1").css("z-index", "10");
+            $("#row3").css("z-index", "20");
+            $("#row3").css("opacity", "1");
+            $("#row3").toggleClass("flipInY animated");
+        });
+    }
+
     //si la ventana de noticia se sale del rango
-    $("#not").css("overflow","scroll");
-    $("#row1 img").height(calculo * 0.7);
+    $("#not").css("overflow","auto");
+    $("#row1 #img > img").height(calculo * 0.6);
     if ($(window).width() < "991") {
         //oculto las cajas en dimensiones pequeñas de carnet de alumno
         $("#row3,#row2").css("display", "none");
@@ -135,13 +203,21 @@ $(document).ready(function () {
     });
     //altura para el fondo en login
     $('#fondo,.back').css('min-height', $("main").outerHeight(true));
-
+    // Chosen touch support.
+    if ($('.chosen-container').length > 0) {
+        $('.chosen-container').on('touchstart', function(e){
+            e.stopPropagation(); e.preventDefault();
+            // Trigger the mousedown event.
+            $(this).trigger('mousedown');
+        });
+    }
     //acciones cuando carga la pagina
     //acciones cuando se redimensiona la pagina
-    $(window).on("load resize", function () {
+    $(window).ready( function () {
+
         let calculo = $(window).height() - $("header").outerHeight(true) - $("h3").outerHeight(true) - $("h4").outerHeight(true);
         $("#row1,#row2,#row3").height(calculo*0.8);
-        $("#row1 img").height(calculo * 0.7);
+        $("#row1 #img > img").height(calculo * 0.6);
 
         //iniciador select carnets admin
         $("#carnetFilterPuntos").material_select();
