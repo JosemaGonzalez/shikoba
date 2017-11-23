@@ -21,9 +21,7 @@ class NoticiasRepository extends \Doctrine\ORM\EntityRepository
         $query = $this->getEntityManager()->createQuery(
             'SELECT n
              FROM AppBundle\Entity\Noticias n
-             WHERE n.idCurso IN 
-             (SELECT c.grupo 
-             FROM AppBundle\Entity\Cursos c) ORDER BY n.id ASC'
+             ORDER BY n.fecha desc'
         );
 
         return $query->getResult();

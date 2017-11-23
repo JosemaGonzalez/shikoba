@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Noticias;
 use AppBundle\Repository\CursosRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Repository\NoticiasRepository;
@@ -21,7 +22,7 @@ class NoticiasController extends Controller
         /** @var NoticiasRepository $repositoryNoticias */
         $repositoryNoticias = $em->getRepository("AppBundle:Noticias");
 
-        $noticias = $repositoryNoticias->findAll();
+        $noticias = $repositoryNoticias->getNoticias();
         return $this->render('convivencia/noticias/noticias.html.twig', array(
             'noticias' => $noticias,
             'user' => $this->getUser(),
@@ -42,6 +43,17 @@ class NoticiasController extends Controller
             'cursos' => $cursos,
             'user' => $this->getUser(),
         ));
+    }
+    /**
+     * @Route("/noticias/borrarNoticia/{id}", name="borrar_noticia")
+     * @Method({"GET", "POST"})
+     */
+    public function deleteNoticias(Noticias $noticia)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($noticia);
+        $em->flush();
+        return $this->redirectToRoute("noticias");
     }
 
 }

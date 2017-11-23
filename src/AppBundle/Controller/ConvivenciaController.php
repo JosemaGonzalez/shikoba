@@ -55,7 +55,7 @@ class ConvivenciaController extends Controller
         if (in_array("ROLE_PROFESOR", $this->getUser()->getRoles()))
             return $this->redirectToRoute("gestion_partes");
         if (in_array("ROLE_CONVIVENCIA", $this->getUser()->getRoles()))
-            return $this->redirectToRoute("admin");
+            return $this->redirectToRoute("noticias");
         if (in_array("ROLE_USER", $this->getUser()->getRoles()))
             return $this->redirectToRoute("alumno");
         return $this->redirectToRoute("login");

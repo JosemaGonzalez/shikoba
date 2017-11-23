@@ -65,7 +65,7 @@ class PartesController extends Controller
     }
 
     /**
-     * @Route("/nuevoParte", name="nuevoParte")
+     * @Route("/parte/nuevoParte", name="nuevoParte")
      * @Method({"GET", "POST"})
      */
     public function crearParteAction(Request $request)
@@ -137,7 +137,7 @@ class PartesController extends Controller
         ));
     }
     /**
-     * @Route("/imprimirParte", name="printParte")
+     * @Route("/parte/imprimirParte", name="printParte")
      * @Method({"GET", "POST"})
      */
     public function printParteAction(Request $request)
@@ -166,7 +166,7 @@ class PartesController extends Controller
     }
 
     /**
-     * @Route("/borrarParte/{id}", name="borrar_parte")
+     * @Route("/parte/borrarParte/{id}", name="borrar_parte")
      * @Method({"GET"})
      */
     public function removeParte(Partes $parte)

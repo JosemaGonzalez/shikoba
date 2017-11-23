@@ -323,6 +323,14 @@ th {
     height: 25px;
 }
 /*Contenedor del chosen que se quita el ancho*/
-.chosen-container{
-    min-width: 100%!important;
+.chosen-container {
+    min-width: 100% !important
+}
+
+/*Tabla responsive de las noticias*/
+@media screen and (max-width: 990px) {
+    #noticiatd,#noticiath {
+        overflow: auto;
+        height: 130px;
+    }
 }

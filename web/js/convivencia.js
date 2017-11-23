@@ -244,7 +244,7 @@ $(document).ready(function () {
                 $("#DataTables_Table_0_wrapper>div:first-child").addClass("right offset-m8");
                 $("#DataTables_Table_0_wrapper>div:first-child").removeClass("center");
                 //esta condicion sirve para la ventana de partes
-                if ( $("#parte").length > 0 ) {
+                if ($("#parte").length > 0) {
                     $("#DataTables_Table_0_wrapper>div.offset-m8").before("<div id='botonnuevo' class='col m3 left'></div>");
                     $("#DataTables_Table_0_wrapper>div.offset-m8").addClass("offset-m4");
                     $("#DataTables_Table_0_wrapper>div.offset-m8").removeClass("offset-m8");
@@ -255,11 +255,11 @@ $(document).ready(function () {
             if ($(window).width() > "991") {
                 $("#DataTables_Table_0_wrapper>div:first-child").removeClass("center");
                 $("#DataTables_Table_0_wrapper>div:first-child").addClass("right l3");
-                $("#DataTables_Table_0_wrapper>div:first-child").css("text-align","end");
-                $("#DataTables_Table_0_wrapper>div:first-child").css("margin-top","2%");
+                $("#DataTables_Table_0_wrapper>div:first-child").css("text-align", "end");
+                $("#DataTables_Table_0_wrapper>div:first-child").css("margin-top", "2%");
                 $("#nuevo").addClass("center");
                 //esta condicion sirve para la ventana de partes
-                if ( $("#parte").length > 0 ) {
+                if ($("#parte").length > 0) {
                     $("#botonbus button").css("left", "-5%");
                     $("#nuevo").addClass("l4");
                     $("#nuevo").removeClass("l3");
@@ -274,7 +274,7 @@ $(document).ready(function () {
             $(".paginate_button.current").removeClass("paginate_button current");
             $(".paginate_button").removeClass("paginate_button");
             //muestro los select de las tablas
-            $("#DataTables_Table_0_length select").css("display","block");
+            $("#DataTables_Table_0_length select").css("display", "block");
 
 
         },
@@ -344,8 +344,8 @@ $(document).ready(function () {
             if ($(window).width() > "991") {
                 $("#DataTables_Table_0_wrapper>div:first-child").removeClass("center");
                 $("#DataTables_Table_0_wrapper>div:first-child").addClass("right l3");
-                $("#DataTables_Table_0_wrapper>div:first-child").css("text-align","end");
-                $("#DataTables_Table_0_wrapper>div:first-child").css("margin-top","2%");
+                $("#DataTables_Table_0_wrapper>div:first-child").css("text-align", "end");
+                $("#DataTables_Table_0_wrapper>div:first-child").css("margin-top", "2%");
                 $("#nuevo").addClass("center");
 
             }
@@ -357,7 +357,7 @@ $(document).ready(function () {
             $(".paginate_button.current").removeClass("paginate_button current");
             $(".paginate_button").removeClass("paginate_button");
             //muestro los select de las tablas
-            $("#DataTables_Table_0_length select").css("display","block");
+            $("#DataTables_Table_0_length select").css("display", "block");
             $("#carnetFilterPuntos").material_select();
 
 

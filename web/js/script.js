@@ -4,9 +4,7 @@
 //Spinner loader intro
 var tmrReady = setInterval(isPageFullyLoaded, 200);
 function isPageFullyLoaded() {
-
     if (document.readyState == "complete") {
-
         $('.loaderIntro').fadeOut(1000);
         $('.containerLoader > .row').css("display", "block");
         clearInterval(tmrReady);
@@ -14,7 +12,6 @@ function isPageFullyLoaded() {
 }
 
 $(document).ready(function () {
-
     //select noticias form
     $('#cursosnoticias').material_select();
     $("#noticiascursos .select-wrapper li label").css("top","-11px");
@@ -31,7 +28,6 @@ $(document).ready(function () {
 
     //efectos botones de alumno
     if ($(window).width() < "991") {
-
         $("#row2,#row3").css("opacity", "0");
         $("#row1 #esta").click(function () {
             $("#row1,#row2,#row3").removeClass("flipInY animated");
@@ -97,7 +93,6 @@ $(document).ready(function () {
 
     //si la ventana de noticia se sale del rango
     $("#not").css("overflow","auto");
-    $("#row1 #img > img").height(calculo * 0.6);
     if ($(window).width() < "991") {
         //oculto las cajas en dimensiones pequeñas de carnet de alumno
         $("#row3,#row2").css("display", "none");
@@ -129,7 +124,6 @@ $(document).ready(function () {
 
     //boton de los puntos con colores
     if (document.readyState == "interactive" || document.readyState == "complete") {
-
         var puntos = $("#punto > span").text();
         var punto = $("#punto span");
         if (puntos == 0) {
@@ -148,6 +142,7 @@ $(document).ready(function () {
             punto.addClass("red darken-3 white-text btn-large pulse btn btn-floating");
         }
     }
+    //timepicker para poner la hora correcta
     $('.timepicker').pickatime({
         default: 'now', // Set default time: 'now', '1:30AM', '16:30'
         fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
@@ -173,7 +168,6 @@ $(document).ready(function () {
     //margen botones paginador en tablas
     $("#DataTables_Table_0_paginate a").on("click", function () {
         $("#DataTables_Table_0_paginate a").css("margin", "0 0.2%");
-
     });
     //quitado el label del buscador datatables
     $('#DataTables_Table_0_filter label').remove();
@@ -214,7 +208,6 @@ $(document).ready(function () {
     //acciones cuando carga la pagina
     //acciones cuando se redimensiona la pagina
     $(window).ready( function () {
-
         let calculo = $(window).height() - $("header").outerHeight(true) - $("h3").outerHeight(true) - $("h4").outerHeight(true);
         $("#row1,#row2,#row3").height(calculo*0.8);
         $("#row1 #img > img").height(calculo * 0.6);
