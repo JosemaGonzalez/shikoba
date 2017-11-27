@@ -52,7 +52,7 @@ class AlumnoController extends Controller
         $em = $this->getDoctrine()->getManager();
         /** @var NoticiasRepository $repositoryNoticias */
         $repositoryNoticias = $em->getRepository("AppBundle:Noticias");
-        $noticias = $repositoryNoticias->getNoticiasCurso($userData->getAlumno()->getIdCurso());
+        $noticias = $repositoryNoticias->getNoticiasCurso($userData->getAlumno()->getIdCurso(),$userData->getAlumno()->getPuntos());
 
         return $this->render('convivencia/alumno/alumno.html.twig', array(
                 'alumnoData' => $userData,
@@ -86,7 +86,7 @@ class AlumnoController extends Controller
 
         /** @var NoticiasRepository $repositoryNoticias */
         $repositoryNoticias = $em->getRepository("AppBundle:Noticias");
-        $noticias = $repositoryNoticias->getNoticiasCurso($userData->getAlumno()->getIdCurso());
+        $noticias = $repositoryNoticias->getNoticiasCurso($userData->getAlumno()->getIdCurso(),$userData->getAlumno()->getPuntos());
 
         return $this->render('convivencia/alumno/alumno.html.twig', array(
                 'alumnoData' => $userData,

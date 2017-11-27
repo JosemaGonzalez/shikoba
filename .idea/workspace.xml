@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25d14157-562d-42a5-a0c2-3922855430fb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Cursos.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Cursos.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/convivencia/alumno/alumno.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/convivencia/alumno/alumno.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/convivencia/navegacion.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/convivencia/navegacion.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/convivencia/noticias/noticias.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/convivencia/noticias/noticias.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/AlumnoController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/AlumnoController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Noticias.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Noticias.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Repository/NoticiasRepository.php" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/NoticiasRepository.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,12 +34,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="noticiasForm.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/convivencia/noticias/noticiasForm.html.twig">
+      <file leaf-file-name="alumno.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/convivencia/alumno/alumno.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="32" column="40" lean-forward="false" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
+            <state relative-caret-position="160">
+              <caret line="68" column="62" lean-forward="false" selection-start-line="68" selection-start-column="62" selection-end-line="68" selection-end-column="62" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AlumnoController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/AlumnoController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NoticiasRepository.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/NoticiasRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="400">
+              <caret line="38" column="44" lean-forward="false" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
+              <folding>
+                <marker date="1511770106144" expanded="true" signature="463:552" ph="SELECT n FRO... AppBundle" />
+                <marker date="1511770106144" expanded="true" signature="826:963" ph="SELECT n FRO... AppBundle" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -131,23 +158,23 @@
         <option value="$PROJECT_DIR$/app/config/routing.yml" />
         <option value="$PROJECT_DIR$/web/js/ckeditor/config.js" />
         <option value="$PROJECT_DIR$/src/AppBundle/Services/AlumnoHelper.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/AlumnoController.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/convivencia/alumno/alumno.html.twig" />
         <option value="$PROJECT_DIR$/web/js/chosen/chosen.jquery.min.js" />
         <option value="$PROJECT_DIR$/app/Resources/views/convivencia/partes/partesForm.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/CursosRepository.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/PartesController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/ConvivenciaController.php" />
         <option value="$PROJECT_DIR$/web/css/style.css" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Repository/NoticiasRepository.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/convivencia/noticias/noticias.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/NoticiasController.php" />
         <option value="$PROJECT_DIR$/web/js/convivencia.js" />
-        <option value="$PROJECT_DIR$/app/Resources/views/convivencia/navegacion.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/convivencia/noticias/noticiasForm.html.twig" />
         <option value="$PROJECT_DIR$/web/js/script.js" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Cursos.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/convivencia/navegacion.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Noticias.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/convivencia/noticias/noticias.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Repository/NoticiasRepository.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/convivencia/alumno/alumno.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/AlumnoController.php" />
       </list>
     </option>
   </component>
@@ -678,15 +705,15 @@
       <workItem from="1511248229279" duration="7730000" />
       <workItem from="1511421762464" duration="7028000" />
       <workItem from="1511508513880" duration="1612000" />
-      <workItem from="1511766640814" duration="2504000" />
+      <workItem from="1511766640814" duration="4285000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="163744000" />
+    <option name="totallyTimeSpent" value="165525000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1374" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-1374" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2526475" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -837,13 +864,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Alumno.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="279" column="30" lean-forward="false" selection-start-line="279" selection-start-column="20" selection-end-line="279" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/PerfilRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-250">
@@ -942,13 +962,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/convivencia/noticias/noticias.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="23" column="32" lean-forward="false" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/symfony_requirements">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -964,17 +977,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/convivencia/navegacion.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="894">
-          <caret line="138" column="60" lean-forward="false" selection-start-line="138" selection-start-column="60" selection-end-line="138" selection-end-column="60" />
-          <folding>
-            <element signature="n#style#0;n#li#10;n#ul#0;n#div#0;n#div#0;n#nav#0;n#div#0;n#header#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#li#2;n#ul#0;n#div#2;n#div#0;n#nav#0;n#div#0;n#header#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/security.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
@@ -987,14 +989,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="88" column="8" lean-forward="false" selection-start-line="88" selection-start-column="8" selection-end-line="88" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/AlumnoController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="146" column="21" lean-forward="false" selection-start-line="146" selection-start-column="8" selection-end-line="146" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -1015,26 +1009,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/convivencia/alumno/alumno.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="29" column="25" lean-forward="false" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/convivencia/alumno/carnets.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-120">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/convivencia/sanciones/sancionesForm.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="75" column="18" lean-forward="false" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -1047,17 +1025,6 @@
             <marker date="1511438788039" expanded="true" signature="1866:1883" ph="..." />
             <marker date="1511438788039" expanded="true" signature="8232:8249" ph="..." />
             <marker date="1511438788039" expanded="true" signature="12797:12814" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/NoticiasRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="17" column="7" lean-forward="false" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
-          <folding>
-            <marker date="1511438786672" expanded="true" signature="463:552" ph="SELECT n FRO... AppBundle" />
-            <marker date="1511438786672" expanded="true" signature="818:932" ph="SELECT n FRO... AppBundle" />
           </folding>
         </state>
       </provider>
@@ -1078,10 +1045,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/convivencia/navegacion.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="77" column="84" lean-forward="false" selection-start-line="77" selection-start-column="84" selection-end-line="77" selection-end-column="84" />
+          <folding>
+            <element signature="n#style#0;n#li#10;n#ul#0;n#div#0;n#div#0;n#nav#0;n#div#0;n#header#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Alumno.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="394" column="5" lean-forward="false" selection-start-line="372" selection-start-column="4" selection-end-line="394" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Noticias.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="20" column="33" lean-forward="false" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
+        <state relative-caret-position="310">
+          <caret line="112" column="5" lean-forward="false" selection-start-line="112" selection-start-column="5" selection-end-line="112" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/convivencia/noticias/noticias.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="470">
+          <caret line="38" column="45" lean-forward="false" selection-start-line="38" selection-start-column="45" selection-end-line="38" selection-end-column="45" />
           <folding />
         </state>
       </provider>
@@ -1090,6 +1083,41 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
           <caret line="32" column="40" lean-forward="false" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/NoticiasRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="38" column="44" lean-forward="false" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
+          <folding>
+            <marker date="1511770106144" expanded="true" signature="463:552" ph="SELECT n FRO... AppBundle" />
+            <marker date="1511770106144" expanded="true" signature="826:963" ph="SELECT n FRO... AppBundle" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/convivencia/sanciones/sancionesForm.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="64" column="60" lean-forward="false" selection-start-line="64" selection-start-column="33" selection-end-line="64" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/convivencia/alumno/alumno.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="68" column="62" lean-forward="false" selection-start-line="68" selection-start-column="62" selection-end-line="68" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/AlumnoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
           <folding />
         </state>
       </provider>

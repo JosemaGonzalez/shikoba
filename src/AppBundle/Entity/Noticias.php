@@ -36,10 +36,17 @@ class Noticias
     private $fechaFinal;
     /**
      * @var int
+     *
+     * @ORM\Column(name="puntos", type="integer", options={"default"="0"})
+     */
+    private $puntos;
+    /**
+     * @var int
      * @ORM\Id
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
+
     private $id;
 
     /**
@@ -90,6 +97,29 @@ class Noticias
     public function getNoticia_texto()
     {
         return $this->noticia_texto;
+    }
+    /**
+     * Set puntos
+     *
+     * @param integer $puntos
+     *
+     * @return Alumno
+     */
+    public function setPuntos($puntos)
+    {
+        $this->puntos = $puntos;
+
+        return $this;
+    }
+
+    /**
+     * Get puntos
+     *
+     * @return int
+     */
+    public function getPuntos()
+    {
+        return $this->puntos;
     }
     /**
      * Set fecha

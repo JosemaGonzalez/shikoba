@@ -31,14 +31,15 @@ class NoticiasRepository extends \Doctrine\ORM\EntityRepository
      * Función que devuelve noticia para el alumno
      * @return array
      */
-    public function getNoticiasCurso($curso)
+    public function getNoticiasCurso($curso,$puntos)
     {
         $query = $this->getEntityManager()->createQuery(
             'SELECT n
              FROM AppBundle\Entity\Noticias n
-             WHERE n.idCurso = :curso ORDER BY n.fecha desc'
+             WHERE n.idCurso = :curso and n.puntos = :puntos ORDER BY n.fecha desc'
         );
         $query->setParameter(':curso', $curso);
+        $query->setParameter(':puntos', $puntos);
         $query->setMaxResults(1);
 
         return $query->getResult();

@@ -66,9 +66,10 @@
             <div class="col l6 s12 center" id="not">
                 {% if noticia is not empty %}
                     {% for noticias in noticia %}
-                        {% if noticias.noticia_texto is null %}
+                        {% if noticias.noticia_texto is null or
+                        noticias.fechaInicio|date('d/m/Y H:i:s') >  "now"|date('d/m/Y H:i:s') or
+                        noticias.fechaFinal|date('d/m/Y H:i:s') <  "now"|date('d/m/Y H:i:s') %}
                             <h3 style="text-align:center">Bienvenid@s a la nueva interfaz de <strong>SHIKOBA</strong></h3>
-
                             <p style="text-align:center">Aqu&iacute; podr&aacute;s disfrutar de una nueva experiencia gracias
                                 a su nuevo dise&ntilde;o</p>
 
