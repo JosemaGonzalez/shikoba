@@ -79,7 +79,8 @@
                 <td COLSPAN="2">PROFESOR QUE TRAMITA EL
                     PARTE<br>{{ partes.idProfesor.nombre ~ " " ~ partes.idProfesor.apellido1 ~ " " ~ partes.idProfesor.apellido2 }}
                 </td>
-                <td colspan="2">TUTOR DEL GRUPO DEL ALUMNO<br><br>
+                <td colspan="2">TUTOR DEL GRUPO DEL ALUMNO<br>{{ partes.idAlumno.idCurso.idTutor.nombre ~ " " ~ partes.idAlumno.idCurso.idTutor.apellido1 ~ " " ~ partes.idAlumno.idCurso.idTutor.apellido2 }}
+                    <br>
                 </td>
             </tr>
             <tr class="back">
@@ -186,9 +187,8 @@
             <p><br><br> En Córdoba a ______ de ___________________ de 20_____</p>
             <p style="text-align: right">Firma</p>
         </div>
-        <div style="font-size: 12px"><br>(El presente parte de incidencias se devolverá Firmado al día siguiente de
-            su
-            recepción.)
+        <div style="font-size: 14px;text-align: center"><br>(El presente parte de incidencias se devolverá Firmado al día siguiente de
+            su recepción. En otro caso, el alumno será objeto de un nuevo parte sancionador)
         </div>
 
 </div>
