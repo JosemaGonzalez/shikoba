@@ -14,14 +14,26 @@ class Noticias
 {
     /**
      * @var \DateTime
-     * @ORM\Column(name="fecha", type="datetime", nullable=true)
+     * @ORM\Column(name="fecha", type="datetime", options={"default"="CURRENT_TIMESTAMP"})
      */
     private $fecha;
 
     public function __construct()
     {
         $this->fecha = new \DateTime();
+        $this->fechaInicio(new \DateTime());
     }
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="fechaInicio", type="datetime", options={"default"="CURRENT_TIMESTAMP"})
+     */
+    private $fechaInicio;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="fechaFinal", type="datetime", options={"default"="CURRENT_TIMESTAMP"})
+     */
+    private $fechaFinal;
     /**
      * @var int
      * @ORM\Id
@@ -101,6 +113,52 @@ class Noticias
     public function getFecha()
     {
         return $this->fecha;
+    }
+    /**
+     * Set fechaInicio
+     *
+     * @param string $fechaInicio
+     *
+     * @return Noticias
+     */
+    public function setFechaInicio($fechaInicio)
+    {
+        $this->fechaInicio = $fechaInicio;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaInicio
+     *
+     * @return string
+     */
+    public function getFechaInicio()
+    {
+        return $this->fechaInicio;
+    }
+    /**
+     * Set fechaFinal
+     *
+     * @param string $fechaFinal
+     *
+     * @return Noticias
+     */
+    public function setFechaFinal($fechaFinal)
+    {
+        $this->fechaFinal = $fechaFinal;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaFinal
+     *
+     * @return string
+     */
+    public function getFechaFinal()
+    {
+        return $this->fechaFinal;
     }
 
     /**
