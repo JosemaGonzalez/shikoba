@@ -14,6 +14,11 @@ function isPageFullyLoaded() {
 $(document).ready(function () {
     //select noticias form
     $('#cursosnoticias').material_select();
+    $('#puntosnoticias').material_select();
+    //fechas noticias form
+    $("#finNoticia,#inicioNoticia").datepicker({
+        minDate: 0,
+    });
     $("#noticiascursos .select-wrapper li label").css("top","-11px");
     //estilo banner para que tenga siempre la altura que lo contiene
     let $nav = $(".navbar-fixed");
