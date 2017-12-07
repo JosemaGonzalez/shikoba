@@ -1,7 +1,5 @@
 <?php
-
 namespace AppBundle\Controller;
-
 use AppBundle\Entity\Noticias;
 use AppBundle\Repository\CursosRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,16 +15,16 @@ class NoticiasController extends Controller
      */
     public function showNoticias(Request $request)
     {
-
         $em = $this->getDoctrine()->getManager();
         /** @var NoticiasRepository $repositoryNoticias */
         $repositoryNoticias = $em->getRepository("AppBundle:Noticias");
-
         $noticias = $repositoryNoticias->getNoticias();
         return $this->render('convivencia/noticias/noticias.html.twig', array(
             'noticias' => $noticias,
             'user' => $this->getUser(),
         ));
+
+        
     }
     /**
      * @Route("/noticiasForm", name="nuevaNoticia")
@@ -43,6 +41,25 @@ class NoticiasController extends Controller
             'cursos' => $cursos,
             'user' => $this->getUser(),
         ));
+
+        if($request->isMethod('POST')){
+            $noticia = new Noticias();
+            $noticia->setNoticia_texto($request->get('editor1'));
+            $noticia->setIdCurso($request->get('cursosnoticias'));
+            $fechaNoticia = \DateTime::createFromFormat('d/m/Y', $request->get('fecha'));
+            $noticia->setFecha($fechaNoticia);
+            $fechaNoticia = \DateTime::createFromFormat('d/m/Y', $request->get('fechaInicio'));
+            $noticia->setFechaInicio($fechaNoticia);
+            $fechaNoticia = \DateTime::createFromFormat('d/m/Y', $request->get('fechaFinal'));
+            $noticia->setFechaFinal($fechaNoticia);
+            $noticia->setPuntos($request->get('puntosnoticias'));
+
+            $em->persist($noticia);
+            $em->flush();
+
+            return $this->redirectToRoute("noticias");
+
+        }
     }
     /**
      * @Route("/noticias/borrarNoticia/{id}", name="borrar_noticia")
@@ -55,5 +72,4 @@ class NoticiasController extends Controller
         $em->flush();
         return $this->redirectToRoute("noticias");
     }
-
 }

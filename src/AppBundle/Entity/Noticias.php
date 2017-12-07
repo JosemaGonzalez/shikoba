@@ -21,7 +21,7 @@ class Noticias
     public function __construct()
     {
         $this->fecha = new \DateTime();
-        $this->fechaInicio(new \DateTime());
+        //$this->fechaInicio(new \DateTime());
     }
     /**
      * @var \DateTime
