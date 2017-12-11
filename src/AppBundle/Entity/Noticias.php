@@ -99,6 +99,29 @@ class Noticias
         return $this->noticia_texto;
     }
     /**
+     * Set noticiaTexto
+     *
+     * @param string $noticia_texto
+     *
+     * @return Noticias
+     */
+    public function setNoticiaTexto($noticia_texto)
+    {
+        $this->noticia_texto = $noticia_texto;
+
+        return $this;
+    }
+
+    /**
+     * Get noticiaTexto
+     *
+     * @return string
+     */
+    public function getNoticiaTexto()
+    {
+        return $this->noticia_texto;
+    }
+    /**
      * Set puntos
      *
      * @param integer $puntos
