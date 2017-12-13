@@ -85,29 +85,37 @@ class NoticiasController extends Controller
         $repositoryACursos = $em->getRepository('AppBundle:Cursos');
         /** @var Cursos $cursos */
         $cursos = $repositoryACursos->getCursosGroupByCursos2();
-        return $this->render('convivencia/noticias/noticiasForm.html.twig', array(
-            'cursos' => $cursos,
-            'user' => $this->getUser(),
-        ));
+       
 
-        if($request->isMethod('POST')){
+        if(!empty($request->query->get('editor1'))){
             $noticia = new Noticias();
-            $noticia->setNoticia_texto($request->get('editor1'));
-            $noticia->setIdCurso($request->get('cursosnoticias'));
-            $fechaNoticia = \DateTime::createFromFormat('d/m/Y', $request->get('fecha'));
-            $noticia->setFecha($fechaNoticia);
+            $noticia->setNoticia_texto($request->query->get('editor1'));
+
+            $curso=$repositoryACursos->findOneById($request->query->get('cursos')[0]);
+            $noticia->setIdCurso($curso);
+            $noticia->setPuntos($request->query->get('puntos')[0]);
+            
+
+            //print_r($curso);
+         // print_r($request->query->get('cursos'));
+
+          // die();
+             //$fechaNoticia = \DateTime::createFromFormat('d/m/Y', $request->get('fecha'));
+            //$noticia->setFecha($fechaNoticia);
             $fechaNoticia = \DateTime::createFromFormat('d/m/Y', $request->get('fechaInicio'));
             $noticia->setFechaInicio($fechaNoticia);
             $fechaNoticia = \DateTime::createFromFormat('d/m/Y', $request->get('fechaFinal'));
             $noticia->setFechaFinal($fechaNoticia);
-            $noticia->setPuntos($request->get('puntosnoticias'));
 
             $em->persist($noticia);
             $em->flush();
 
-            return $this->redirectToRoute("noticias");
 
         }
+         return $this->render('convivencia/noticias/noticiasForm.html.twig', array(
+            'cursos' => $cursos,
+            'user' => $this->getUser(),
+        ));
     }
     /**
      * @Route("/noticias/borrarNoticia/{id}", name="borrar_noticia")
