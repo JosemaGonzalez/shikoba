@@ -85,29 +85,37 @@ class NoticiasController extends Controller
         $repositoryACursos = $em->getRepository('AppBundle:Cursos');
         /** @var Cursos $cursos */
         $cursos = $repositoryACursos->getCursosGroupByCursos2();
-        return $this->render('convivencia/noticias/noticiasForm.html.twig', array(
-            'cursos' => $cursos,
-            'user' => $this->getUser(),
-        ));
+       
 
-        if($request->isMethod('POST')){
-            $noticia = new Noticias();
-            $noticia->setNoticia_texto($request->get('editor1'));
-            $noticia->setIdCurso($request->get('cursosnoticias'));
-            $fechaNoticia = \DateTime::createFromFormat('d/m/Y', $request->get('fecha'));
-            $noticia->setFecha($fechaNoticia);
-            $fechaNoticia = \DateTime::createFromFormat('d/m/Y', $request->get('fechaInicio'));
-            $noticia->setFechaInicio($fechaNoticia);
-            $fechaNoticia = \DateTime::createFromFormat('d/m/Y', $request->get('fechaFinal'));
-            $noticia->setFechaFinal($fechaNoticia);
-            $noticia->setPuntos($request->get('puntosnoticias'));
+        if(!empty($request->query->get('fechaFinal')) && !empty($request->query->get('puntos')) && !empty($request->query->get('cursos'))){
+            
 
-            $em->persist($noticia);
-            $em->flush();
+            $cursosIds=$request->query->get('cursos');
+        
+            foreach ($cursosIds as $key => $value) {
+                $noticia = new Noticias();
+                $curso=$repositoryACursos->findOneById($value);
+                $noticia->setIdCurso($curso);
+                $noticia->setNoticia_texto($request->query->get('editor1'));
+                $noticia->setPuntos($request->query->get('puntos')[0]);
+                $fechaNoticia = \DateTime::createFromFormat('d/m/Y', $request->get('fechaInicio'));
+                $noticia->setFechaInicio($fechaNoticia);
+                $fechaNoticia = \DateTime::createFromFormat('d/m/Y', $request->get('fechaFinal'));
+                $noticia->setFechaFinal($fechaNoticia);
+
+                $em->persist($noticia);
+                $em->flush();
+            }
+
 
             return $this->redirectToRoute("noticias");
 
         }
+
+         return $this->render('convivencia/noticias/noticiasForm.html.twig', array(
+            'cursos' => $cursos,
+            'user' => $this->getUser(),
+        ));
     }
     /**
      * @Route("/noticias/borrarNoticia/{id}", name="borrar_noticia")
